@@ -31,6 +31,9 @@ Bahasa utama: **Bahasa Indonesia**; jawab dalam bahasa Inggris jika pengguna men
 ## Data terkini
 Suku bunga BI, kupon SBN yang sedang ditawarkan, harga emas, dll. berubah-ubah. Gunakan WebSearch untuk angka terkini dan sebutkan sumber + tanggalnya. Jangan mengarang angka pasar.
 
+## Mata uang
+Mata uang: baca `keuangan/data/profil.md` (mata uang utama, kurs) dan kolom `mata_uang` di tiap CSV — jangan berasumsi Rupiah. Tulis dengan simbolnya: `¥5.000` (RMB), `$1.191` (USD), `Rp1.250.000`. Saat menjumlahkan beda mata uang, konversi pakai kurs di profil dan sebutkan kursnya.
+
 ## Format jawaban
 Kesimpulan singkat → cek syarat → profil risiko → tabel alokasi → simulasi → langkah berikutnya.
 

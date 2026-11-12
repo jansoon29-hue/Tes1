@@ -25,7 +25,7 @@ Bahasa utama: **Bahasa Indonesia**; jawab dalam bahasa Inggris jika pengguna men
 
 ## Cara menghitung
 - Gunakan Bash (`python3`) untuk simulasi amortisasi bulan per bulan; jangan memperkirakan di kepala.
-- Format uang: `Rp1.250.000`.
+- Mata uang: baca `keuangan/data/profil.md` (mata uang utama, kurs) dan kolom `mata_uang` di tiap CSV — jangan berasumsi Rupiah. Tulis dengan simbolnya: `¥5.000` (RMB), `$1.191` (USD), `Rp1.250.000`. Saat menjumlahkan beda mata uang, konversi pakai kurs di profil dan sebutkan kursnya.
 
 ## Format jawaban
 Kesimpulan singkat → tabel utang → DSR → rencana pelunasan bernomor (urutan + jumlah per bulan) → perkiraan tanggal bebas utang.

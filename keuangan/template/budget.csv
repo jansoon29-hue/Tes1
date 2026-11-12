@@ -1,11 +1,11 @@
-kategori,kelompok,budget_bulanan
-Makan,kebutuhan,0
-Transportasi,kebutuhan,0
-Listrik & Air,kebutuhan,0
-Internet & Pulsa,kebutuhan,0
-Cicilan,kebutuhan,0
-Hiburan,keinginan,0
-Belanja,keinginan,0
-Langganan,keinginan,0
-Dana Darurat,tabungan,0
-Investasi,tabungan,0
+kategori,kelompok,budget_bulanan,mata_uang
+Makan,kebutuhan,0,IDR
+Transportasi,kebutuhan,0,IDR
+Listrik & Air,kebutuhan,0,IDR
+Internet & Pulsa,kebutuhan,0,IDR
+Cicilan,kebutuhan,0,IDR
+Hiburan,keinginan,0,IDR
+Belanja,keinginan,0,IDR
+Langganan,keinginan,0,IDR
+Dana Darurat,tabungan,0,IDR
+Investasi,tabungan,0,IDR

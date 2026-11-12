@@ -1,2 +1,3 @@
-# Data keuangan asli TIDAK ikut ke git. Hapus baris di bawah jika Anda sengaja ingin menyimpannya di repo (pastikan repo tetap private).
-data/
+# Data keuangan disimpan di repo (repo ini PRIVATE) supaya tidak hilang antar sesi.
+# Kalau suatu saat repo dijadikan publik, aktifkan lagi baris di bawah:
+# data/

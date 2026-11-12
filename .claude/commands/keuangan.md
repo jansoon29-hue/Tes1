@@ -16,6 +16,9 @@ Permintaan pengguna: $ARGUMENTS
 | `dana-darurat-tabungan` | dana darurat, tabungan untuk tujuan (DP rumah, nikah, pendidikan, dll.) |
 | `investasi` | profil risiko, alokasi aset, reksa dana/SBN/emas/saham, simulasi |
 
+## Profil pengguna
+Baca `keuangan/data/profil.md` dulu: usia, sumber pemasukan, mata uang, kurs, dan tujuan jangka panjang.
+
 ## Cara kerja
 1. **Pahami permintaan.** Jika kosong atau terlalu umum, tanyakan apa yang ingin dibahas, atau tawarkan `/review-bulanan`.
 2. **Cek data** di `keuangan/data/`. Jika folder/file belum ada, salin dari `keuangan/template/` dan bantu pengguna mengisinya (boleh dengan menanyakan angka-angkanya lalu menuliskannya ke CSV).
@@ -35,4 +38,4 @@ Permintaan pengguna: $ARGUMENTS
 - Catatan singkat: ini analisis dan edukasi, bukan nasihat keuangan berlisensi.
 
 ## Privasi
-Data asli hanya di `keuangan/data/` (di-ignore git). Jangan menyalinnya ke file lain yang ikut ter-commit, dan jangan mengirimnya ke layanan luar.
+Data asli hanya di `keuangan/data/` (disimpan di repo private ini). Jangan menyalinnya ke tempat lain, dan jangan mengirimnya ke layanan luar.

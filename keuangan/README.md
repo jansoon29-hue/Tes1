@@ -23,6 +23,6 @@ Tim agen AI untuk mengelola keuangan pribadi di Claude Code. Bahasa utama Indone
 
 ## Privasi
 
-`keuangan/data/` di-ignore oleh git (lihat `keuangan/.gitignore`), jadi data asli tidak ikut ter-push ke GitHub. Yang ada di repo hanya definisi agen dan template kosong.
+Data asli di `keuangan/data/` **ikut disimpan di repo** supaya tidak hilang antar sesi. Ini aman selama repo tetap **private**. Kalau repo akan dijadikan publik, aktifkan lagi baris `data/` di `keuangan/.gitignore` dan hapus data dari riwayat git terlebih dahulu.
 
 > Tim ini memberi analisis dan edukasi, bukan nasihat keuangan berlisensi. Untuk keputusan besar, konsultasikan dengan perencana keuangan bersertifikat.

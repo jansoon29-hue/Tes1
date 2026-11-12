@@ -1,3 +1,3 @@
-nama,jenis,platform,nilai_sekarang,tanggal_update
-Tabungan utama,kas,BCA,0,2026-11-01
-Dana darurat,reksa dana pasar uang,,0,2026-11-01
+nama,jenis,platform,nilai_sekarang,tanggal_update,mata_uang
+Tabungan utama,kas,BCA,0,2026-11-01,IDR
+Dana darurat,reksa dana pasar uang,,0,2026-11-01,IDR

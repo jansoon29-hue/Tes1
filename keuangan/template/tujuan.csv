@@ -1,3 +1,3 @@
-tujuan,target_rupiah,terkumpul,target_tanggal,prioritas,disimpan_di
-Dana darurat,0,0,2027-06-30,1,reksa dana pasar uang
-DP rumah,0,0,2030-01-01,2,
+tujuan,target,terkumpul,target_tanggal,prioritas,disimpan_di,mata_uang
+Dana darurat,0,0,2027-06-30,1,reksa dana pasar uang,IDR
+DP rumah,0,0,2030-01-01,2,,IDR

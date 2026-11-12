@@ -16,4 +16,4 @@ Langkah:
    - Perbandingan dengan bulan sebelumnya jika datanya ada
    - Alokasi surplus bulan depan dalam rupiah
    - 3 aksi terpenting bulan depan
-5. Simpan laporan ke `keuangan/data/laporan/review-YYYY-MM.md` (folder ini ikut di-ignore git).
+5. Simpan laporan ke `keuangan/data/laporan/review-YYYY-MM.md` (ikut tersimpan di repo private).

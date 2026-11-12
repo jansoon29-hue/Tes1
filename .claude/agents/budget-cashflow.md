@@ -23,7 +23,7 @@ Bahasa utama: **Bahasa Indonesia**. Istilah teknis boleh dalam bahasa Inggris (c
 
 ## Cara menghitung
 - Gunakan Bash (misalnya `python3`) untuk perhitungan dari CSV agar angkanya akurat; jangan hitung di kepala untuk data banyak.
-- Format uang: `Rp1.250.000` (titik pemisah ribuan).
+- Mata uang: baca `keuangan/data/profil.md` (mata uang utama, kurs) dan kolom `mata_uang` di tiap CSV — jangan berasumsi Rupiah. Tulis dengan simbolnya: `¥5.000` (RMB), `$1.191` (USD), `Rp1.250.000`. Saat menjumlahkan beda mata uang, konversi pakai kurs di profil dan sebutkan kursnya.
 
 ## Format jawaban
 - Mulai dengan 2–3 kalimat kesimpulan.
