@@ -110,6 +110,14 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
 .optinfo>div.ans{outline:1px solid var(--good)}
 .optinfo .h{font-family:var(--f-han);font-size:1.1rem;font-weight:500}
 @media (max-width:420px){.panel{padding:16px}.choices{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+.plan{display:flex;flex-direction:column;gap:8px}
+.done{display:flex;flex-direction:column;align-items:center;gap:10px}
+.stats .stat:last-child:nth-child(odd){grid-column:1/-1}
+.settings{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:12px;padding:14px}
+.settings input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent)}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:no-preference){.choice.ok{animation:pop .35s ease}.choice.no{animation:shake .35s ease}.blank.filled{animation:pop .35s ease}}
 @media (prefers-reduced-motion:no-preference){.bar>i,.week i{transition:all .3s ease}}
 </style>
 </head>
@@ -145,9 +153,10 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
 
   <!-- FLASHCARD -->
   <section class="panel" id="flash">
-    <div class="row spread">
-      <span class="meta" id="flashInfo"></span>
-      <button class="btn icon" id="flashSay" aria-label="Dengarkan">🔊 Dengar</button>
+    <div class="plan">
+      <div class="row spread"><span class="label" id="flashInfo">Target hari ini</span><span class="row"><button class="btn icon" id="fPlan" hidden>← Target hari ini</button><button class="btn icon" id="flashSay" aria-label="Dengarkan">🔊 Dengar</button></span></div>
+      <div class="bar"><i id="planBar" style="width:0%"></i></div>
+      <div class="row meta" style="gap:16px"><span>Ulangan tersisa: <b id="planDue">0</b></span><span>Kata baru hari ini: <b id="planNew">0/10</b></span></div>
     </div>
     <div class="card" id="flashCard" tabindex="0" role="button" aria-label="Balik kartu">
       <div class="hanzi" id="fHan"></div>
@@ -156,6 +165,12 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
         <div class="arti" id="fArti"></div>
       </div>
       <div class="hint" id="fHint">Ketuk untuk melihat pinyin dan arti</div>
+      <div id="fDone" class="done" hidden>
+        <div class="hanzi" style="font-size:3rem">完成</div>
+        <b>Target hari ini selesai!</b>
+        <p class="hint" id="fDoneText" style="margin:0"></p>
+        <div class="row" style="justify-content:center"><button class="btn primary" id="fExtra">Latihan tambahan</button><button class="btn" id="fMore">+5 kata baru</button></div>
+      </div>
     </div>
     <div class="row" id="flashBtns">
       <button class="btn grow" id="fForgot">Lupa</button>
@@ -199,6 +214,12 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
     </div>
     <p class="hint" style="margin:0">Progres tersimpan di browser ini saja. Kalau pindah perangkat atau menghapus data situs, progres mulai dari awal.</p>
     <p class="hint" style="margin:0">Daftar kata: HSK 3.0 level 1–4 (3.181 kata) dari proyek <a href="https://github.com/drkameleon/complete-hsk-vocabulary" style="color:var(--accent)">complete-hsk-vocabulary</a>, lisensi MIT © 2026 Yanis Zafirópulos. Arti bahasa Indonesia disusun untuk aplikasi ini. Contoh kalimat (2.347 kalimat) dari <a href="https://github.com/no7z/hsk-sentences-audio" style="color:var(--accent)">hsk-sentences-audio</a>, lisensi CC BY-SA 4.0; terjemahan Indonesianya dibagikan dengan lisensi yang sama.</p>
+    <div class="settings">
+      <div class="label">Pengaturan</div>
+      <label class="row spread" for="newPer"><span>Kata baru per hari</span><select id="newPer"><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option><option>30</option></select></label>
+      <label class="row spread" for="sndT"><span>Efek suara benar/salah</span><input type="checkbox" id="sndT"></label>
+      <p class="hint" id="planHint" style="margin:0"></p>
+    </div>
     <div class="row"><button class="btn" id="resetBtn">Hapus progres</button><span class="meta" id="resetMsg"></span></div>
   </section>
 </div>
@@ -5749,7 +5770,7 @@ const KEY="hanzi-harian-v1";
 let S={cards:{},days:{},quiz:{right:0,total:0},sent:{right:0,total:0},level:"1,2"};
 try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
 if(!["1,2","1","2","3,4","3","4","1,2,3,4"].includes(S.level))S.level="1,2";
-if(!S.sent)S.sent={right:0,total:0};
+if(!S.sent)S.sent={right:0,total:0};if(S.newPerDay==null)S.newPerDay=10;if(S.sound==null)S.sound=true;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 function logDay(n=1){const t=today();S.days[t]=(S.days[t]||0)+n}
@@ -5773,14 +5794,41 @@ tabs.forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 $("level").value=S.level;
 $("level").onchange=e=>{S.level=e.target.value;save();nextCard();newQuiz();Z=null;if(!$("sent").hidden)nextSent();renderProg()};
 
+// ---------- Efek suara (dibuat langsung oleh browser, tanpa file) ----------
+let AC=null;
+function tone(seq,type,vol){
+  if(!S.sound)return;
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==="suspended")AC.resume();
+    let t=AC.currentTime+.01;
+    for(const[f,d,f2]of seq){
+      const o=AC.createOscillator(),g=AC.createGain();
+      o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
+      g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+      o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03);t+=d*.8;
+    }
+  }catch(e){}
+}
+const SFX={
+  ok:()=>tone([[660,.1],[990,.2]],"triangle",.2),
+  no:()=>tone([[240,.14,200],[190,.26,140]],"sawtooth",.06),
+  know:()=>tone([[880,.09]],"sine",.12),
+  forgot:()=>tone([[330,.16,260]],"sine",.1),
+  done:()=>tone([[523,.12],[659,.12],[784,.12],[1047,.35]],"triangle",.18)
+};
+let combo=0;
+function feedback(ok){ok?SFX.ok():SFX.no();combo=ok?combo+1:0;return ok?(combo>=3?`对! Benar · ${combo} berturut-turut`:"对! Benar"):"Belum tepat"}
+
 // ---------- Word records & smart picking ----------
-// Every word keeps miss/right counts. Words that are often forgotten or
-// answered wrong are drawn much more often in all three practice modes.
+// Setiap kata menyimpan jumlah lupa/salah dan benar. Kata yang sering lupa
+// diulang lebih cepat dan lebih sering di semua mode latihan.
 function rec(w){let c=S.cards[w.id];if(!c)c=S.cards[w.id]={box:0,due:0,first:today(),miss:0,seen:0,right:0};if(c.right==null)c.right=0;return c}
 function isWeak(c){return !!c&&c.miss>0&&c.box<=2}
 function wWeight(w){const c=S.cards[w.id];if(!c)return 1;let x=(1+2*c.miss)/(1+0.5*c.right);if(c.due<=Date.now())x*=1.5;return Math.max(.2,x)}
 function wpick(list,fn){let t=0;const ws=list.map(w=>{const x=fn(w);t+=x;return x});let r=Math.random()*t;for(let i=0;i<list.length;i++){r-=ws[i];if(r<=0)return list[i]}return list[list.length-1]}
 const recent=[];
+function remember(w,n){recent.push(w.id);while(recent.length>Math.min(6,Math.floor(n/2)))recent.shift()}
 function smartPick(list){
   let cand=list.filter(w=>!recent.includes(w.id));if(!cand.length)cand=list;
   const weak=cand.filter(w=>isWeak(S.cards[w.id]));
@@ -5789,34 +5837,76 @@ function smartPick(list){
   if(weak.length&&r<.45)w=wpick(weak,x=>1+S.cards[x.id].miss);
   else if(due.length&&r<.65)w=wpick(due,wWeight);
   else w=wpick(cand,wWeight);
-  recent.push(w.id);while(recent.length>Math.min(6,Math.floor(list.length/2)))recent.shift();
-  return w;
+  remember(w,list.length);return w;
 }
 function markRight(w){const c=rec(w);c.seen++;c.right++;c.box=Math.min(c.box+1,6);c.due=Date.now()+INTERVALS[c.box]*DAY-3600e3}
 function markWrong(w){const c=rec(w);c.seen++;c.miss++;c.box=1;c.due=Date.now()+60e3*3}
+const learned=()=>pool().filter(w=>S.cards[w.id]);
 
-// ---------- Flashcards (tanpa batas) ----------
-let cur=null;
+// ---------- Rencana harian ----------
+function todayState(){const t=today();if(!S.today||S.today.date!==t)S.today={date:t,bonus:0,rev:0,doneShown:false};return S.today}
+function newToday(){const t=today();let n=0;for(const k in S.cards)if(S.cards[k].first===t)n++;return n}
+function quota(){return S.newPerDay+todayState().bonus}
+function newLeft(){return Math.max(0,quota()-newToday())}
+function dueList(){const now=Date.now();return pool().filter(w=>{const c=S.cards[w.id];return c&&c.due<=now})}
+function nextNew(){return pool().find(w=>!S.cards[w.id])}
+const MONTHS=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+function finishDate(){const left=WORDS.filter(w=>!S.cards[w.id]).length;if(!left)return null;const d=new Date();d.setDate(d.getDate()+Math.ceil(left/S.newPerDay));return MONTHS[d.getMonth()]+" "+d.getFullYear()}
+
+// ---------- Flashcard ----------
+let cur=null,extra=false;
+function showCardUI(on){["fHan","flashBtns","flashSay"].forEach(id=>$(id).hidden=!on);$("fDone").hidden=on;if(!on){$("fBack").hidden=true;$("fHint").hidden=true}}
 function nextCard(){
-  const p=pool();cur=smartPick(p);
-  const weakN=p.filter(w=>isWeak(S.cards[w.id])).length;
-  $("flashInfo").textContent=`${S.days[today()]||0} latihan hari ini · ${weakN} kata sering lupa`;
+  const due=dueList(),nl=newLeft(),nw=nextNew(),st=todayState();
+  $("planDue").textContent=due.length;$("planNew").textContent=`${Math.min(newToday(),quota())}/${quota()}`;
+  const total=st.rev+due.length+quota(),doneN=st.rev+Math.min(newToday(),quota());
+  $("planBar").style.width=(total?Math.min(100,doneN/total*100):100)+"%";
+  $("fPlan").hidden=!extra;
+  if(extra){
+    const L=learned();cur=smartPick(L.length?L:pool());
+    $("flashInfo").textContent="Latihan tambahan · fokus kata yang sering lupa";
+  }else{
+    cur=null;
+    const fresh=due.filter(w=>!recent.includes(w.id)),pickDue=fresh.length?fresh:due;
+    const useNew=nw&&nl>0&&(!due.length||Math.random()<.25);
+    if(useNew)cur=nw;
+    else if(pickDue.length){pickDue.sort((a,b)=>(isWeak(S.cards[b.id])-isWeak(S.cards[a.id]))||(S.cards[a.id].due-S.cards[b.id].due));cur=pickDue[0]}
+    if(cur)remember(cur,pool().length);
+    $("flashInfo").textContent="Target hari ini";
+  }
+  if(!cur){
+    showCardUI(false);
+    $("planBar").style.width="100%";
+    $("fDoneText").textContent=nw?`${st.rev} ulangan dan ${Math.min(newToday(),quota())} kata baru sudah selesai. Datang lagi besok untuk ulangan berikutnya.`:`Semua kata di level ini sudah pernah kamu pelajari. Pilih level berikutnya di kanan atas untuk kata baru, atau lanjutkan latihan tambahan.`;
+    if(!st.doneShown){st.doneShown=true;save();SFX.done()}
+    return;
+  }
+  showCardUI(true);
   $("fBack").hidden=true;$("fHint").hidden=false;
   $("fHan").textContent=cur.h;$("fPin").innerHTML=pinHTML(cur.p);$("fArti").textContent=cur.a;
   const c=S.cards[cur.id];
-  $("fHint").textContent=!c?"Kata baru · ketuk untuk melihat pinyin dan arti":isWeak(c)?`Sering lupa (${c.miss}×) · ketuk untuk melihat arti`:"Ketuk untuk melihat pinyin dan arti";
+  $("fHint").textContent=!c?"Kata baru · ketuk untuk melihat pinyin dan arti":isWeak(c)?`Sering lupa (${c.miss}×) · ketuk untuk melihat arti`:"Ulangan · ketuk untuk melihat pinyin dan arti";
 }
-function flip(){if(!cur)return;const show=$("fBack").hidden;$("fBack").hidden=!show;$("fHint").hidden=show;if(show){$("fHan").innerHTML=hanHTML(cur);say(cur.h)}else $("fHan").textContent=cur.h}
+function flip(){if(!cur||$("fHan").hidden)return;const show=$("fBack").hidden;$("fBack").hidden=!show;$("fHint").hidden=show;if(show){$("fHan").innerHTML=hanHTML(cur);say(cur.h)}else $("fHan").textContent=cur.h}
 $("flashCard").onclick=flip;
 $("flashCard").onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}};
 $("flashSay").onclick=()=>cur&&say(cur.h);
-function grade(ok){if(!cur)return;ok?markRight(cur):markWrong(cur);logDay();save();nextCard()}
+function grade(ok){
+  if(!cur||$("fHan").hidden)return;
+  const wasReview=!!S.cards[cur.id]&&S.cards[cur.id].first!==today();
+  ok?(markRight(cur),SFX.know()):(markWrong(cur),SFX.forgot());
+  if(!extra&&wasReview)todayState().rev++;
+  logDay();save();nextCard();
+}
 $("fKnow").onclick=()=>grade(true);$("fForgot").onclick=()=>grade(false);
+$("fExtra").onclick=()=>{extra=true;nextCard()};
+$("fMore").onclick=()=>{todayState().bonus+=5;extra=false;save();nextCard()};
+$("fPlan").onclick=()=>{extra=false;nextCard()};
 document.addEventListener("keydown",e=>{if($("flash").hidden||e.target.tagName==="SELECT")return;if(e.key==="1")grade(false);if(e.key==="2")grade(true)});
 
 // ---------- Quiz ----------
 let Q=null;
-function newQuiz(){const p=pool(),items=[],ids=new Set();let g=0;while(items.length<Math.min(10,p.length)&&g++<300){const w=smartPick(p);if(!ids.has(w.id)){ids.add(w.id);items.push(w)}}Q={items,i:0,right:0,done:false};renderQ()}
+function newQuiz(){const L=learned(),p=L.length>=8?L:pool(),items=[],ids=new Set();let g=0;while(items.length<Math.min(10,p.length)&&g++<300){const w=smartPick(p);if(!ids.has(w.id)){ids.add(w.id);items.push(w)}}Q={items,i:0,right:0,done:false};renderQ()}
 function renderQ(){
   const body=$("quizBody"),mode=$("quizMode").value;
   $("quizBar").style.width=(Q.i/Q.items.length*100)+"%";
@@ -5843,9 +5933,9 @@ function renderQ(){
     if(!ok)b.classList.add("no");
     if(ok)Q.right++;S.quiz.total++;if(ok)S.quiz.right++;ok?markRight(w):markWrong(w);logDay();
     save();
-    $("qFb").textContent=ok?"对! Benar":"Belum tepat";$("qFb").className="feedback "+(ok?"ok":"no");
+    $("qFb").textContent=feedback(ok);$("qFb").className="feedback "+(ok?"ok":"no");
     const r=$("qReveal");r.hidden=false;r.innerHTML=`<div class="hanzi" style="font-size:2.4rem">${hanHTML(w)}</div><div class="pinyin">${pinHTML(w.p)}</div><div class="hint">${w.a}</div>`;
-    say(w.h);
+    setTimeout(()=>say(w.h),450);
     $("qNext").hidden=false;$("qNext").focus();$("qNext").onclick=()=>{Q.i++;renderQ()};
   });
 }
@@ -5889,14 +5979,14 @@ function nextSent(){
     if(!ok)b.classList.add("no");
     S.sent.total++;if(ok)S.sent.right++;ok?markRight(w):markWrong(w);logDay();save();sentInfo();
     $("zBlank").innerHTML=hanHTML(w);$("zBlank").classList.add("filled");
-    $("zFb").textContent=ok?"对! Benar":"Belum tepat";$("zFb").className="feedback "+(ok?"ok":"no");
+    $("zFb").textContent=feedback(ok);$("zFb").className="feedback "+(ok?"ok":"no");
     $("zHint").hidden=true;$("zTr").hidden=true;
     const r=$("zReveal");r.hidden=false;
     r.innerHTML=`<div class="pinyin" style="font-size:1rem">${s.p}</div><div class="hint">${s.a}</div>
       <button class="btn icon" id="zSay" style="margin-top:8px">🔊 Dengar kalimat</button>
       <div class="optinfo">${opts.map(x=>`<div${x===w?' class="ans"':""}><b class="h">${hanHTML(x)}</b> ${pinHTML(x.p)} · ${x.a}</div>`).join("")}</div>`;
     $("zSay").onclick=()=>say(s.segs.join(""));
-    say(s.segs.join(""));
+    setTimeout(()=>say(s.segs.join("")),450);
     $("zNext").hidden=false;$("zNext").focus();$("zNext").onclick=nextSent;
   });
 }
@@ -5904,6 +5994,7 @@ function nextSent(){
 // ---------- Progress ----------
 function streak(){let n=0;const d=new Date();if(!S.days[today()])d.setDate(d.getDate()-1);for(;;){const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");if(S.days[k]){n++;d.setDate(d.getDate()-1)}else break}return n}
 function renderProg(){
+  planHint();
   const p=pool(),learned=p.filter(w=>S.cards[w.id]).length,mastered=p.filter(w=>S.cards[w.id]&&S.cards[w.id].box>=4).length;
   const acc=S.quiz.total?Math.round(S.quiz.right/S.quiz.total*100)+"%":"–",sacc=S.sent.total?Math.round(S.sent.right/S.sent.total*100)+"%":"–",weak=p.filter(w=>isWeak(S.cards[w.id])).length;
   $("statGrid").innerHTML=[
@@ -5912,7 +6003,8 @@ function renderProg(){
     [mastered,"Kata dikuasai (≥8 hari)"],
     [acc,`Akurasi kuis (${S.quiz.total} soal)`],
     [sacc,`Akurasi kalimat (${S.sent.total} soal)`],
-    [weak,"Kata sering lupa (diulang lebih sering)"]
+    [weak,"Kata sering lupa (diulang lebih sering)"],
+    [finishDate()||"Selesai","Perkiraan selesai semua kata HSK 1–4"]
   ].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
   const days=[],names=["Min","Sen","Sel","Rab","Kam","Jum","Sab"];
   for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");days.push([names[d.getDay()],S.days[k]||0])}
@@ -5921,9 +6013,15 @@ function renderProg(){
   const hard=WORDS.filter(w=>S.cards[w.id]&&S.cards[w.id].miss>0).sort((a,b)=>S.cards[b.id].miss-S.cards[a.id].miss).slice(0,12);
   $("hardTable").innerHTML=hard.length?hard.map(w=>`<tr><td class="h">${hanHTML(w)}</td><td>${pinHTML(w.p)}</td><td>${w.a}</td><td class="meta">${S.cards[w.id].miss}×</td></tr>`).join(""):`<tr><td class="hint" style="border:0">Belum ada. Kata yang kamu tandai "Lupa" atau salah di kuis akan muncul di sini.</td></tr>`;
 }
+
+// ---------- Pengaturan ----------
+function planHint(){const fd=finishDate(),left=WORDS.filter(w=>!S.cards[w.id]).length;$("planHint").textContent=fd?`Dengan ${S.newPerDay} kata baru per hari, ${left.toLocaleString("id-ID")} kata HSK 1–4 yang tersisa selesai dipelajari sekitar ${fd}. Kata yang sudah dipelajari tetap diulang setiap hari sesuai jadwal.`:"Semua kata HSK 1–4 sudah pernah dipelajari. Terus ulangi supaya tidak lupa."}
+$("newPer").value=String(S.newPerDay);$("sndT").checked=!!S.sound;
+$("newPer").onchange=e=>{S.newPerDay=+e.target.value;save();planHint();renderProg();nextCard()};
+$("sndT").onchange=e=>{S.sound=e.target.checked;save();if(S.sound)SFX.ok()};
 let resetArmed=false;
 $("resetBtn").onclick=()=>{if(!resetArmed){resetArmed=true;$("resetBtn").textContent="Ketuk lagi untuk menghapus";$("resetMsg").textContent="";setTimeout(()=>{resetArmed=false;$("resetBtn").textContent="Hapus progres"},4000);return}
-  S={cards:{},days:{},quiz:{right:0,total:0},sent:{right:0,total:0},level:S.level};Z=null;save();resetArmed=false;$("resetBtn").textContent="Hapus progres";$("resetMsg").textContent="Progres dihapus.";nextCard();renderProg()};
+  S={cards:{},days:{},quiz:{right:0,total:0},sent:{right:0,total:0},level:S.level,newPerDay:S.newPerDay,sound:S.sound};Z=null;save();resetArmed=false;$("resetBtn").textContent="Hapus progres";$("resetMsg").textContent="Progres dihapus.";nextCard();renderProg()};
 
 nextCard();
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{})})}
