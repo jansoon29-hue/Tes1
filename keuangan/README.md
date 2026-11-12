@@ -26,3 +26,8 @@ Tim agen AI untuk mengelola keuangan pribadi di Claude Code. Bahasa utama Indone
 Data asli di `keuangan/data/` **ikut disimpan di repo** supaya tidak hilang antar sesi. Ini aman selama repo tetap **private**. Kalau repo akan dijadikan publik, aktifkan lagi baris `data/` di `keuangan/.gitignore` dan hapus data dari riwayat git terlebih dahulu.
 
 > Tim ini memberi analisis dan edukasi, bukan nasihat keuangan berlisensi. Untuk keputusan besar, konsultasikan dengan perencana keuangan bersertifikat.
+
+## Dashboard
+
+Grafik saldo sewa, portofolio, dividen, dan garis waktu sampai usia 30:
+https://claude.ai/artifact/GsWvu2Q4QiFZzckM6Caapv (private). Perbarui tiap bulan dengan mengirim saldo terbaru lewat chat.
