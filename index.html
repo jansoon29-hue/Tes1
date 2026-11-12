@@ -109,7 +109,7 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
   <header>
     <div>
       <h1><span class="han">汉字</span> Hanzi Harian</h1>
-      <p class="sub">Kosakata HSK 1–4 dengan pinyin dan arti bahasa Indonesia</p>
+      <p class="sub">Kosakata HSK 3.0 level 1–4 dengan pinyin dan arti bahasa Indonesia</p>
     </div>
     <label class="row" for="level"><span class="label">Level</span>
       <select id="level">
@@ -200,6 +200,7 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
       <div class="tablebox"><table id="hardTable"></table></div>
     </div>
     <p class="hint" style="margin:0">Progres tersimpan di browser ini saja. Kalau pindah perangkat atau menghapus data situs, progres mulai dari awal.</p>
+    <p class="hint" style="margin:0">Daftar kata: HSK 3.0 level 1–4 (3.181 kata) dari proyek <a href="https://github.com/drkameleon/complete-hsk-vocabulary" style="color:var(--accent)">complete-hsk-vocabulary</a>, lisensi MIT © 2026 Yanis Zafirópulos. Arti bahasa Indonesia disusun untuk aplikasi ini.</p>
     <div class="row"><button class="btn" id="resetBtn">Hapus progres</button><span class="meta" id="resetMsg"></span></div>
   </section>
 </div>
@@ -207,977 +208,3187 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
 <script>
 // ---------- Data: hanzi|pinyin per suku kata|arti ----------
 const RAW1=`爱|ài|cinta, mencintai
+爱好|ài hào|hobi
 八|bā|delapan
+爸|bà|ayah
 爸爸|bà ba|ayah
+吧|ba|partikel ajakan/saran
+白|bái|putih
+白天|bái tiān|siang hari
+百|bǎi|seratus
+班|bān|kelas, regu
+半|bàn|setengah
+半年|bàn nián|setengah tahun
+半天|bàn tiān|setengah hari; lama sekali
+帮|bāng|membantu
+帮忙|bāng máng|membantu
+包|bāo|tas
+包子|bāo zi|bakpao
+杯|bēi|cangkir, gelas
 杯子|bēi zi|gelas, cangkir
+北|běi|utara
+北边|běi biān|sebelah utara
 北京|Běi jīng|Beijing
+本|běn|kata bantu buku; dasar
+本子|běn zi|buku catatan
+比|bǐ|dibanding
+别|bié|jangan
+别的|bié de|yang lain
+别人|bié rén|orang lain
+病|bìng|penyakit, sakit
+病人|bìng rén|pasien, orang sakit
 不|bù|tidak
+不大|bù dà|tidak terlalu
+不对|bù duì|tidak benar, salah
+不客气|bù kè qi|sama-sama
+不用|bù yòng|tidak perlu
 菜|cài|sayur, masakan
 茶|chá|teh
+差|chà|kurang, buruk
+常|cháng|sering
+常常|cháng cháng|sering
+唱|chàng|menyanyi
+唱歌|chàng gē|bernyanyi
+车|chē|kendaraan, mobil
+车票|chē piào|tiket (bus/kereta)
+车上|chē shàng|di dalam kendaraan
+车站|chē zhàn|stasiun, halte
 吃|chī|makan
-出租车|chū zū chē|taksi
+吃饭|chī fàn|makan
+出|chū|keluar
+出来|chū lái|keluar (ke arah pembicara)
+出去|chū qù|keluar (menjauh)
+穿|chuān|memakai (baju)
+床|chuáng|tempat tidur
+次|cì|kali (frekuensi)
+从|cóng|dari
+错|cuò|salah
+打|dǎ|memukul; bermain (bola)
+打车|dǎ chē|naik taksi
 打电话|dǎ diàn huà|menelepon
+打开|dǎ kāi|membuka
+打球|dǎ qiú|bermain bola
 大|dà|besar
+大学|dà xué|universitas
+大学生|dà xué shēng|mahasiswa
+到|dào|tiba, sampai
+地|de|partikel keterangan cara (-nya)
+地点|dì diǎn|lokasi
+地方|dì fang|tempat
+地上|dì shang|di lantai, di tanah
+地图|dì tú|peta
+的|de|partikel kepemilikan (-nya)
+得到|dé dào|mendapatkan
+等|děng|menunggu
+弟|dì|adik laki-laki
+弟弟|dì di|adik laki-laki
+第|dì|ke- (urutan)
+第二|dì èr|kedua
 点|diǎn|jam (pukul), titik
+电|diàn|listrik
+电话|diàn huà|telepon
 电脑|diàn nǎo|komputer
 电视|diàn shì|televisi
+电视机|diàn shì jī|pesawat televisi
 电影|diàn yǐng|film
+电影院|diàn yǐng yuàn|bioskop
+东|dōng|timur
+东边|dōng bian|sebelah timur
 东西|dōng xi|barang
+动|dòng|bergerak
+动作|dòng zuò|gerakan
 都|dōu|semua, semuanya
 读|dú|membaca
+读书|dú shū|membaca buku, belajar
+对|duì|benar; terhadap
 对不起|duì bu qǐ|maaf
 多|duō|banyak
 多少|duō shao|berapa (banyak)
+饿|è|lapar
 儿子|ér zi|anak laki-laki
 二|èr|dua
+饭|fàn|nasi, makanan
 饭店|fàn diàn|restoran, hotel
+房间|fáng jiān|kamar
+房子|fáng zi|rumah
+放|fàng|meletakkan
+放假|fàng jià|libur
+放学|fàng xué|pulang sekolah
+飞|fēi|terbang
 飞机|fēi jī|pesawat
-分钟|fēn zhōng|menit
+非常|fēi cháng|sangat, luar biasa
+分|fēn|membagi; menit; poin
+风|fēng|angin
+干|gàn|melakukan, mengerjakan
+干净|gān jìng|bersih
+干什么|gàn shén me|sedang apa?
+高|gāo|tinggi
 高兴|gāo xìng|senang
+告诉|gào su|memberi tahu
+哥|gē|kakak laki-laki
+哥哥|gē ge|kakak laki-laki
+歌|gē|lagu
+个|gè|kata bantu umum
+给|gěi|memberi, untuk
+跟|gēn|dengan, mengikuti
+工人|gōng rén|pekerja, buruh
 工作|gōng zuò|bekerja, pekerjaan
-狗|gǒu|anjing
+关|guān|menutup, mematikan
+关上|guān shàng|menutup, mematikan
+贵|guì|mahal
+国|guó|negara
+国家|guó jiā|negara
+国外|guó wài|luar negeri
+过|guò|melewati; pernah
+还|hái|masih
+还是|hái shi|atau (dalam pertanyaan)
+还有|hái yǒu|selain itu, masih ada
+孩子|hái zi|anak
 汉语|Hàn yǔ|bahasa Mandarin
+汉字|hàn zì|karakter Mandarin
 好|hǎo|baik, bagus
+好吃|hǎo chī|enak
+好看|hǎo kàn|bagus dilihat, cantik
+好听|hǎo tīng|enak didengar
+好玩儿|hǎo wán r|menyenangkan
+号|hào|tanggal; nomor
 喝|hē|minum
 和|hé|dan, dengan
 很|hěn|sangat
-后面|hòu miàn|belakang
+后|hòu|belakang; setelah
+后边|hòu bian|belakang
+后天|hòu tiān|lusa
+花|huā|bunga; menghabiskan
+话|huà|perkataan, ucapan
+坏|huài|rusak, jahat
 回|huí|kembali, pulang
+回答|huí dá|menjawab
+回到|huí dào|kembali ke
+回家|huí jiā|pulang ke rumah
+回来|huí lai|kembali (ke sini)
+回去|huí qu|kembali (ke sana)
 会|huì|bisa (keterampilan)
-火车站|huǒ chē zhàn|stasiun kereta
+火车|huǒ chē|kereta api
+机场|jī chǎng|bandara
+机票|jī piào|tiket pesawat
+鸡蛋|jī dàn|telur ayam
 几|jǐ|berapa (jumlah kecil)
+记|jì|mencatat, mengingat
+记得|jì de|ingat
+记住|jì zhu|mengingat baik-baik
 家|jiā|rumah, keluarga
+家里|jiā lǐ|di rumah
+家人|jiā rén|anggota keluarga
+间|jiān|ruang; antara
+见|jiàn|melihat, bertemu
+见面|jiàn miàn|bertemu
 叫|jiào|dipanggil, bernama
+教|jiāo|mengajar
+教学楼|jiào xué lóu|gedung kuliah
+介绍|jiè shào|memperkenalkan
+姐|jiě|kakak perempuan
+姐姐|jiě jie|kakak perempuan
+今年|jīn nián|tahun ini
 今天|jīn tiān|hari ini
+进|jìn|masuk
+进来|jìn lái|masuk (ke sini)
+进去|jìn qù|masuk (ke sana)
 九|jiǔ|sembilan
+就|jiù|langsung, segera; justru
+觉得|jué de|merasa
 开|kāi|membuka, menyetir
+开车|kāi chē|menyetir mobil
+开会|kāi huì|rapat
+开玩笑|kāi wán xiào|bercanda
 看|kàn|melihat, membaca
+看病|kàn bìng|berobat ke dokter
+看到|kàn dào|melihat
+看见|kàn jiàn|melihat
+考|kǎo|ujian, menguji
+考试|kǎo shì|ujian
+渴|kě|haus
+课|kè|pelajaran
+课本|kè běn|buku pelajaran
+课文|kè wén|teks pelajaran
+口|kǒu|mulut
 块|kuài|yuan (satuan uang)
+快|kuài|cepat
 来|lái|datang
+来到|lái dào|tiba di
+老|lǎo|tua
+老人|lǎo rén|orang tua, lansia
 老师|lǎo shī|guru
+了|le|partikel aksi selesai/perubahan
+累|lèi|lelah
 冷|lěng|dingin
 里|lǐ|di dalam
+里边|lǐ bian|di dalam
+两|liǎng|dua (untuk jumlah)
+零|líng|nol
 六|liù|enam
+楼|lóu|gedung, lantai
+楼上|lóu shàng|lantai atas
+楼下|lóu xià|lantai bawah
+路|lù|jalan
+路口|lù kǒu|persimpangan jalan
+路上|lù shang|di jalan, di perjalanan
+妈|mā|ibu
 妈妈|mā ma|ibu
+马路|mǎ lù|jalan raya
+马上|mǎ shàng|segera
 吗|ma|partikel tanya (ya/tidak)
 买|mǎi|membeli
-猫|māo|kucing
+慢|màn|lambat
+忙|máng|sibuk
+毛|máo|bulu; 0,1 yuan
+没|méi|tidak (sudah), belum
+没关系|méi guān xi|tidak apa-apa
+没什么|méi shén me|tidak apa-apa
+没事儿|méi shì r|tidak apa-apa; tidak ada urusan
 没有|méi yǒu|tidak punya, tidak ada
+妹|mèi|adik perempuan
+妹妹|mèi mei|adik perempuan
+门|mén|pintu
+门口|mén kǒu|depan pintu
+门票|mén piào|tiket masuk
+们|men|akhiran jamak
 米饭|mǐ fàn|nasi
+面包|miàn bāo|roti
+面条儿|miàn tiáo r|mi
 名字|míng zi|nama
+明白|míng bai|mengerti
+明年|míng nián|tahun depan
 明天|míng tiān|besok
+拿|ná|mengambil, memegang
 哪|nǎ|yang mana
+哪儿|nǎ r|di mana
+哪里|nǎ lǐ|di mana
+哪些|nǎ xiē|yang mana saja
 那|nà|itu
+那边|nà bian|di sana
+那儿|nà r|di sana
+那里|nà li|di sana
+那些|nà xiē|itu semua
+奶|nǎi|susu
+奶奶|nǎi nai|nenek
+男|nán|laki-laki
+男孩儿|nán hái r|anak laki-laki
+男朋友|nán péng you|pacar (laki-laki)
+男人|nán rén|pria
+男生|nán shēng|siswa laki-laki
+南|nán|selatan
+南边|nán bian|sebelah selatan
+难|nán|sulit
+呢|ne|partikel tanya (bagaimana dengan...)
 能|néng|dapat, mampu
 你|nǐ|kamu
+你们|nǐ men|kalian
 年|nián|tahun
+您|nín|Anda (sopan)
+牛奶|niú nǎi|susu sapi
+女|nǚ|perempuan
 女儿|nǚ ér|anak perempuan
+女孩儿|nǚ hái r|anak perempuan
+女朋友|nǚ péng you|pacar (perempuan)
+女人|nǚ rén|wanita
+女生|nǚ shēng|siswi
+旁边|páng biān|samping
+跑|pǎo|berlari
 朋友|péng you|teman
-漂亮|piào liang|cantik
-苹果|píng guǒ|apel
+票|piào|tiket
 七|qī|tujuh
+起|qǐ|bangun, naik
+起床|qǐ chuáng|bangun tidur
+起来|qǐ lai|bangun, berdiri
+汽车|qì chē|mobil
+前|qián|depan; sebelum
+前边|qián bian|depan
+前天|qián tiān|kemarin lusa
 钱|qián|uang
-前面|qián miàn|depan
+钱包|qián bāo|dompet
 请|qǐng|silakan, tolong
+请假|qǐng jià|minta izin (cuti)
+请进|qǐng jìn|silakan masuk
+请问|qǐng wèn|permisi, boleh bertanya
+请坐|qǐng zuò|silakan duduk
+球|qiú|bola
 去|qù|pergi
+去年|qù nián|tahun lalu
 热|rè|panas
 人|rén|orang
 认识|rèn shi|kenal
+认真|rèn zhēn|serius, tekun
+日|rì|hari; matahari
+日期|rì qī|tanggal
+肉|ròu|daging
 三|sān|tiga
+山|shān|gunung
+商场|shāng chǎng|mal, pusat perbelanjaan
 商店|shāng diàn|toko
 上|shàng|atas, naik
+上班|shàng bān|berangkat kerja
+上边|shàng bian|atas
+上车|shàng chē|naik kendaraan
+上次|shàng cì|terakhir kali
+上课|shàng kè|masuk kelas
+上网|shàng wǎng|berinternet
+上午|shàng wǔ|pagi (sebelum siang)
+上学|shàng xué|pergi ke sekolah
 少|shǎo|sedikit
-谁|shéi|siapa
+身上|shēn shang|di badan
+身体|shēn tǐ|tubuh, kesehatan
 什么|shén me|apa
+生病|shēng bìng|sakit
+生气|shēng qì|marah
+生日|shēng rì|ulang tahun
 十|shí|sepuluh
 时候|shí hou|waktu, saat
+时间|shí jiān|waktu
+事|shì|urusan, hal
+试|shì|mencoba
 是|shì|adalah
+是不是|shì bù shì|apakah, bukan?
+手|shǒu|tangan
+手机|shǒu jī|ponsel
 书|shū|buku
+书包|shū bāo|tas sekolah
+书店|shū diàn|toko buku
+树|shù|pohon
+谁|shéi|siapa
 水|shuǐ|air
 水果|shuǐ guǒ|buah-buahan
+睡|shuì|tidur
 睡觉|shuì jiào|tidur
 说|shuō|berbicara, berkata
+说话|shuō huà|berbicara
 四|sì|empat
+送|sòng|mengantar, memberi
 岁|suì|tahun (umur)
 他|tā|dia (laki-laki)
+他们|tā men|mereka
 她|tā|dia (perempuan)
+她们|tā men|mereka (perempuan)
 太|tài|terlalu
+天|tiān|hari; langit
 天气|tiān qì|cuaca
 听|tīng|mendengar
+听到|tīng dào|mendengar
+听见|tīng jiàn|mendengar
+听写|tīng xiě|dikte
 同学|tóng xué|teman sekelas
+图书馆|tú shū guǎn|perpustakaan
+外|wài|luar
+外边|wài bian|luar
+外国|wài guó|luar negeri, asing
+外语|wài yǔ|bahasa asing
+玩儿|wán r|bermain
+晚|wǎn|malam; terlambat
+晚饭|wǎn fàn|makan malam
+晚上|wǎn shang|malam
+网上|wǎng shàng|di internet
+网友|wǎng yǒu|teman online
+忘|wàng|lupa
+忘记|wàng jì|lupa
+问|wèn|bertanya
 我|wǒ|saya, aku
 我们|wǒ men|kami, kita
 五|wǔ|lima
+午饭|wǔ fàn|makan siang
+洗|xǐ|mencuci
+洗手间|xǐ shǒu jiān|toilet
 喜欢|xǐ huan|suka
+西|xī|barat
+西边|xī biān|sebelah barat
 下|xià|bawah, turun
+下班|xià bān|pulang kerja
+下边|xià bian|bawah
+下车|xià chē|turun kendaraan
+下次|xià cì|lain kali
+下课|xià kè|selesai kelas
+下午|xià wǔ|sore (siang hari)
 下雨|xià yǔ|hujan
+先|xiān|dulu, pertama
 先生|xiān sheng|tuan, bapak
 现在|xiàn zài|sekarang
 想|xiǎng|ingin, berpikir
 小|xiǎo|kecil
+小孩儿|xiǎo hái r|anak kecil
 小姐|xiǎo jiě|nona
+小朋友|xiǎo péng yǒu|anak-anak
+小时|xiǎo shí|jam (durasi)
+小学|xiǎo xué|sekolah dasar
+小学生|xiǎo xué shēng|murid SD
+笑|xiào|tertawa, tersenyum
 写|xiě|menulis
 谢谢|xiè xie|terima kasih
+新|xīn|baru
+新年|xīn nián|tahun baru
 星期|xīng qī|minggu (hari)
+星期日|xīng qī rì|hari Minggu
+星期天|xīng qī tiān|hari Minggu
+行|xíng|boleh, baik; berjalan
+休息|xiū xi|istirahat
+学|xué|belajar
 学生|xué sheng|murid
 学习|xué xí|belajar
 学校|xué xiào|sekolah
+学院|xué yuàn|akademi, fakultas
+要|yào|mau, perlu
+也|yě|juga
+页|yè|halaman
+爷爷|yé ye|kakek
 一|yī|satu
+一半|yī bàn|setengah
+一边|yì biān|sambil
+一点儿|yī diǎn r|sedikit
+一会儿|yí huì r|sebentar
+一块儿|yī kuài r|bersama-sama
+一起|yì qǐ|bersama
+一下儿|yī xià r|sebentar, sekali
+一些|yī xiē|beberapa
+一样|yí yàng|sama
 衣服|yī fu|pakaian
 医生|yī shēng|dokter
 医院|yī yuàn|rumah sakit
-椅子|yǐ zi|kursi
+用|yòng|menggunakan
 有|yǒu|punya, ada
-月|yuè|bulan
-在|zài|di, sedang
-再见|zài jiàn|sampai jumpa
-怎么|zěn me|bagaimana
-这|zhè|ini
-中国|Zhōng guó|Tiongkok
-中午|zhōng wǔ|siang hari
-住|zhù|tinggal
-桌子|zhuō zi|meja
-字|zì|karakter, huruf
-昨天|zuó tiān|kemarin
-坐|zuò|duduk, naik (kendaraan)
-做|zuò|melakukan, membuat`;
-const RAW2=`吧|ba|partikel ajakan/saran
-白|bái|putih
-帮助|bāng zhù|membantu
-报纸|bào zhǐ|koran
-比|bǐ|dibanding
-别|bié|jangan
-长|cháng|panjang
-唱歌|chàng gē|bernyanyi
-穿|chuān|memakai (baju)
-错|cuò|salah
-大家|dà jiā|semua orang
-到|dào|tiba, sampai
-等|děng|menunggu
-弟弟|dì di|adik laki-laki
-懂|dǒng|mengerti
-房间|fáng jiān|kamar
-非常|fēi cháng|sangat, luar biasa
-服务员|fú wù yuán|pelayan
-高|gāo|tinggi
-告诉|gào su|memberi tahu
-哥哥|gē ge|kakak laki-laki
-给|gěi|memberi, untuk
-公司|gōng sī|perusahaan
-贵|guì|mahal
-还|hái|masih
-孩子|hái zi|anak
-好吃|hǎo chī|enak
-黑|hēi|hitam
-红|hóng|merah
-欢迎|huān yíng|selamat datang
-回答|huí dá|menjawab
-机场|jī chǎng|bandara
-鸡蛋|jī dàn|telur ayam
-教室|jiào shì|ruang kelas
-姐姐|jiě jie|kakak perempuan
-介绍|jiè shào|memperkenalkan
-进|jìn|masuk
-近|jìn|dekat
-觉得|jué de|merasa
-咖啡|kā fēi|kopi
-考试|kǎo shì|ujian
-可能|kě néng|mungkin
-可以|kě yǐ|boleh
-快|kuài|cepat
-快乐|kuài lè|bahagia
-累|lèi|lelah
-路|lù|jalan
-慢|màn|lambat
-忙|máng|sibuk
-每|měi|setiap
-妹妹|mèi mei|adik perempuan
-门|mén|pintu
-男人|nán rén|pria
-女人|nǚ rén|wanita
-旁边|páng biān|samping
-跑步|pǎo bù|lari
-便宜|pián yi|murah
-票|piào|tiket
-妻子|qī zi|istri
-起床|qǐ chuáng|bangun tidur
-千|qiān|seribu
-晴|qíng|cerah
-去年|qù nián|tahun lalu
-上班|shàng bān|berangkat kerja
-身体|shēn tǐ|tubuh, kesehatan
-生病|shēng bìng|sakit
-生日|shēng rì|ulang tahun
-时间|shí jiān|waktu
-手表|shǒu biǎo|jam tangan
-手机|shǒu jī|ponsel
-送|sòng|mengantar, memberi
-题|tí|soal
-跳舞|tiào wǔ|menari
-外|wài|luar
-完|wán|selesai
-玩|wán|bermain
-晚上|wǎn shang|malam
-为什么|wèi shén me|mengapa
-问|wèn|bertanya
-问题|wèn tí|pertanyaan, masalah
-西瓜|xī guā|semangka
-希望|xī wàng|berharap
-洗|xǐ|mencuci
-小时|xiǎo shí|jam (durasi)
-笑|xiào|tertawa, tersenyum
-新|xīn|baru
-姓|xìng|bermarga
-休息|xiū xi|istirahat
-雪|xuě|salju
-颜色|yán sè|warna
-眼睛|yǎn jing|mata
-药|yào|obat
-要|yào|mau, perlu
-也|yě|juga
-已经|yǐ jīng|sudah
-一起|yì qǐ|bersama
-意思|yì si|arti, maksud
-因为|yīn wèi|karena
-游泳|yóu yǒng|berenang
+有的|yǒu de|ada yang, sebagian
+有名|yǒu míng|terkenal
+有时|yǒu shí|kadang-kadang
+有时候|yǒu shí hou|kadang-kadang
+有些|yǒu xiē|beberapa; agak
+有一些|yǒu yī xiē|agak, beberapa
+有用|yǒu yòng|berguna
+右|yòu|kanan
 右边|yòu bian|sebelah kanan
-鱼|yú|ikan
+雨|yǔ|hujan
+元|yuán|yuan
 远|yuǎn|jauh
-运动|yùn dòng|olahraga
+月|yuè|bulan
 再|zài|lagi
+再见|zài jiàn|sampai jumpa
+在|zài|di, sedang
+在家|zài jiā|di rumah
+早|zǎo|pagi; awal
+早饭|zǎo fàn|sarapan
 早上|zǎo shang|pagi
-丈夫|zhàng fu|suami
+怎么|zěn me|bagaimana
+站|zhàn|berdiri; halte
 找|zhǎo|mencari
+找到|zhǎo dào|menemukan
+这|zhè|ini
+这边|zhè biān|di sini
+这儿|zhè r|di sini
+这里|zhè lǐ|di sini
+这些|zhè xiē|ini semua
+着|zhe|partikel aksi berlangsung
 真|zhēn|sungguh, benar-benar
+真的|zhēn de|sungguh, benar-benar
+正|zhèng|sedang; tepat
 正在|zhèng zài|sedang
 知道|zhī dào|tahu
+知识|zhī shi|pengetahuan
+中|zhōng|tengah, dalam
+中国|Zhōng guó|Tiongkok
+中间|zhōng jiān|tengah
+中文|zhōng wén|bahasa Mandarin
+中午|zhōng wǔ|siang hari
+中学|zhōng xué|sekolah menengah
+中学生|zhōng xué shēng|siswa sekolah menengah
+重|zhòng|berat
+重要|zhòng yào|penting
+住|zhù|tinggal
 准备|zhǔn bèi|menyiapkan
+桌子|zhuō zi|meja
+字|zì|karakter, huruf
+子|zǐ|anak; akhiran kata benda
 走|zǒu|berjalan
+走路|zǒu lù|berjalan kaki
 最|zuì|paling
-左边|zuǒ bian|sebelah kiri`;
-const parse=(raw,hsk)=>raw.trim().split("\n").map(l=>{const[h,p,a]=l.split("|");return{id:h+"|"+p,h,p,a,hsk}});
-const RAW3=`阿姨|ā yí|bibi, tante
-矮|ǎi|pendek (tubuh)
-爱好|ài hào|hobi
+最好|zuì hǎo|sebaiknya
+最后|zuì hòu|terakhir
+昨天|zuó tiān|kemarin
+左|zuǒ|kiri
+左边|zuǒ bian|sebelah kiri
+坐|zuò|duduk, naik (kendaraan)
+坐下|zuò xia|duduk
+做|zuò|melakukan, membuat`;
+const RAW2=`啊|a|ah! (seruan)
+爱情|ài qíng|cinta (romantis)
+爱人|ài ren|suami/istri
 安静|ān jìng|tenang, sepi
-搬|bān|pindah, mengangkat
+安全|ān quán|aman
+白色|bái sè|warna putih
+班长|bān zhǎng|ketua kelas
+办|bàn|mengurus, mengerjakan
 办法|bàn fǎ|cara, solusi
 办公室|bàn gōng shì|kantor
-帮忙|bāng máng|membantu
-包|bāo|tas
+半夜|bàn yè|tengah malam
+帮助|bāng zhù|membantu
 饱|bǎo|kenyang
+报名|bào míng|mendaftar
+报纸|bào zhǐ|koran
 北方|běi fāng|utara
-被|bèi|oleh (kalimat pasif)
-鼻子|bí zi|hidung
-比较|bǐ jiào|cukup, relatif
-比赛|bǐ sài|pertandingan
+背|bēi|menggendong; menghafal (bèi)
+比如|bǐ rú|misalnya
+比如说|bǐ rú shuō|contohnya
+笔|bǐ|pena, alat tulis
+笔记|bǐ jì|catatan
+笔记本|bǐ jì běn|buku catatan; laptop
 必须|bì xū|harus
-变化|biàn huà|perubahan
-别人|bié rén|orang lain
-宾馆|bīn guǎn|hotel
-冰箱|bīng xiāng|kulkas
+边|biān|sisi, pinggir
+变|biàn|berubah
+变成|biàn chéng|berubah menjadi
+便宜|pián yi|murah
+遍|biàn|kali (dari awal sampai akhir)
+表|biǎo|tabel; jam tangan
+不错|bù cuò|lumayan, bagus
+不但|bù dàn|bukan hanya
+不够|bù gòu|tidak cukup
+不过|bú guò|tetapi
+不好意思|bù hǎo yì si|maaf; malu
+不久|bù jiǔ|tidak lama kemudian
+不满|bù mǎn|tidak puas
+不如|bù rú|tidak sebaik
+不少|bù shǎo|tidak sedikit, banyak
+不太|bù tài|tidak terlalu
+不同|bù tóng|berbeda
+不行|bù xíng|tidak boleh, tidak bisa
+不要|bù yào|jangan
+不一定|bù yī dìng|belum tentu
+不一会儿|bù yí huì r|tak lama kemudian
+部分|bù fen|bagian
 才|cái|baru (saja)
 菜单|cài dān|menu
+参观|cān guān|mengunjungi
 参加|cān jiā|ikut serta
 草|cǎo|rumput
+草地|cǎo dì|padang rumput
 层|céng|lantai, lapisan
-差|chà|kurang, buruk
+查|chá|memeriksa, mencari (info)
+差不多|chà bu duō|hampir sama
+常见|cháng jiàn|sering dijumpai
+常用|cháng yòng|sering dipakai
+场|chǎng|lapangan; kata bantu acara
+超过|chāo guò|melebihi
 超市|chāo shì|supermarket
-衬衫|chèn shān|kemeja
+车辆|chē liàng|kendaraan
+称|chēng|menyebut; menimbang
+成|chéng|menjadi; berhasil
 成绩|chéng jì|nilai, prestasi
-城市|chéng shì|kota
-迟到|chí dào|terlambat
-除了|chú le|selain
+成为|chéng wéi|menjadi
+出发|chū fā|berangkat
+出国|chū guó|ke luar negeri
+出口|chū kǒu|pintu keluar; ekspor
+出门|chū mén|keluar rumah
+出生|chū shēng|lahir
+出现|chū xiàn|muncul
+出院|chū yuàn|keluar rumah sakit
+出租|chū zū|menyewakan
+出租车|chū zū chē|taksi
 船|chuán|kapal
-春|chūn|musim semi
+吹|chuī|meniup
+春节|Chūn jié|Tahun Baru Imlek
+春天|chūn tiān|musim semi
+词|cí|kata
 词典|cí diǎn|kamus
-聪明|cōng ming|pintar
-打扫|dǎ sǎo|membersihkan
+词语|cí yǔ|kata, istilah
+从小|cóng xiǎo|sejak kecil
+答应|dā ying|menyanggupi, menjawab
+打工|dǎ gōng|kerja sambilan
 打算|dǎ suàn|berencana
+打印|dǎ yìn|mencetak
+大部分|dà bù fen|sebagian besar
+大大|dà dà|sangat, jauh
+大多数|dà duō shù|mayoritas
+大海|dà hǎi|laut
+大家|dà jiā|semua orang
+大量|dà liàng|dalam jumlah besar
+大门|dà mén|gerbang utama
+大人|dà ren|orang dewasa
+大声|dà shēng|suara keras
+大小|dà xiǎo|ukuran
+大衣|dà yī|mantel
+大自然|dà zì rán|alam
 带|dài|membawa
-担心|dān xīn|khawatir
-蛋糕|dàn gāo|kue
-当然|dāng rán|tentu saja
-灯|dēng|lampu
-地方|dì fang|tempat
+带来|dài lái|membawa (ke sini); mendatangkan
+单位|dān wèi|satuan; instansi
+但|dàn|tetapi
+但是|dàn shì|tetapi
+蛋|dàn|telur
+当|dāng|sebagai; ketika
+当时|dāng shí|saat itu
+到处|dào chù|di mana-mana
+倒|dǎo|jatuh, roboh
+道|dào|jalan; kata bantu (soal)
+道理|dào li|alasan, logika
+道路|dào lù|jalan
+地球|dì qiú|bumi
 地铁|dì tiě|kereta bawah tanah
-地图|dì tú|peta
-电梯|diàn tī|lift
-电子邮件|diàn zǐ yóu jiàn|email
-东|dōng|timur
-冬|dōng|musim dingin
+地铁站|dì tiě zhàn|stasiun kereta bawah tanah
+的话|de huà|kalau (di akhir anak kalimat)
+得|dé|mendapat
+得出|dé chū|memperoleh (kesimpulan)
+灯|dēng|lampu
+等到|děng dào|menunggu sampai
+等于|děng yú|sama dengan
+低|dī|rendah
+点头|diǎn tóu|mengangguk
+店|diàn|toko
+掉|diào|jatuh
+东北|dōng běi|timur laut
+东方|dōng fāng|timur; dunia Timur
+东南|dōng nán|tenggara
+冬天|dōng tiān|musim dingin
+懂|dǒng|mengerti
+懂得|dǒng de|memahami
 动物|dòng wù|hewan
+动物园|dòng wù yuán|kebun binatang
+读音|dú yīn|pelafalan
+度|dù|derajat; kali
 短|duǎn|pendek (ukuran)
-锻炼|duàn liàn|berolahraga, melatih
-饿|è|lapar
-耳朵|ěr duo|telinga
-发烧|fā shāo|demam
+短信|duǎn xìn|SMS
+段|duàn|bagian, paragraf
+队|duì|tim, barisan
+队长|duì zhǎng|kapten tim
+对话|duì huà|percakapan
+对面|duì miàn|seberang
+多久|duō jiǔ|berapa lama
+多么|duō me|betapa
+多数|duō shù|sebagian besar
+多云|duō yún|berawan
+而且|ér qiě|lagi pula
+发|fā|mengirim
 发现|fā xiàn|menemukan
+饭馆|fàn guǎn|rumah makan
 方便|fāng biàn|praktis, mudah
-放|fàng|meletakkan
+方便面|fāng biàn miàn|mi instan
+方法|fāng fǎ|metode
+方面|fāng miàn|aspek, segi
+方向|fāng xiàng|arah
+放下|fàng xià|meletakkan
 放心|fàng xīn|tenang, tidak khawatir
+分开|fēn kāi|memisahkan, berpisah
+分数|fēn shù|nilai, skor
+分钟|fēn zhōng|menit
+份|fèn|porsi, eksemplar
+封|fēng|kata bantu surat; menyegel
+服务|fú wù|melayani, layanan
 复习|fù xí|mengulang pelajaran
-附近|fù jìn|sekitar
-干净|gān jìng|bersih
-感冒|gǎn mào|pilek, flu
-感兴趣|gǎn xìng qù|tertarik
+该|gāi|seharusnya
+改|gǎi|mengubah, memperbaiki
+改变|gǎi biàn|mengubah
+感到|gǎn dào|merasa
+感动|gǎn dòng|terharu
+感觉|gǎn jué|perasaan, merasa
+感谢|gǎn xiè|berterima kasih
+干杯|gān bēi|bersulang
+干活儿|gàn huó r|bekerja
+刚|gāng|baru saja
 刚才|gāng cái|barusan
+刚刚|gāng gang|baru saja
+高级|gāo jí|tingkat tinggi
+高中|gāo zhōng|SMA
 个子|gè zi|tinggi badan
-根据|gēn jù|berdasarkan
-跟|gēn|dengan, mengikuti
 更|gèng|lebih
+公共汽车|gōng gòng qì chē|bus umum
+公交车|gōng jiāo chē|bus kota
 公斤|gōng jīn|kilogram
+公里|gōng lǐ|kilometer
+公路|gōng lù|jalan raya
+公平|gōng píng|adil
+公司|gōng sī|perusahaan
 公园|gōng yuán|taman
+狗|gǒu|anjing
+够|gòu|cukup
 故事|gù shi|cerita
-刮风|guā fēng|berangin
-关|guān|menutup, mematikan
-关系|guān xì|hubungan
+故意|gù yì|sengaja
+顾客|gù kè|pelanggan
+关机|guān jī|mematikan (perangkat)
 关心|guān xīn|peduli
-关于|guān yú|tentang
-国家|guó jiā|negara
+观点|guān diǎn|sudut pandang
+广场|guǎng chǎng|alun-alun
+广告|guǎng gào|iklan
+国际|guó jì|internasional
+过来|guò lái|datang ke sini
+过年|guò nián|merayakan tahun baru
 过去|guò qù|masa lalu
-还是|hái shi|atau (dalam pertanyaan)
-害怕|hài pà|takut
+海|hǎi|laut
+海边|hǎi biān|pantai
+喊|hǎn|berteriak
+好处|hǎo chù|manfaat
+好多|hǎo duō|banyak sekali
+好久|hǎo jiǔ|lama sekali
+好人|hǎo rén|orang baik
+好事|hǎo shì|hal baik
+好像|hǎo xiàng|sepertinya
+合适|hé shì|cocok
 河|hé|sungai
+黑|hēi|hitam
 黑板|hēi bǎn|papan tulis
+黑色|hēi sè|warna hitam
+红|hóng|merah
+红色|hóng sè|warna merah
+后来|hòu lái|kemudian
+忽然|hū rán|tiba-tiba
+湖|hú|danau
 护照|hù zhào|paspor
-花|huā|bunga; menghabiskan
+花园|huā yuán|taman bunga
 画|huà|menggambar, lukisan
-坏|huài|rusak, jahat
-环境|huán jìng|lingkungan
+画儿|huà r|gambar, lukisan
+画家|huà jiā|pelukis
+坏处|huài chu|kerugian, dampak buruk
+坏人|huài rén|orang jahat
 换|huàn|menukar, mengganti
+欢迎|huān yíng|selamat datang
 黄|huáng|kuning
-会议|huì yì|rapat
+黄色|huáng sè|warna kuning
+回国|huí guó|pulang ke negara asal
+活动|huó dòng|kegiatan
+或|huò|atau
 或者|huò zhě|atau
-几乎|jī hū|hampir
 机会|jī huì|kesempatan
-记得|jì de|ingat
-季节|jì jié|musim
+鸡|jī|ayam
+级|jí|tingkat
+急|jí|mendesak; cemas
+计划|jì huà|rencana
+计算机|jì suàn jī|komputer
+加|jiā|menambah
+加油|jiā yóu|semangat!; isi bensin
+家庭|jiā tíng|keluarga, rumah tangga
+家长|jiā zhǎng|orang tua (wali)
+假|jiǎ|palsu; libur (jià)
+假期|jià qī|masa liburan
 检查|jiǎn chá|memeriksa
-简单|jiǎn dān|sederhana
+见到|jiàn dào|bertemu
+见过|jiàn guò|pernah melihat
+件|jiàn|kata bantu baju/urusan
 健康|jiàn kāng|sehat
-见面|jiàn miàn|bertemu
 讲|jiǎng|menjelaskan, bercerita
-教|jiāo|mengajar
+讲话|jiǎng huà|berpidato, berbicara
+交|jiāo|menyerahkan; berteman
+交给|jiāo gěi|menyerahkan kepada
+交朋友|jiāo péng you|berteman
+交通|jiāo tōng|lalu lintas
+角|jiǎo|sudut; 0,1 yuan
+角度|jiǎo dù|sudut pandang
+饺子|jiǎo zi|pangsit
 脚|jiǎo|kaki (telapak)
+叫作|jiào zuò|disebut
+教师|jiào shī|guru, pengajar
+教室|jiào shì|ruang kelas
+教学|jiào xué|pengajaran
+教育|jiào yù|pendidikan
 接|jiē|menjemput, menerima
-街道|jiē dào|jalan raya
-结婚|jié hūn|menikah
-结束|jié shù|berakhir
+接到|jiē dào|menerima
+接受|jiē shòu|menerima
+接下来|jiē xià lái|selanjutnya
+接着|jiē zhe|kemudian, lanjut
+街|jiē|jalan
+节|jié|kata bantu jam pelajaran; hari raya
 节目|jié mù|acara
 节日|jié rì|hari raya
-解决|jiě jué|menyelesaikan
+结果|jié guǒ|hasil
 借|jiè|meminjam
+今后|jīn hòu|mulai sekarang
+斤|jīn|setengah kilogram (jin)
+近|jìn|dekat
+进入|jìn rù|memasuki
+进行|jìn xíng|melaksanakan
 经常|jīng cháng|sering
 经过|jīng guò|melewati
 经理|jīng lǐ|manajer
-久|jiǔ|lama (waktu)
-旧|jiù|lama, usang
+酒|jiǔ|minuman beralkohol
+酒店|jiǔ diàn|hotel
+就要|jiù yào|akan segera
+举|jǔ|mengangkat
+举手|jǔ shǒu|mengangkat tangan
+举行|jǔ xíng|mengadakan
+句|jù|kalimat; kata bantu kalimat
 句子|jù zi|kalimat
-决定|jué dìng|memutuskan
+卡|kǎ|kartu
+开机|kāi jī|menyalakan (perangkat)
+开心|kāi xīn|senang
+开学|kāi xué|mulai sekolah
+看法|kàn fǎ|pendapat
+考生|kǎo shēng|peserta ujian
+靠|kào|bersandar; mengandalkan
+科|kē|bidang studi; bagian
+科学|kē xué|ilmu pengetahuan
+科学家|kē xué jiā|ilmuwan
 可爱|kě ài|lucu, imut
-渴|kě|haus
+可能|kě néng|mungkin
+可怕|kě pà|mengerikan
+可是|kě shì|tetapi
+可以|kě yǐ|boleh
+克|kè|gram
+刻|kè|seperempat jam
 客人|kè rén|tamu
-空调|kōng tiáo|AC
-口|kǒu|mulut
+课堂|kè táng|ruang kelas
+空气|kōng qì|udara
 哭|kū|menangis
-裤子|kù zi|celana
+快餐|kuài cān|makanan cepat saji
+快点儿|kuài diǎn r|cepat sedikit!
+快乐|kuài lè|bahagia
+快要|kuài yào|hampir, sebentar lagi
 筷子|kuài zi|sumpit
+拉|lā|menarik
+来自|lái zì|berasal dari
 蓝|lán|biru
-老|lǎo|tua
+蓝色|lán sè|warna biru
+篮球|lán qiú|bola basket
+老年|lǎo nián|usia lanjut
+老朋友|lǎo péng you|sahabat lama
+老是|lǎo shi|selalu
+离|lí|jauh dari, berjarak
 离开|lí kāi|meninggalkan
 礼物|lǐ wù|hadiah
-历史|lì shǐ|sejarah
+里头|lǐ tou|di dalam
+理想|lǐ xiǎng|cita-cita
+例如|lì rú|contohnya
+例子|lì zi|contoh
 脸|liǎn|wajah
+练|liàn|berlatih
 练习|liàn xí|latihan
-了解|liǎo jiě|memahami
-邻居|lín jū|tetangga
-楼|lóu|gedung, lantai
+凉|liáng|sejuk, dingin
+凉快|liáng kuai|sejuk
+亮|liàng|terang
+辆|liàng|kata bantu kendaraan
+零下|líng xià|di bawah nol
+流|liú|mengalir
+流利|liú lì|lancar
+流行|liú xíng|populer
+留|liú|meninggalkan; tinggal
+留下|liú xià|meninggalkan; menetap
+留学生|liú xué shēng|mahasiswa asing
+路边|lù biān|pinggir jalan
+旅客|lǚ kè|penumpang, pelancong
+旅行|lǚ xíng|bepergian
+旅游|lǚ yóu|berwisata
 绿|lǜ|hijau
-马|mǎ|kuda
-马上|mǎ shàng|segera
+绿色|lǜ sè|warna hijau
+卖|mài|menjual
+满|mǎn|penuh
 满意|mǎn yì|puas
-帽子|mào zi|topi
+猫|māo|kucing
 米|mǐ|meter; beras
-面包|miàn bāo|roti
-面条|miàn tiáo|mi
-明白|míng bai|mengerti
-拿|ná|mengambil, memegang
-奶奶|nǎi nai|nenek
-南|nán|selatan
-难|nán|sulit
+面|miàn|wajah; sisi; mi
+面前|miàn qián|di hadapan
+名|míng|nama; ternama
+名称|míng chēng|nama (benda)
+名单|míng dān|daftar nama
+明星|míng xīng|bintang (selebriti)
+目的|mù dì|tujuan
+拿出|ná chū|mengeluarkan
+拿到|ná dào|mendapatkan
+那会儿|nà huì r|saat itu
+那么|nà me|begitu
+那时|nà shí|saat itu
+那时候|nà shí hou|saat itu
+那样|nà yàng|seperti itu
+南方|nán fāng|selatan
 难过|nán guò|sedih
+难看|nán kàn|jelek
+难受|nán shòu|tidak enak badan
+难题|nán tí|soal sulit
+难听|nán tīng|tidak enak didengar
+能够|néng gòu|mampu
 年级|nián jí|kelas (tingkat)
 年轻|nián qīng|muda
 鸟|niǎo|burung
+弄|nòng|melakukan, membuat
 努力|nǔ lì|berusaha keras
+爬|pá|merangkak, memanjat
 爬山|pá shān|mendaki gunung
-盘子|pán zi|piring
-胖|pàng|gemuk
-啤酒|pí jiǔ|bir
-葡萄|pú tao|anggur
+怕|pà|takut
+排|pái|baris; mengantre
+排队|pái duì|antre
+排球|pái qiú|bola voli
+碰|pèng|menyentuh, menabrak
+碰到|pèng dào|bertemu (kebetulan)
+碰见|pèng jiàn|berjumpa (kebetulan)
+篇|piān|kata bantu artikel
+片|piàn|lembar, keping
+漂亮|piào liang|cantik
+平|píng|rata, datar
+平安|píng ān|selamat, aman
+平常|píng cháng|biasa
+平等|píng děng|setara
+平时|píng shí|biasanya
+瓶|píng|botol
+瓶子|píng zi|botol
+普通|pǔ tōng|biasa, umum
 普通话|pǔ tōng huà|bahasa Mandarin standar
-其实|qí shí|sebenarnya
 其他|qí tā|lainnya
-奇怪|qí guài|aneh
+其中|qí zhōng|di antaranya
 骑|qí|naik (sepeda, kuda)
+骑车|qí chē|naik sepeda
 起飞|qǐ fēi|lepas landas
+气|qì|udara; marah
+气温|qì wēn|suhu udara
+千|qiān|seribu
+千克|qiān kè|kilogram
+前年|qián nián|dua tahun lalu
+墙|qiáng|dinding
+青年|qīng nián|pemuda
+青少年|qīng shào nián|remaja
+轻|qīng|ringan
 清楚|qīng chu|jelas
-秋|qiū|musim gugur
-裙子|qún zi|rok
+晴|qíng|cerah
+晴天|qíng tiān|hari cerah
+请客|qǐng kè|mentraktir
+请求|qǐng qiú|meminta, permohonan
+秋天|qiū tiān|musim gugur
+求|qiú|meminta, memohon
+球场|qiú chǎng|lapangan bola
+球队|qiú duì|tim olahraga
+球鞋|qiú xié|sepatu olahraga
+取|qǔ|mengambil
+取得|qǔ dé|memperoleh
+全|quán|seluruh, lengkap
+全部|quán bù|semua
+全国|quán guó|seluruh negeri
+全家|quán jiā|seluruh keluarga
+全年|quán nián|sepanjang tahun
+全身|quán shēn|seluruh tubuh
+全体|quán tǐ|seluruh (anggota)
 然后|rán hòu|lalu, kemudian
+让|ràng|menyuruh, membiarkan
 热情|rè qíng|ramah, antusias
+人口|rén kǒu|penduduk
+人们|rén men|orang-orang
+人数|rén shù|jumlah orang
 认为|rèn wéi|menganggap
-认真|rèn zhēn|serius, tekun
-容易|róng yì|mudah
+日报|rì bào|koran harian
+日子|rì zi|hari, kehidupan
 如果|rú guǒ|jika
-伞|sǎn|payung
-上网|shàng wǎng|berinternet
-生气|shēng qì|marah
+入口|rù kǒu|pintu masuk
+商量|shāng liang|berunding
+商人|shāng rén|pedagang
+上周|shàng zhōu|minggu lalu
+少年|shào nián|remaja
+少数|shǎo shù|minoritas
+身边|shēn biān|di samping
+什么样|shén me yàng|seperti apa
+生|shēng|lahir; mentah
+生词|shēng cí|kosakata baru
+生活|shēng huó|kehidupan
 声音|shēng yīn|suara
-世界|shì jiè|dunia
-试|shì|mencoba
-瘦|shòu|kurus
-叔叔|shū shu|paman
+省|shěng|provinsi; menghemat
+十分|shí fēn|sangat
+实际|shí jì|nyata, sebenarnya
+实习|shí xí|magang
+实现|shí xiàn|mewujudkan
+实在|shí zài|benar-benar
+食物|shí wù|makanan
+使用|shǐ yòng|menggunakan
+市|shì|kota; pasar
+市长|shì zhǎng|wali kota
+事情|shì qing|urusan, hal
+收|shōu|menerima
+收到|shōu dào|menerima
+收入|shōu rù|pendapatan
+手表|shǒu biǎo|jam tangan
+受到|shòu dào|mendapat
 舒服|shū fu|nyaman
-树|shù|pohon
-数学|shù xué|matematika
-刷牙|shuā yá|menyikat gigi
+熟|shú|matang; akrab
+数|shǔ|menghitung
+数字|shù zì|angka
 水平|shuǐ píng|tingkat, level
+顺利|shùn lì|lancar
+说明|shuō míng|menjelaskan
 司机|sī jī|sopir
+送到|sòng dào|mengantar sampai
+送给|sòng gěi|memberikan kepada
+算|suàn|menghitung; dianggap
+虽然|suī rán|meskipun
+随便|suí biàn|terserah
+随时|suí shí|kapan saja
+所以|suǒ yǐ|oleh karena itu
+所有|suǒ yǒu|semua
+它|tā|ia (benda/hewan)
+它们|tā men|mereka (benda/hewan)
+太太|tài tai|nyonya; istri
 太阳|tài yáng|matahari
+态度|tài du|sikap
+讨论|tǎo lùn|berdiskusi
+套|tào|set; kata bantu set
 特别|tè bié|khusus, sangat
+特点|tè diǎn|ciri khas
 疼|téng|sakit (nyeri)
+提|tí|menenteng; menyebut
+提出|tí chū|mengajukan
+提到|tí dào|menyebutkan
 提高|tí gāo|meningkatkan
+题|tí|soal
 体育|tǐ yù|olahraga (pelajaran)
-甜|tián|manis
+体育场|tǐ yù chǎng|stadion
+体育馆|tǐ yù guǎn|gedung olahraga
+天上|tiān shàng|di langit
+条|tiáo|kata bantu benda panjang
+条件|tiáo jiàn|syarat, kondisi
+听讲|tīng jiǎng|mendengarkan pelajaran
+听说|tīng shuō|kabarnya, dengar-dengar
+停|tíng|berhenti
+停车|tíng chē|parkir
+停车场|tíng chē chǎng|tempat parkir
+挺|tǐng|cukup, lumayan
+挺好|tǐng hǎo|cukup bagus
+通|tōng|tembus; terhubung
+通过|tōng guò|melalui, lulus
+通知|tōng zhī|pemberitahuan
+同时|tóng shí|pada waktu yang sama
 同事|tóng shì|rekan kerja
-同意|tóng yì|setuju
+同样|tóng yàng|sama
+头|tóu|kepala
 头发|tóu fa|rambut
-突然|tū rán|tiba-tiba
-图书馆|tú shū guǎn|perpustakaan
+图片|tú piàn|gambar
+推|tuī|mendorong
 腿|tuǐ|kaki (tungkai)
+外地|wài dì|daerah lain
+外卖|wài mài|pesan antar makanan
+完|wán|selesai
 完成|wán chéng|menyelesaikan
+完全|wán quán|sepenuhnya
+晚安|wǎn ān|selamat malam
+晚报|wǎn bào|koran sore
+晚餐|wǎn cān|makan malam
+晚会|wǎn huì|pesta malam
 碗|wǎn|mangkuk
 万|wàn|sepuluh ribu
-忘记|wàng jì|lupa
-为了|wèi le|demi, untuk
-文化|wén huà|budaya
-西|xī|barat
+网|wǎng|jaring; internet
+网球|wǎng qiú|tenis
+网站|wǎng zhàn|situs web
+往|wǎng|ke arah
+为|wèi|untuk; demi
+为什么|wèi shén me|mengapa
+位|wèi|kata bantu orang (sopan)
+味道|wèi dào|rasa
+喂|wèi|halo (di telepon)
+温度|wēn dù|suhu
+闻|wén|mencium (bau)
+问路|wèn lù|bertanya jalan
+问题|wèn tí|pertanyaan, masalah
+午餐|wǔ cān|makan siang
+午睡|wǔ shuì|tidur siang
 习惯|xí guàn|kebiasaan
-洗手间|xǐ shǒu jiān|toilet
+洗衣机|xǐ yī jī|mesin cuci
 洗澡|xǐ zǎo|mandi
-夏|xià|musim panas
-先|xiān|dulu, pertama
+西北|xī běi|barat laut
+西餐|xī cān|makanan Barat
+西方|Xī fāng|Barat (negara-negara)
+西南|xī nán|barat daya
+西医|xī yī|pengobatan Barat
+下雪|xià xuě|turun salju
+下周|xià zhōu|minggu depan
+夏天|xià tiān|musim panas
+相机|xiàng jī|kamera
+相同|xiāng tóng|sama
 相信|xiāng xìn|percaya
-香蕉|xiāng jiāo|pisang
+响|xiǎng|berbunyi
+想到|xiǎng dào|terpikir
+想法|xiǎng fǎ|ide, pendapat
+想起|xiǎng qǐ|teringat
+向|xiàng|ke arah
 像|xiàng|mirip
+小声|xiǎo shēng|pelan (suara)
+小时候|xiǎo shí hou|waktu kecil
+小说|xiǎo shuō|novel
 小心|xiǎo xīn|hati-hati
+小组|xiǎo zǔ|kelompok kecil
+校园|xiào yuán|kampus
 校长|xiào zhǎng|kepala sekolah
+笑话|xiào hua|lelucon
+笑话儿|xiào hua r|lelucon
+鞋|xié|sepatu
+心里|xīn li|di dalam hati
+心情|xīn qíng|suasana hati
+心中|xīn zhōng|di dalam hati
 新闻|xīn wén|berita
-新鲜|xīn xiān|segar
 信|xìn|surat
-行李箱|xíng li xiāng|koper
-兴趣|xìng qù|minat
-熊猫|xióng māo|panda
-需要|xū yào|membutuhkan
-选择|xuǎn zé|memilih
+信号|xìn hào|sinyal
+信息|xìn xī|informasi
+信心|xìn xīn|kepercayaan diri
+信用卡|xìn yòng kǎ|kartu kredit
+星星|xīng xing|bintang
+行动|xíng dòng|tindakan
+行人|xíng rén|pejalan kaki
+行为|xíng wéi|perilaku
+姓|xìng|bermarga
+姓名|xìng míng|nama lengkap
+休假|xiū jià|cuti, berlibur
+许多|xǔ duō|banyak
+选|xuǎn|memilih
+学期|xué qī|semester
+雪|xuě|salju
+颜色|yán sè|warna
+眼|yǎn|mata
+眼睛|yǎn jing|mata
+养|yǎng|memelihara, merawat
+样子|yàng zi|penampilan, rupa
+药|yào|obat
+药店|yào diàn|apotek
+药片|yào piàn|tablet obat
+药水|yào shuǐ|obat cair
 要求|yāo qiú|meminta, tuntutan
-爷爷|yé ye|kakek
+也许|yě xǔ|mungkin
+夜|yè|malam
+夜里|yè li|pada malam hari
 一般|yì bān|biasanya, umum
-一边|yì biān|sambil
+一部分|yī bù fen|sebagian
+一点点|yī diǎn diǎn|sedikit sekali
 一定|yí dìng|pasti
 一共|yí gòng|total
-一会儿|yí huì r|sebentar
-一样|yí yàng|sama
+一路平安|yī lù píng ān|selamat jalan
+一路顺风|yī lù shùn fēng|semoga perjalanan lancar
+一生|yī shēng|seumur hidup
 一直|yì zhí|terus-menerus
+已经|yǐ jīng|sudah
+以后|yǐ hòu|setelah, nanti
 以前|yǐ qián|dulu, sebelum
+以上|yǐ shàng|di atas, lebih dari
+以外|yǐ wài|selain
+以为|yǐ wéi|mengira
+以下|yǐ xià|di bawah, kurang dari
+椅子|yǐ zi|kursi
+亿|yì|seratus juta
+意见|yì jiàn|pendapat, keberatan
+意思|yì si|arti, maksud
+因为|yīn wèi|karena
+阴|yīn|mendung
+阴天|yīn tiān|hari mendung
+音节|yīn jié|suku kata
 音乐|yīn yuè|musik
+音乐会|yīn yuè huì|konser
 银行|yín háng|bank
-饮料|yǐn liào|minuman
+银行卡|yín háng kǎ|kartu bank
 应该|yīng gāi|seharusnya
+英文|Yīng wén|bahasa Inggris
+英语|Yīng yǔ|bahasa Inggris
+影片|yǐng piàn|film
 影响|yǐng xiǎng|pengaruh
-用|yòng|menggunakan
-游戏|yóu xì|permainan
-有名|yǒu míng|terkenal
+永远|yǒng yuǎn|selamanya
+油|yóu|minyak
+游客|yóu kè|wisatawan
+有点儿|yǒu diǎn r|agak, sedikit
+有空儿|yǒu kòng r|ada waktu luang
+有人|yǒu rén|ada orang
+有一点儿|yǒu yī diǎn r|agak, sedikit
+有意思|yǒu yì si|menarik
 又|yòu|lagi (sudah terjadi)
-遇到|yù dào|bertemu (tak sengaja)
-元|yuán|yuan
+友好|yǒu hǎo|ramah, bersahabat
+鱼|yú|ikan
+语言|yǔ yán|bahasa
+原来|yuán lái|ternyata, semula
+原因|yuán yīn|alasan, sebab
+院|yuàn|halaman; lembaga
+院长|yuàn zhǎng|kepala lembaga, dekan
+院子|yuàn zi|halaman rumah
 愿意|yuàn yì|bersedia
+月份|yuè fèn|bulan (dalam kalender)
 月亮|yuè liang|bulan (di langit)
 越|yuè|semakin
+越来越|yuè lái yuè|semakin
 云|yún|awan
-站|zhàn|berdiri; halte
-长|zhǎng|tumbuh
-着急|zháo jí|cemas, terburu-buru
+运动|yùn dòng|olahraga
+咱|zán|kita, aku
+咱们|zán men|kita
+脏|zāng|kotor
+早餐|zǎo cān|sarapan
+早晨|zǎo chén|pagi hari
+早就|zǎo jiù|sudah dari dulu
+怎么办|zěn me bàn|bagaimana ini?
+怎么样|zěn me yàng|bagaimana?
+怎样|zěn yàng|bagaimana
+占|zhàn|menempati
+站住|zhàn zhù|berhenti! (berdiri)
+长|cháng|panjang
+长大|zhǎng dà|tumbuh besar
+找出|zhǎo chū|menemukan
 照顾|zhào gu|merawat
 照片|zhào piàn|foto
-照相机|zhào xiàng jī|kamera
+照相|zhào xiàng|memotret
+这么|zhè me|begini
+这时|zhè shí|saat ini
+这时候|zhè shí hou|saat ini
+这样|zhè yàng|seperti ini
+真正|zhēn zhèng|sejati
+正常|zhèng cháng|normal
+正好|zhèng hǎo|kebetulan pas
+正确|zhèng què|benar
+正是|zhèng shì|justru, tepat
+直接|zhí jiē|langsung
 只|zhǐ|hanya
-中间|zhōng jiān|tengah
-终于|zhōng yú|akhirnya
-种|zhǒng|jenis
-重要|zhòng yào|penting
+只能|zhǐ néng|hanya bisa
+只要|zhǐ yào|asalkan
+纸|zhǐ|kertas
+中餐|zhōng cān|masakan Tionghoa
+中级|zhōng jí|tingkat menengah
+中年|zhōng nián|paruh baya
+中小学|zhōng xiǎo xué|SD dan SMP
+中心|zhōng xīn|pusat
+中医|Zhōng yī|pengobatan tradisional Tiongkok
+重点|zhòng diǎn|poin utama
+重复|chóng fù|mengulang
+重视|zhòng shì|mementingkan
+重新|chóng xīn|dari awal lagi
+周|zhōu|minggu; sekeliling
 周末|zhōu mò|akhir pekan
+周年|zhōu nián|ulang tahun (peringatan)
+主人|zhǔ rén|tuan rumah, pemilik
 主要|zhǔ yào|utama
-注意|zhù yì|memperhatikan
+住房|zhù fáng|perumahan
+住院|zhù yuàn|dirawat inap
+装|zhuāng|memasang; mengisi
+准确|zhǔn què|akurat
+字典|zì diǎn|kamus karakter
 自己|zì jǐ|diri sendiri
 自行车|zì xíng chē|sepeda
-总是|zǒng shì|selalu
+自由|zì yóu|bebas, kebebasan
+走过|zǒu guò|melewati
+走进|zǒu jìn|masuk ke
+走开|zǒu kāi|pergi!
+租|zū|menyewa
+组|zǔ|kelompok; membentuk
+组成|zǔ chéng|membentuk
+组长|zǔ zhǎng|ketua kelompok
 嘴|zuǐ|mulut
-最后|zuì hòu|terakhir
 最近|zuì jìn|akhir-akhir ini
-作业|zuò yè|PR, tugas`;
-const RAW4=`爱情|ài qíng|cinta (romantis)
+作家|zuò jiā|penulis
+作文|zuò wén|karangan
+作业|zuò yè|PR, tugas
+作用|zuò yòng|fungsi, peran
+座|zuò|kata bantu gedung/gunung; kursi
+座位|zuò wèi|tempat duduk
+做到|zuò dào|berhasil melakukan
+做法|zuò fǎ|cara melakukan
+做饭|zuò fàn|memasak`;
+const parse=(raw,hsk)=>raw.trim().split("\n").map(l=>{const[h,p,a]=l.split("|");return{id:h+"|"+p,h,p,a,hsk}});
+const RAW3=`爱心|ài xīn|kasih sayang, kepedulian
 安排|ān pái|mengatur
-安全|ān quán|aman
-按时|àn shí|tepat waktu
+安装|ān zhuāng|memasang, menginstal
+按|àn|menekan; menurut
 按照|àn zhào|menurut
-包括|bāo kuò|termasuk
+把|bǎ|memegang; partikel objek (把)
+把握|bǎ wò|menguasai; keyakinan
+白菜|bái cài|sawi putih
+班级|bān jí|kelas (rombongan belajar)
+搬|bān|pindah, mengangkat
+搬家|bān jiā|pindah rumah
+板|bǎn|papan
+办理|bàn lǐ|mengurus (administrasi)
+保|bǎo|menjaga, menjamin
+保安|bǎo ān|satpam; keamanan
+保持|bǎo chí|mempertahankan
+保存|bǎo cún|menyimpan
 保护|bǎo hù|melindungi
+保留|bǎo liú|mempertahankan, menyisakan
+保险|bǎo xiǎn|asuransi; aman
 保证|bǎo zhèng|menjamin
-抱歉|bào qiàn|minta maaf
-报名|bào míng|mendaftar
-笨|bèn|bodoh
-毕业|bì yè|lulus
+报|bào|melaporkan; koran
+报到|bào dào|melapor diri, check-in
+报道|bào dào|memberitakan; berita
+报告|bào gào|laporan; melaporkan
+北部|běi bù|bagian utara
+背后|bèi hòu|di belakang
+被|bèi|oleh (kalimat pasif)
+被子|bèi zi|selimut
+本来|běn lái|semula, sebenarnya
+本领|běn lǐng|keterampilan
+本事|běn shi|kemampuan
+比较|bǐ jiào|cukup, relatif
+比例|bǐ lì|proporsi, skala
+比赛|bǐ sài|pertandingan
+必然|bì rán|pasti, tak terelakkan
+必要|bì yào|perlu, penting
+变化|biàn huà|perubahan
+变为|biàn wéi|berubah menjadi
+标题|biāo tí|judul
 标准|biāo zhǔn|standar
-表示|biǎo shì|menyatakan
+表达|biǎo dá|mengungkapkan
+表格|biǎo gé|formulir, tabel
+表面|biǎo miàn|permukaan
+表明|biǎo míng|menunjukkan dengan jelas
+表现|biǎo xiàn|menunjukkan; kinerja
 表演|biǎo yǎn|pertunjukan
-表扬|biǎo yáng|memuji
-饼干|bǐng gān|biskuit
+并|bìng|dan; sama sekali (tidak)
 并且|bìng qiě|dan juga
-博士|bó shì|doktor (gelar)
-不过|bú guò|tetapi
+播出|bō chū|menyiarkan
+播放|bō fàng|memutar, menayangkan
+补|bǔ|menambal, melengkapi
+补充|bǔ chōng|menambahkan, melengkapi
+不安|bù ān|gelisah
+不必|bù bì|tidak perlu
 不得不|bù dé bù|terpaksa
-不管|bù guǎn|tidak peduli
-部分|bù fen|bagian
-擦|cā|menggosok, mengelap
-猜|cāi|menebak
-材料|cái liào|bahan
-参观|cān guān|mengunjungi
-差不多|chà bu duō|hampir sama
-尝|cháng|mencicipi
-长城|Cháng chéng|Tembok Besar
-超过|chāo guò|melebihi
+不断|bù duàn|terus-menerus
+不光|bù guāng|bukan hanya
+不仅|bù jǐn|tidak hanya
+不论|bù lùn|tidak peduli, apa pun
+布|bù|kain
+步|bù|langkah
+部|bù|bagian; kementerian
+部门|bù mén|departemen
+部长|bù zhǎng|menteri, kepala departemen
+才能|cái néng|bakat
+采取|cǎi qǔ|mengambil (tindakan)
+采用|cǎi yòng|menggunakan, menerapkan
+彩色|cǎi sè|berwarna-warni
+曾经|céng jīng|pernah
+产生|chǎn shēng|timbul, menghasilkan
+厂|chǎng|pabrik
+场合|chǎng hé|kesempatan, situasi
+场所|chǎng suǒ|tempat
+超级|chāo jí|super
+朝|cháo|menghadap ke; dinasti
 吵|chǎo|berisik
+吵架|chǎo jià|bertengkar
+衬衫|chèn shān|kemeja
+衬衣|chèn yī|kemeja
+称为|chēng wéi|disebut sebagai
 成功|chéng gōng|berhasil
+成果|chéng guǒ|hasil, pencapaian
+成就|chéng jiù|prestasi
+成立|chéng lì|mendirikan
 成熟|chéng shú|dewasa, matang
-诚实|chéng shí|jujur
-乘坐|chéng zuò|menumpang
-吃惊|chī jīng|terkejut
-重新|chóng xīn|dari awal lagi
-抽烟|chōu yān|merokok
-出差|chū chāi|dinas luar kota
-出发|chū fā|berangkat
-出生|chū shēng|lahir
-厨房|chú fáng|dapur
-窗户|chuāng hu|jendela
-粗心|cū xīn|ceroboh
-答案|dá àn|jawaban
-打扮|dǎ ban|berdandan
-打扰|dǎ rǎo|mengganggu
-打印|dǎ yìn|mencetak
-打折|dǎ zhé|diskon
-打针|dǎ zhēn|disuntik
+成员|chéng yuán|anggota
+成长|chéng zhǎng|tumbuh, berkembang
+城|chéng|kota; tembok kota
+城市|chéng shì|kota
+程度|chéng dù|tingkat, derajat
+持续|chí xù|berlanjut
+充满|chōng mǎn|penuh dengan
+初|chū|awal
+初步|chū bù|awal, pendahuluan
+初级|chū jí|tingkat dasar
+初一|chū yī|tanggal 1 (kalender lunar); kelas 7
+初中|chū zhōng|SMP
+除了|chú le|selain
+处理|chǔ lǐ|menangani
+传|chuán|menyebarkan, mengoper
+传播|chuán bō|menyebarluaskan
+传来|chuán lái|terdengar (datang)
+传说|chuán shuō|legenda
+创新|chuàng xīn|berinovasi
+创业|chuàng yè|merintis usaha
+创造|chuàng zào|menciptakan
+创作|chuàng zuò|berkarya
+从来|cóng lái|selalu, sejak dulu (tidak pernah)
+从前|cóng qián|dahulu
+从事|cóng shì|bekerja di bidang
+村|cūn|desa
+存|cún|menyimpan
+存在|cún zài|ada, eksis
+错误|cuò wù|kesalahan; salah
+达到|dá dào|mencapai
+打破|dǎ pò|memecahkan
+打听|dǎ ting|menanyakan, mencari tahu
+大夫|dài fu|dokter
 大概|dà gài|kira-kira
 大使馆|dà shǐ guǎn|kedutaan
-戴|dài|memakai (aksesori)
-当时|dāng shí|saat itu
-导游|dǎo yóu|pemandu wisata
-到处|dào chù|di mana-mana
-道歉|dào qiàn|meminta maaf
-得意|dé yì|bangga, puas diri
-登机牌|dēng jī pái|boarding pass
-低|dī|rendah
-地点|dì diǎn|lokasi
-地球|dì qiú|bumi
-地址|dì zhǐ|alamat
+大约|dà yuē|kira-kira
+代|dài|menggantikan; generasi
+代表|dài biǎo|wakil; mewakili
+代表团|dài biǎo tuán|delegasi
+带动|dài dòng|mendorong, menggerakkan
+带领|dài lǐng|memimpin
+单元|dān yuán|unit, bab
+当初|dāng chū|dulu, awalnya
+当地|dāng dì|setempat
+当然|dāng rán|tentu saja
+当中|dāng zhōng|di antara
+刀|dāo|pisau
+导演|dǎo yǎn|sutradara
+到达|dào dá|tiba
+到底|dào dǐ|sebenarnya; akhirnya
+地区|dì qū|wilayah
+得分|dé fēn|mencetak skor
+等待|děng dài|menunggu
+底下|dǐ xia|di bawah
+电视剧|diàn shì jù|serial TV
+电视台|diàn shì tái|stasiun TV
+电台|diàn tái|stasiun radio
+电子邮件|diàn zǐ yóu jiàn|email
+调|diào|memindahkan; nada (tiáo)
 调查|diào chá|survei, menyelidiki
-丢|diū|kehilangan
-动作|dòng zuò|gerakan
-堵车|dǔ chē|macet
-肚子|dù zi|perut
+调整|tiáo zhěng|menyesuaikan
+订|dìng|memesan
+定期|dìng qī|berkala
+东部|dōng bù|bagian timur
+动力|dòng lì|tenaga penggerak
+动人|dòng rén|menyentuh hati
+读者|dú zhě|pembaca
+短处|duǎn chù|kekurangan
+短裤|duǎn kù|celana pendek
+短期|duǎn qī|jangka pendek
 断|duàn|putus
-对话|duì huà|percakapan
-对面|duì miàn|seberang
-儿童|ér tóng|anak-anak
+队员|duì yuán|anggota tim
+对待|duì dài|memperlakukan
+对方|duì fāng|pihak lain
+对手|duì shǒu|lawan
+对象|duì xiàng|sasaran; pacar
+顿|dùn|kata bantu makan/omelan
+发表|fā biǎo|menerbitkan, menyampaikan
+发出|fā chū|mengeluarkan (suara/perintah)
+发达|fā dá|maju, berkembang
+发动|fā dòng|memulai, menyalakan
+发明|fā míng|menemukan; penemuan
 发生|fā shēng|terjadi
+发送|fā sòng|mengirim
+发言|fā yán|berbicara (di forum)
 发展|fā zhǎn|berkembang
-法律|fǎ lǜ|hukum
-翻译|fān yì|menerjemahkan
-烦恼|fán nǎo|gelisah, kesal
 反对|fǎn duì|menentang
-方法|fāng fǎ|metode
-方向|fāng xiàng|arah
+反复|fǎn fù|berulang-ulang
+反应|fǎn yìng|reaksi
+反正|fǎn zhèng|bagaimanapun juga
+范围|fàn wéi|cakupan
+方式|fāng shì|cara
+防|fáng|mencegah
+防止|fáng zhǐ|mencegah
 房东|fáng dōng|pemilik rumah sewa
-放弃|fàng qì|menyerah
+房屋|fáng wū|bangunan rumah
+房租|fáng zū|uang sewa rumah
+访问|fǎng wèn|mengunjungi, wawancara
+放到|fàng dào|menaruh ke
+飞行|fēi xíng|terbang
+费|fèi|biaya; menghabiskan
+费用|fèi yòng|biaya
+分别|fēn bié|berpisah; masing-masing
+分配|fēn pèi|membagikan
+分组|fēn zǔ|membagi kelompok
 丰富|fēng fù|kaya, melimpah
-风景|fēng jǐng|pemandangan
-否则|fǒu zé|kalau tidak
-符合|fú hé|sesuai
+风险|fēng xiǎn|risiko
+否定|fǒu dìng|menyangkal, negatif
+否认|fǒu rèn|menyangkal
+服务员|fú wù yuán|pelayan
+服装|fú zhuāng|pakaian
+福|fú|keberuntungan
+父母|fù mǔ|orang tua
 父亲|fù qīn|ayah (formal)
-付款|fù kuǎn|membayar
+付|fù|membayar
 负责|fù zé|bertanggung jawab
+复印|fù yìn|memfotokopi
 复杂|fù zá|rumit
-改变|gǎi biàn|mengubah
-干杯|gān bēi|bersulang
+富|fù|kaya
+改进|gǎi jìn|memperbaiki
+改造|gǎi zào|merombak
+概念|gài niàn|konsep
 赶|gǎn|mengejar
+赶到|gǎn dào|bergegas tiba
+赶紧|gǎn jǐn|cepat-cepat
+赶快|gǎn kuài|segera
 敢|gǎn|berani
-感动|gǎn dòng|terharu
-感觉|gǎn jué|perasaan, merasa
+感冒|gǎn mào|pilek, flu
 感情|gǎn qíng|emosi, perasaan
-感谢|gǎn xiè|berterima kasih
+感受|gǎn shòu|merasakan; kesan
+干吗|gàn má|ngapain?
+高速|gāo sù|kecepatan tinggi; jalan tol
 高速公路|gāo sù gōng lù|jalan tol
-胳膊|gē bo|lengan
+告别|gào bié|berpamitan
+歌迷|gē mí|penggemar penyanyi
+歌声|gē shēng|suara nyanyian
+歌手|gē shǒu|penyanyi
+个人|gè rén|pribadi, individu
+个性|gè xìng|kepribadian
+各|gè|masing-masing
+各地|gè dì|berbagai daerah
+各位|gè wèi|hadirin sekalian
+各种|gè zhǒng|berbagai jenis
+各自|gè zì|masing-masing
+根本|gēn běn|dasar; sama sekali
+更加|gèng jiā|lebih lagi
+工厂|gōng chǎng|pabrik
+工程师|gōng chéng shī|insinyur
+工夫|gōng fu|waktu; usaha
+工具|gōng jù|alat
+工业|gōng yè|industri
 工资|gōng zī|gaji
-公里|gōng lǐ|kilometer
+公布|gōng bù|mengumumkan
+公共|gōng gòng|umum, publik
+公开|gōng kāi|terbuka; mengumumkan
+公民|gōng mín|warga negara
+公务员|gōng wù yuán|pegawai negeri
 功夫|gōng fu|kungfu, usaha
+功课|gōng kè|pekerjaan rumah
+功能|gōng néng|fungsi
 共同|gòng tóng|bersama
-购物|gòu wù|berbelanja
-够|gòu|cukup
-估计|gū jì|memperkirakan
-鼓励|gǔ lì|menyemangati
-故意|gù yì|sengaja
-顾客|gù kè|pelanggan
+共有|gòng yǒu|total ada
+姑娘|gū niang|gadis
+古|gǔ|kuno
+古代|gǔ dài|zaman kuno
+故乡|gù xiāng|kampung halaman
 挂|guà|menggantung
-关键|guān jiàn|kunci, penting
+关系|guān xì|hubungan
+关注|guān zhù|memperhatikan, mengikuti
+观察|guān chá|mengamati
+观看|guān kàn|menonton
+观念|guān niàn|gagasan, pandangan
 观众|guān zhòng|penonton
+管|guǎn|mengurus; pipa
 管理|guǎn lǐ|mengelola
 光|guāng|cahaya; habis
-广告|guǎng gào|iklan
-逛|guàng|jalan-jalan
+光明|guāng míng|cahaya; cerah
+广播|guǎng bō|siaran radio
+广大|guǎng dà|luas
 规定|guī dìng|peraturan
-国际|guó jì|internasional
+规范|guī fàn|standar, norma
+国内|guó nèi|dalam negeri
+国庆|Guó qìng|Hari Nasional
+果然|guǒ rán|benar saja
 果汁|guǒ zhī|jus buah
 过程|guò chéng|proses
-海洋|hǎi yáng|lautan
-害羞|hài xiū|malu
-寒假|hán jià|libur musim dingin
-汗|hàn|keringat
-航班|háng bān|penerbangan
-好处|hǎo chù|manfaat
-号码|hào mǎ|nomor
+哈哈|hā hā|haha
+海关|hǎi guān|bea cukai
+害怕|hài pà|takut
+好好|hǎo hǎo|baik-baik
+好奇|hào qí|penasaran
+合|hé|menutup; cocok
+合法|hé fǎ|legal, sah
 合格|hé gé|memenuhi syarat
-合适|hé shì|cocok
-盒子|hé zi|kotak
-后悔|hòu huǐ|menyesal
-厚|hòu|tebal
+合理|hé lǐ|masuk akal
+合作|hé zuò|bekerja sama
+和平|hé píng|perdamaian
+红茶|hóng chá|teh hitam
+红酒|hóng jiǔ|anggur merah
+后果|hòu guǒ|akibat
+后面|hòu miàn|belakang
+后年|hòu nián|dua tahun lagi
 互联网|hù lián wǎng|internet
 互相|hù xiāng|saling
-护士|hù shi|perawat
-怀疑|huái yí|meragukan
-回忆|huí yì|kenangan
-活动|huó dòng|kegiatan
-活泼|huó pō|lincah, ceria
+华人|Huá rén|orang Tionghoa
+化|huà|mengubah menjadi; -isasi
+划船|huá chuán|mendayung perahu
+话剧|huà jù|drama panggung
+话题|huà tí|topik
+环|huán|cincin, lingkaran
+环保|huán bǎo|ramah lingkungan
+环境|huán jìng|lingkungan
+欢乐|huān lè|kegembiraan
+会议|huì yì|rapat
+会员|huì yuán|anggota
+活|huó|hidup
 火|huǒ|api
-获得|huò dé|memperoleh
+机器|jī qì|mesin
 积极|jī jí|aktif, positif
-积累|jī lěi|mengumpulkan
+积极性|jī jí xìng|semangat, inisiatif
+基本|jī běn|dasar
+基本上|jī běn shang|pada dasarnya
 基础|jī chǔ|dasar
-激动|jī dòng|bersemangat, terharu
 及时|jí shí|segera, tepat waktu
-即使|jí shǐ|meskipun
-计划|jì huà|rencana
+极了|jí le|sekali (amat)
+集体|jí tǐ|kolektif
+集中|jí zhōng|memusatkan
+计算|jì suàn|menghitung
+记录|jì lù|mencatat; rekor
 记者|jì zhě|wartawan
+纪录|jì lù|rekor
+纪念|jì niàn|memperingati
 技术|jì shù|teknologi, teknik
-既然|jì rán|karena sudah
 继续|jì xù|melanjutkan
+加工|jiā gōng|mengolah
+加快|jiā kuài|mempercepat
+加强|jiā qiáng|memperkuat
 家具|jiā jù|perabot
-加班|jiā bān|lembur
+家属|jiā shǔ|anggota keluarga
+家乡|jiā xiāng|kampung halaman
 价格|jià gé|harga
+价钱|jià qian|harga
+价值|jià zhí|nilai
+架|jià|rangka; kata bantu pesawat
 坚持|jiān chí|bertahan, gigih
-减肥|jiǎn féi|diet
-减少|jiǎn shǎo|mengurangi
+坚决|jiān jué|tegas
+坚强|jiān qiáng|tangguh
+简单|jiǎn dān|sederhana
+简直|jiǎn zhí|benar-benar
+建|jiàn|membangun
+建成|jiàn chéng|selesai dibangun
+建立|jiàn lì|mendirikan
+建设|jiàn shè|membangun; pembangunan
 建议|jiàn yì|saran
+将近|jiāng jìn|hampir
 将来|jiāng lái|masa depan
-奖金|jiǎng jīn|bonus
-降低|jiàng dī|menurunkan
-交通|jiāo tōng|lalu lintas
+交费|jiāo fèi|membayar biaya
+交警|jiāo jǐng|polisi lalu lintas
 交流|jiāo liú|berkomunikasi
-骄傲|jiāo ào|sombong, bangga
-饺子|jiǎo zi|pangsit
-教授|jiào shòu|profesor
-教育|jiào yù|pendidikan
-接受|jiē shòu|menerima
+交往|jiāo wǎng|bergaul
+交易|jiāo yì|transaksi
+较|jiào|relatif, agak
+教材|jiào cái|bahan ajar
+教练|jiào liàn|pelatih
+接待|jiē dài|menerima tamu
+接近|jiē jìn|mendekati
 节约|jié yuē|menghemat
-结果|jié guǒ|hasil
-解释|jiě shì|menjelaskan
+结合|jié hé|menggabungkan
+结婚|jié hūn|menikah
+结实|jiē shi|kokoh, kuat
+结束|jié shù|berakhir
+解决|jiě jué|menyelesaikan
+解开|jiě kāi|membuka (ikatan)
+金|jīn|emas
+金牌|jīn pái|medali emas
+仅|jǐn|hanya
+仅仅|jǐn jǐn|hanya saja
+尽量|jǐn liàng|sebisa mungkin
+紧|jǐn|ketat, kencang
+紧急|jǐn jí|darurat
 紧张|jǐn zhāng|gugup
-禁止|jìn zhǐ|dilarang
+近期|jìn qī|dalam waktu dekat
+进步|jìn bù|kemajuan
+进一步|jìn yī bù|lebih lanjut
+进展|jìn zhǎn|perkembangan
 京剧|jīng jù|opera Peking
 经济|jīng jì|ekonomi
 经历|jīng lì|pengalaman (yang dialami)
 经验|jīng yàn|pengalaman (keahlian)
+经营|jīng yíng|mengelola (usaha)
 精彩|jīng cǎi|seru, luar biasa
+精神|jīng shén|semangat, jiwa
+景色|jǐng sè|pemandangan
 警察|jǐng chá|polisi
-竞争|jìng zhēng|persaingan
-镜子|jìng zi|cermin
-究竟|jiū jìng|sebenarnya
+静|jìng|tenang
+久|jiǔ|lama (waktu)
+旧|jiù|lama, usang
+救|jiù|menyelamatkan
+就是|jiù shì|justru, yaitu
+就业|jiù yè|mendapat pekerjaan
 举办|jǔ bàn|menyelenggarakan
-拒绝|jù jué|menolak
-距离|jù lí|jarak
-开玩笑|kāi wán xiào|bercanda
-看法|kàn fǎ|pendapat
-考虑|kǎo lǜ|mempertimbangkan
-科学|kē xué|ilmu pengetahuan
-咳嗽|ké sou|batuk
-可怜|kě lián|kasihan
-可惜|kě xī|sayang sekali
-肯定|kěn dìng|pasti
-空气|kōng qì|udara
+具体|jù tǐ|konkret
+具有|jù yǒu|memiliki
+剧场|jù chǎng|teater
+据说|jù shuō|katanya
+决定|jué dìng|memutuskan
+决赛|jué sài|final
+决心|jué xīn|tekad
+绝对|jué duì|mutlak, pasti
+咖啡|kā fēi|kopi
+开发|kāi fā|mengembangkan
+开放|kāi fàng|terbuka; mekar
+开始|kāi shǐ|mulai
+开业|kāi yè|membuka usaha
+开展|kāi zhǎn|melaksanakan
+看起来|kàn qǐ lai|kelihatannya
+看上去|kàn shang qu|kelihatannya
+考验|kǎo yàn|ujian (cobaan)
+科技|kē jì|iptek
+可靠|kě kào|dapat diandalkan
+可乐|kě lè|cola
+克服|kè fú|mengatasi
+客观|kè guān|objektif
+课程|kè chéng|kurikulum, mata kuliah
+空|kōng|kosong; langit
+空调|kōng tiáo|AC
+空儿|kòng r|waktu luang
 恐怕|kǒng pà|khawatirnya
-苦|kǔ|pahit
+裤子|kù zi|celana
+快速|kuài sù|cepat
 困|kùn|mengantuk
 困难|kùn nan|kesulitan
-扩大|kuò dà|memperluas
-垃圾桶|lā jī tǒng|tempat sampah
-辣|là|pedas
-来不及|lái bu jí|tidak sempat
-懒|lǎn|malas
 浪费|làng fèi|membuang-buang
-浪漫|làng màn|romantis
-老虎|lǎo hǔ|harimau
-冷静|lěng jìng|tenang
+老百姓|lǎo bǎi xìng|rakyat biasa
+老板|lǎo bǎn|bos
+老太太|lǎo tài tai|nenek (sopan)
+老头儿|lǎo tóu r|kakek tua
+乐|lè|gembira
+乐队|yuè duì|band musik
+乐观|lè guān|optimis
+类|lèi|jenis
+类似|lèi sì|mirip
+离婚|lí hūn|bercerai
+里面|lǐ miàn|di dalam
 理发|lǐ fà|potong rambut
 理解|lǐ jiě|memahami
-理想|lǐ xiǎng|cita-cita
-厉害|lì hai|hebat
-礼貌|lǐ mào|sopan santun
-力气|lì qi|tenaga
-例如|lì rú|contohnya
+理论|lǐ lùn|teori
+理由|lǐ yóu|alasan
+力|lì|tenaga, kekuatan
+力量|lì liang|kekuatan
+立刻|lì kè|segera
+利用|lì yòng|memanfaatkan
+连|lián|bahkan; menyambung
+连忙|lián máng|buru-buru
+连续|lián xù|berturut-turut
+连续剧|lián xù jù|serial drama
+联合|lián hé|bersatu
+联合国|Lián hé guó|PBB
 联系|lián xì|menghubungi
-凉快|liáng kuai|sejuk
+凉水|liáng shuǐ|air dingin
+领|lǐng|leher baju; memimpin
+领导|lǐng dǎo|pemimpin
+领先|lǐng xiān|memimpin (di depan)
+另外|lìng wài|selain itu
+另一方面|lìng yī fāng miàn|di sisi lain
 留学|liú xué|kuliah di luar negeri
-流利|liú lì|lancar
-流行|liú xíng|populer
-旅行|lǚ xíng|bepergian
-律师|lǜ shī|pengacara
+龙|lóng|naga
+录|lù|merekam
+录音|lù yīn|rekaman suara
+路线|lù xiàn|rute
+旅馆|lǚ guǎn|penginapan
+旅行社|lǚ xíng shè|agen perjalanan
+绿茶|lǜ chá|teh hijau
 乱|luàn|berantakan
+落后|luò hòu|tertinggal
 麻烦|má fan|merepotkan
-马虎|mǎ hu|ceroboh
-满|mǎn|penuh
+马|mǎ|kuda
+满足|mǎn zú|memuaskan, puas
+慢慢|màn màn|pelan-pelan
+毛病|máo bìng|kebiasaan buruk; kerusakan
+没用|méi yòng|tidak berguna
+媒体|méi tǐ|media
+每|měi|setiap
+美|měi|indah
+美好|měi hǎo|indah, baik
 美丽|měi lì|indah
-梦|mèng|mimpi
-密码|mì mǎ|kata sandi
-免费|miǎn fèi|gratis
+美食|měi shí|kuliner lezat
+美术|měi shù|seni rupa
+美元|Měi yuán|dolar AS
+迷|mí|penggemar; tersesat
+面对|miàn duì|menghadapi
+面积|miàn jī|luas (area)
+民间|mín jiān|rakyat, tradisional
 民族|mín zú|suku bangsa
-目的|mù dì|tujuan
-耐心|nài xīn|sabar
+明确|míng què|jelas, tegas
+明显|míng xiǎn|jelas, nyata
+命运|mìng yùn|nasib
+某|mǒu|suatu, tertentu
+母亲|mǔ qīn|ibu (formal)
+木头|mù tou|kayu
+目标|mù biāo|target, tujuan
+目前|mù qián|saat ini
+奶茶|nǎi chá|teh susu
+男子|nán zǐ|pria
+南部|nán bù|bagian selatan
 难道|nán dào|masa (iya)
-难受|nán shòu|tidak enak badan
+难度|nán dù|tingkat kesulitan
+内|nèi|dalam
 内容|nèi róng|isi
+内心|nèi xīn|hati, batin
+能不能|néng bu néng|bisa atau tidak
 能力|néng lì|kemampuan
-年龄|nián líng|usia
+年初|nián chū|awal tahun
+年代|nián dài|dekade, era
+年底|nián dǐ|akhir tahun
+年纪|nián jì|usia
+念|niàn|membaca (keras); belajar
+牛|niú|sapi
 农村|nóng cūn|pedesaan
-弄|nòng|melakukan, membuat
+农民|nóng mín|petani
+农业|nóng yè|pertanian
+女子|nǚ zǐ|wanita
 暖和|nuǎn huo|hangat
-偶尔|ǒu ěr|kadang-kadang
-排队|pái duì|antre
+拍|pāi|menepuk; memotret
+排名|pái míng|peringkat
+牌子|pái zi|papan nama; merek
+派|pài|mengutus; aliran
 判断|pàn duàn|menilai
-陪|péi|menemani
+胖|pàng|gemuk
+跑步|pǎo bù|lari
+配|pèi|mencocokkan; pantas
+配合|pèi hé|bekerja sama
 批评|pī píng|mengkritik
-皮肤|pí fū|kulit
-脾气|pí qi|temperamen
-骗|piàn|menipu
-乒乓球|pīng pāng qiú|tenis meja
-平时|píng shí|biasanya
+批准|pī zhǔn|menyetujui
+皮|pí|kulit
+皮包|pí bāo|tas kulit
+啤酒|pí jiǔ|bir
+票价|piào jià|harga tiket
+评价|píng jià|menilai; penilaian
+苹果|píng guǒ|apel
 破|pò|rusak, robek
+破坏|pò huài|merusak
 普遍|pǔ biàn|umum, merata
+普及|pǔ jí|memasyarakatkan
+期|qī|periode; edisi
+齐|qí|rapi; lengkap
 其次|qí cì|kedua, selanjutnya
-其中|qí zhōng|di antaranya
+其实|qí shí|sebenarnya
+奇怪|qí guài|aneh
 气候|qì hòu|iklim
 千万|qiān wàn|jangan sampai, pastikan
-签证|qiān zhèng|visa
-敲|qiāo|mengetuk
+前后|qián hòu|sekitar; dari awal sampai akhir
+前进|qián jìn|maju
+前面|qián miàn|depan
+前往|qián wǎng|pergi menuju
+强|qiáng|kuat
+强大|qiáng dà|kuat, perkasa
+强调|qiáng diào|menekankan
+强烈|qiáng liè|kuat, intens
 桥|qiáo|jembatan
-巧克力|qiǎo kè lì|cokelat
-亲戚|qīn qi|kerabat
-轻松|qīng sōng|santai
+巧|qiǎo|kebetulan; terampil
+亲|qīn|kandung; mencium
+亲切|qīn qiè|ramah, hangat
+亲人|qīn rén|keluarga dekat
+亲自|qīn zì|secara langsung (sendiri)
+情感|qíng gǎn|emosi, perasaan
 情况|qíng kuàng|situasi
-穷|qióng|miskin
+请教|qǐng jiào|minta petunjuk
+庆祝|qìng zhù|merayakan
+球迷|qiú mí|penggemar sepak bola
+区|qū|wilayah, distrik
 区别|qū bié|perbedaan
-取|qǔ|mengambil
-全部|quán bù|semua
+取消|qǔ xiāo|membatalkan
+去世|qù shì|meninggal dunia
+全场|quán chǎng|seluruh hadirin
+全面|quán miàn|menyeluruh
+全球|quán qiú|seluruh dunia
+缺|quē|kurang
 缺点|quē diǎn|kekurangan
-却|què|tetapi, malah
+缺少|quē shǎo|kekurangan
+确保|què bǎo|memastikan
+确定|què dìng|memastikan; pasti
 确实|què shí|memang benar
-然而|rán ér|namun
-热闹|rè nao|ramai
+裙子|qún zi|rok
+群|qún|kelompok
+热爱|rè ài|sangat mencintai
+热烈|rè liè|meriah, antusias
+人才|rén cái|orang berbakat
+人工|rén gōng|buatan
+人类|rén lèi|umat manusia
+人民|rén mín|rakyat
+人民币|rén mín bì|renminbi (yuan)
+人群|rén qún|kerumunan
+人生|rén shēng|kehidupan
+人员|rén yuán|personel
+认出|rèn chū|mengenali
+认得|rèn de|kenal
+认可|rèn kě|mengakui, menyetujui
+任|rèn|menjabat; membiarkan
 任何|rèn hé|apa pun
 任务|rèn wu|tugas
+仍|réng|masih, tetap
 仍然|réng rán|tetap, masih
-日记|rì jì|buku harian
-入口|rù kǒu|pintu masuk
+日常|rì cháng|sehari-hari
+容易|róng yì|mudah
+如何|rú hé|bagaimana
 散步|sàn bù|jalan-jalan santai
-森林|sēn lín|hutan
 沙发|shā fā|sofa
+沙子|shā zi|pasir
+伤|shāng|luka; melukai
 伤心|shāng xīn|sedih
-商量|shāng liang|berunding
-稍微|shāo wēi|sedikit
+商品|shāng pǐn|barang dagangan
+商业|shāng yè|bisnis
+上来|shàng lái|naik (ke sini)
+上面|shàng miàn|di atas
+上去|shàng qù|naik (ke sana)
+上升|shàng shēng|naik, meningkat
+上衣|shàng yī|atasan (baju)
+设备|shè bèi|peralatan
+设计|shè jì|merancang; desain
+设立|shè lì|mendirikan
 社会|shè huì|masyarakat
-申请|shēn qǐng|mengajukan, melamar
+身份证|shēn fèn zhèng|KTP
 深|shēn|dalam
-甚至|shèn zhì|bahkan
-生活|shēng huó|kehidupan
+深刻|shēn kè|mendalam
+深入|shēn rù|mendalam
+升|shēng|naik; liter
+生产|shēng chǎn|memproduksi
+生存|shēng cún|bertahan hidup
+生动|shēng dòng|hidup, menarik
 生命|shēng mìng|nyawa, hidup
-省|shěng|provinsi; menghemat
-剩|shèng|tersisa
-失败|shī bài|gagal
-失望|shī wàng|kecewa
-师傅|shī fu|tukang, ahli
-十分|shí fēn|sangat
-实际|shí jì|nyata, sebenarnya
-实在|shí zài|benar-benar
-使用|shǐ yòng|menggunakan
+生意|shēng yi|bisnis, dagang
+生长|shēng zhǎng|tumbuh
+声明|shēng míng|pernyataan
+胜|shèng|menang
+胜利|shèng lì|kemenangan
+失去|shī qù|kehilangan
+石头|shí tou|batu
+石油|shí yóu|minyak bumi
+时|shí|waktu; jam
+时代|shí dài|zaman
+时刻|shí kè|saat; setiap saat
+实际上|shí jì shàng|kenyataannya
+实力|shí lì|kekuatan nyata
+实行|shí xíng|melaksanakan
+实验|shí yàn|eksperimen
+实验室|shí yàn shì|laboratorium
+食品|shí pǐn|makanan
+使|shǐ|membuat, menyebabkan
+始终|shǐ zhōng|dari awal sampai akhir
 世纪|shì jì|abad
+世界|shì jiè|dunia
+世界杯|Shì jiè bēi|Piala Dunia
+市场|shì chǎng|pasar
+事故|shì gù|kecelakaan
+事件|shì jiàn|peristiwa
+事实|shì shí|fakta
+事实上|shì shí shàng|faktanya
+事业|shì yè|karier, usaha
+试题|shì tí|soal ujian
+试验|shì yàn|uji coba
+室|shì|ruangan
 适合|shì hé|cocok untuk
-收入|shōu rù|pendapatan
-收拾|shōu shi|merapikan
+适应|shì yìng|beradaptasi
+适用|shì yòng|berlaku, cocok dipakai
+收费|shōu fèi|memungut biaya
+收看|shōu kàn|menonton (TV)
+收听|shōu tīng|mendengarkan (radio)
+收音机|shōu yīn jī|radio
+手续|shǒu xù|prosedur
+手指|shǒu zhǐ|jari
 首都|shǒu dū|ibu kota
-受到|shòu dào|mendapat
-售货员|shòu huò yuán|pramuniaga
+首先|shǒu xiān|pertama-tama
+受|shòu|menerima; menderita
+受伤|shòu shāng|terluka
+书架|shū jià|rak buku
 输|shū|kalah
-熟悉|shú xī|akrab, kenal baik
+输入|shū rù|memasukkan (data)
+熟人|shú rén|kenalan
+属|shǔ|termasuk; shio
+属于|shǔ yú|termasuk, milik
+束|shù|ikat (kata bantu)
 数量|shù liàng|jumlah
-帅|shuài|tampan
-顺便|shùn biàn|sekalian
-说明|shuō míng|menjelaskan
-硕士|shuò shì|magister
+双|shuāng|pasang; ganda
+双方|shuāng fāng|kedua pihak
+思想|sī xiǎng|pemikiran
+死|sǐ|mati
 速度|sù dù|kecepatan
-酸|suān|asam
-随便|suí biàn|terserah
-孙子|sūn zi|cucu laki-laki
-所有|suǒ yǒu|semua
-态度|tài du|sikap
+随|suí|mengikuti
+所|suǒ|tempat; kata bantu gedung
+所长|suǒ cháng|kepala lembaga
+台|tái|panggung; kata bantu mesin
 谈|tán|membicarakan
-弹钢琴|tán gāng qín|bermain piano
+谈话|tán huà|bercakap-cakap
+谈判|tán pàn|negosiasi
 汤|tāng|sup
 糖|táng|gula, permen
+特色|tè sè|ciri khas
+提前|tí qián|lebih awal
+提问|tí wèn|bertanya
+题目|tí mù|judul; soal
+体会|tǐ huì|memahami (dari pengalaman)
+体现|tǐ xiàn|mencerminkan
+体验|tǐ yàn|mengalami
+天空|tiān kōng|langit
+甜|tián|manis
+跳|tiào|melompat
+跳高|tiào gāo|lompat tinggi
+跳舞|tiào wǔ|menari
+跳远|tiào yuǎn|lompat jauh
+铁|tiě|besi
+铁路|tiě lù|rel kereta api
+听力|tīng lì|kemampuan mendengar
+听众|tīng zhòng|pendengar
+停止|tíng zhǐ|berhenti
+通常|tōng cháng|biasanya
+通信|tōng xìn|berkomunikasi
+同意|tóng yì|setuju
+痛|tòng|sakit
+痛苦|tòng kǔ|penderitaan
+头脑|tóu nǎo|otak, pikiran
+突出|tū chū|menonjol
+突然|tū rán|tiba-tiba
+图|tú|gambar, diagram
+图画|tú huà|lukisan, gambar
+土|tǔ|tanah
+团|tuán|kelompok; gumpalan
+团结|tuán jié|bersatu
+团体|tuán tǐ|organisasi
+推动|tuī dòng|mendorong
+推广|tuī guǎng|mempromosikan
+推进|tuī jìn|memajukan
+推开|tuī kāi|mendorong terbuka
+退|tuì|mundur; mengembalikan
+退出|tuì chū|keluar (dari)
+退休|tuì xiū|pensiun
+外交|wài jiāo|diplomasi
+外面|wài miàn|di luar
+外文|wài wén|bahasa asing
+完美|wán měi|sempurna
+完善|wán shàn|lengkap; menyempurnakan
+完整|wán zhěng|utuh
+玩具|wán jù|mainan
+往往|wǎng wǎng|sering kali
+危害|wēi hài|membahayakan
+危险|wēi xiǎn|berbahaya
+围|wéi|mengelilingi
+伟大|wěi dà|agung, hebat
+卫生|wèi shēng|kebersihan
+卫生间|wèi shēng jiān|kamar mandi
+为了|wèi le|demi, untuk
+温暖|wēn nuǎn|hangat
+文化|wén huà|budaya
+文件|wén jiàn|dokumen
+文明|wén míng|beradab; peradaban
+文学|wén xué|sastra
+文章|wén zhāng|artikel
+文字|wén zì|tulisan, aksara
+握手|wò shǒu|berjabat tangan
+屋子|wū zi|ruangan, rumah
+武器|wǔ qì|senjata
+武术|wǔ shù|bela diri
+舞台|wǔ tái|panggung
+希望|xī wàng|berharap
+系|xì|jurusan; menghubungkan
+西部|xī bù|bagian barat
+下来|xià lai|turun (ke sini)
+下面|xià miàn|di bawah
+下去|xià qù|turun (ke sana); terus
+先进|xiān jìn|maju, canggih
+显得|xiǎn de|tampak
+显然|xiǎn rán|jelas sekali
+显示|xiǎn shì|menunjukkan
+现场|xiàn chǎng|lokasi kejadian; langsung
+现代|xiàn dài|modern
+现代化|xiàn dài huà|modernisasi
+现金|xiàn jīn|uang tunai
+现实|xiàn shí|kenyataan
+现象|xiàn xiàng|fenomena
+线|xiàn|benang; garis
+相比|xiāng bǐ|dibandingkan
+相当|xiāng dāng|cukup; setara
+相关|xiāng guān|terkait
+相互|xiāng hù|saling
+相似|xiāng sì|mirip
+香|xiāng|harum
+香蕉|xiāng jiāo|pisang
+消费|xiāo fèi|konsumsi
+消失|xiāo shī|menghilang
+消息|xiāo xi|kabar
+效果|xiào guǒ|efek, hasil
+写作|xiě zuò|menulis (karangan)
+心|xīn|hati
+信封|xìn fēng|amplop
+信任|xìn rèn|percaya
+行李|xíng li|bagasi
+形成|xíng chéng|terbentuk
+形式|xíng shì|bentuk
+形象|xíng xiàng|citra, gambaran
+形状|xíng zhuàng|bentuk
+幸福|xìng fú|bahagia
+幸运|xìng yùn|beruntung
+性|xìng|sifat; jenis kelamin
+性别|xìng bié|jenis kelamin
+性格|xìng gé|kepribadian
+修|xiū|memperbaiki
+修改|xiū gǎi|merevisi
+需求|xū qiú|kebutuhan
+需要|xū yào|membutuhkan
+宣布|xuān bù|mengumumkan
+宣传|xuān chuán|mempromosikan
+选手|xuǎn shǒu|peserta, atlet
+学费|xué fèi|biaya sekolah
+血|xuè|darah
+训练|xùn liàn|latihan
+压|yā|menekan
+压力|yā lì|tekanan
+烟|yān|asap; rokok
+眼前|yǎn qián|di depan mata
+演|yǎn|memerankan
+演唱|yǎn chàng|bernyanyi (pentas)
+演唱会|yǎn chàng huì|konser
+演出|yǎn chū|pertunjukan
+演员|yǎn yuán|aktor
+羊|yáng|kambing, domba
+阳光|yáng guāng|sinar matahari
+要是|yào shi|kalau
+一方面|yī fāng miàn|di satu sisi
+一切|yī qiè|semuanya
+衣架|yī jià|gantungan baju
+已|yǐ|sudah
+以来|yǐ lái|sejak
+艺术|yì shù|seni
+意外|yì wài|kecelakaan; tak terduga
+意义|yì yì|makna
+因此|yīn cǐ|oleh karena itu
+银|yín|perak
+银牌|yín pái|medali perak
+印象|yìn xiàng|kesan
+应当|yīng dāng|seharusnya
+应用|yìng yòng|menerapkan
+迎接|yíng jiē|menyambut
+营养|yíng yǎng|gizi
+赢|yíng|menang
+影视|yǐng shì|film dan televisi
+优点|yōu diǎn|kelebihan
+优势|yōu shì|keunggulan
+由|yóu|oleh; dari
+由于|yóu yú|karena
+邮件|yóu jiàn|surat, email
+邮票|yóu piào|perangko
+邮箱|yóu xiāng|kotak surat
+游|yóu|berenang; berwisata
+游戏|yóu xì|permainan
+游泳|yóu yǒng|berenang
+有的是|yǒu de shì|banyak sekali
+有利|yǒu lì|menguntungkan
+有效|yǒu xiào|efektif, berlaku
+预报|yù bào|ramalan
+预防|yù fáng|mencegah
+预计|yù jì|memperkirakan
+预习|yù xí|mempersiapkan pelajaran
+员|yuán|anggota, pegawai
+员工|yuán gōng|karyawan
+愿望|yuàn wàng|keinginan
+约|yuē|janji; kira-kira
+运输|yùn shū|transportasi
+杂志|zá zhì|majalah
+早已|zǎo yǐ|sejak lama
+造|zào|membuat
+造成|zào chéng|menyebabkan
+责任|zé rèn|tanggung jawab
+增加|zēng jiā|menambah
+增长|zēng zhǎng|bertambah
+展开|zhǎn kāi|membentangkan; melaksanakan
+张|zhāng|kata bantu benda datar
+长城|Cháng chéng|Tembok Besar
+长处|cháng chù|kelebihan
+长期|cháng qī|jangka panjang
+照|zhào|menyinari; memotret; sesuai
+者|zhě|orang yang (akhiran)
+真实|zhēn shí|nyata
+争|zhēng|merebut, berebut
+争取|zhēng qǔ|memperjuangkan
+整|zhěng|utuh; tepat
+整个|zhěng gè|seluruh
+整理|zhěng lǐ|merapikan
+整齐|zhěng qí|rapi
+整体|zhěng tǐ|keseluruhan
+整天|zhěng tiān|seharian
+整整|zhěng zhěng|genap, penuh
+正式|zhèng shì|resmi
+证|zhèng|bukti, sertifikat
+证件|zhèng jiàn|dokumen identitas
+证据|zhèng jù|bukti
+证明|zhèng míng|membuktikan
+支|zhī|kata bantu pena; mendukung
+支持|zhī chí|mendukung
+支付|zhī fù|membayar
+直|zhí|lurus; langsung
+直播|zhí bō|siaran langsung
+直到|zhí dào|sampai
+值|zhí|bernilai
+值得|zhí de|layak
+职工|zhí gōng|pegawai
+职业|zhí yè|profesi
+只好|zhǐ hǎo|terpaksa
+只是|zhǐ shì|hanya saja
+只有|zhǐ yǒu|hanya
+指|zhǐ|menunjuk; jari
+指出|zhǐ chū|menunjukkan
+指导|zhǐ dǎo|membimbing
+至今|zhì jīn|sampai sekarang
+至少|zhì shǎo|setidaknya
+志愿|zhì yuàn|cita-cita; sukarela
+志愿者|zhì yuàn zhě|relawan
+制定|zhì dìng|merumuskan
+制度|zhì dù|sistem
+制造|zhì zào|memproduksi
+制作|zhì zuò|membuat
+中部|zhōng bù|bagian tengah
+中华民族|Zhōng huá mín zú|bangsa Tionghoa
+终于|zhōng yú|akhirnya
+钟|zhōng|jam (dinding); lonceng
+种|zhǒng|jenis
+种子|zhǒng zi|biji, benih
+重大|zhòng dà|besar, penting
+周围|zhōu wéi|sekeliling
+猪|zhū|babi
+主持|zhǔ chí|memandu (acara)
+主动|zhǔ dòng|proaktif
+主任|zhǔ rèn|kepala, direktur
+主意|zhǔ yi|ide
+主张|zhǔ zhāng|berpendapat; pendirian
+注意|zhù yì|memperhatikan
+祝|zhù|mendoakan, mengucapkan selamat
+抓|zhuā|menangkap
+抓住|zhuā zhù|memegang erat
+专家|zhuān jiā|ahli
+专门|zhuān mén|khusus
+专题|zhuān tí|topik khusus
+专业|zhuān yè|jurusan
+转|zhuǎn|berbelok; mengalihkan
+转变|zhuǎn biàn|berubah
+状况|zhuàng kuàng|kondisi
+状态|zhuàng tài|keadaan
+追|zhuī|mengejar
+准|zhǔn|akurat; mengizinkan
+资格|zī gé|kualifikasi
+资金|zī jīn|dana
+自从|zì cóng|sejak
+自动|zì dòng|otomatis
+自觉|zì jué|sadar diri
+自然|zì rán|alam; wajar
+自身|zì shēn|diri sendiri
+自主|zì zhǔ|mandiri
+子女|zǐ nǚ|anak-anak
+总|zǒng|selalu; total
+总结|zǒng jié|merangkum
+总是|zǒng shì|selalu
+足够|zú gòu|cukup
+足球|zú qiú|sepak bola
+组合|zǔ hé|kombinasi
+左右|zuǒ yòu|sekitar
+作品|zuò pǐn|karya
+作者|zuò zhě|penulis
+做客|zuò kè|bertamu`;
+const RAW4=`阿姨|ā yí|bibi, tante
+矮|ǎi|pendek (tubuh)
+矮小|ǎi xiǎo|pendek dan kecil
+爱国|ài guó|cinta tanah air
+爱护|ài hù|menyayangi, merawat
+安|ān|aman, tenang; memasang
+安置|ān zhì|menempatkan
+按时|àn shí|tepat waktu
+暗|àn|gelap
+暗示|àn shì|isyarat, menyiratkan
+巴士|bā shì|bus
+百货|bǎi huò|barang kebutuhan; toserba
+摆|bǎi|menata; mengayun
+摆动|bǎi dòng|berayun
+摆脱|bǎi tuō|melepaskan diri dari
+败|bài|kalah; mengalahkan
+办事|bàn shì|mengurus urusan
+包裹|bāo guǒ|paket, bungkusan
+包含|bāo hán|mengandung, mencakup
+包括|bāo kuò|termasuk
+薄|báo|tipis
+宝|bǎo|harta, permata
+宝宝|bǎo bao|bayi, sayang
+宝贝|bǎo bèi|harta karun; sayang
+宝贵|bǎo guì|berharga
+宝石|bǎo shí|batu permata
+保密|bǎo mì|merahasiakan
+保守|bǎo shǒu|konservatif; menjaga
+抱|bào|memeluk, menggendong
+背景|bèi jǐng|latar belakang
+倍|bèi|kali lipat
+被迫|bèi pò|terpaksa
+本科|běn kē|program sarjana (S1)
+笨|bèn|bodoh
+比分|bǐ fēn|skor
+毕业|bì yè|lulus
+毕业生|bì yè shēng|lulusan
+避|bì|menghindari
+避免|bì miǎn|menghindari
+编|biān|menyusun; menganyam
+辩论|biàn lùn|debat
+标志|biāo zhì|tanda, simbol
+表情|biǎo qíng|ekspresi wajah
+表扬|biǎo yáng|memuji
+冰|bīng|es
+冰箱|bīng xiāng|kulkas
+冰雪|bīng xuě|es dan salju
+兵|bīng|tentara
+不管|bù guǎn|tidak peduli
+不然|bù rán|kalau tidak
+不要紧|bù yào jǐn|tidak apa-apa
+不在乎|bù zài hu|tidak peduli
+布置|bù zhì|menata, mendekorasi
+步行|bù xíng|berjalan kaki
+擦|cā|menggosok, mengelap
+材料|cái liào|bahan
+财产|cái chǎn|harta benda
+财富|cái fù|kekayaan
+采访|cǎi fǎng|mewawancarai
+参考|cān kǎo|referensi; merujuk
+参与|cān yù|berpartisipasi
+操场|cāo chǎng|lapangan sekolah
+操作|cāo zuò|mengoperasikan
+测|cè|mengukur
+测量|cè liáng|mengukur
+测试|cè shì|tes, menguji
+曾|céng|pernah
+茶叶|chá yè|daun teh
+产品|chǎn pǐn|produk
+常识|cháng shí|pengetahuan umum
+唱片|chàng piàn|piringan hitam, album
+抄|chāo|menyalin; mencontek
+抄写|chāo xiě|menyalin tulisan
+潮|cháo|pasang; lembap; trendi
+潮流|cháo liú|tren
+潮湿|cháo shī|lembap
+彻底|chè dǐ|tuntas
+沉|chén|tenggelam; berat
+沉默|chén mò|diam
+沉重|chén zhòng|berat
+称赞|chēng zàn|memuji
+成人|chéng rén|orang dewasa
+承担|chéng dān|menanggung
+承认|chéng rèn|mengakui
+承受|chéng shòu|menahan, menanggung
+诚实|chéng shí|jujur
+诚信|chéng xìn|integritas
+程序|chéng xù|prosedur; program
+吃惊|chī jīng|terkejut
+迟到|chí dào|terlambat
+尺|chǐ|chi (satuan ukur ±33 cm)
+尺寸|chǐ cun|ukuran
+尺子|chǐ zi|penggaris
+充电|chōng diàn|mengisi daya
+充电器|chōng diàn qì|pengisi daya (charger)
+充分|chōng fèn|cukup, sepenuhnya
+冲|chōng|menerjang; menyeduh
+虫子|chóng zi|serangga
+抽|chōu|menarik; mengisap
+抽奖|chōu jiǎng|undian berhadiah
+抽烟|chōu yān|merokok
+出色|chū sè|luar biasa
+出售|chū shòu|menjual
+出席|chū xí|menghadiri
+处|chǔ|tinggal; menangani
+处于|chǔ yú|berada dalam (keadaan)
+穿上|chuān shang|mengenakan
+传统|chuán tǒng|tradisi
+窗户|chuāng hu|jendela
+窗台|chuāng tái|ambang jendela
+窗子|chuāng zi|jendela
+春季|chūn jì|musim semi
+纯|chún|murni
+纯净水|chún jìng shuǐ|air murni
+词汇|cí huì|kosakata
+此|cǐ|ini
+此外|cǐ wài|selain itu
+刺|cì|duri; menusuk
+刺激|cì jī|merangsang; seru
+从此|cóng cǐ|sejak itu
+粗|cū|kasar; tebal
+粗心|cū xīn|ceroboh
+促进|cù jìn|mendorong, memajukan
+促使|cù shǐ|mendorong (terjadinya)
+促销|cù xiāo|promosi penjualan
+措施|cuò shī|langkah, tindakan
+答案|dá àn|jawaban
+打败|dǎ bài|mengalahkan
+打雷|dǎ léi|bergemuruh (petir)
+打扫|dǎ sǎo|membersihkan
+打折|dǎ zhé|diskon
+打针|dǎ zhēn|disuntik
+大巴|dà bā|bus besar
+大多|dà duō|sebagian besar
+大方|dà fang|murah hati; elegan
+大哥|dà gē|kakak sulung; abang
+大规模|dà guī mó|skala besar
+大会|dà huì|rapat umum
+大姐|dà jiě|kakak perempuan sulung
+大楼|dà lóu|gedung tinggi
+大陆|dà lù|benua; Tiongkok daratan
+大妈|dà mā|bibi; ibu-ibu
+大型|dà xíng|berukuran besar
+大爷|dà ye|paman; bapak tua
+大众|dà zhòng|masyarakat umum
+代替|dài tì|menggantikan
+待遇|dài yù|perlakuan; gaji
+袋|dài|kantong
+戴|dài|memakai (aksesori)
+单|dān|tunggal; daftar
+单纯|dān chún|sederhana, polos
+单调|dān diào|monoton
+单独|dān dú|sendirian
+担保|dān bǎo|menjamin
+担任|dān rèn|menjabat
+担心|dān xīn|khawatir
+淡|dàn|tawar; muda (warna)
+导游|dǎo yóu|pemandu wisata
+导致|dǎo zhì|menyebabkan
+倒闭|dǎo bì|bangkrut
+倒车|dǎo chē|berganti kendaraan; mundur (dào)
+地面|dì miàn|permukaan tanah
+地位|dì wèi|status
+地下|dì xià|bawah tanah
+地址|dì zhǐ|alamat
+的确|dí què|memang benar
+得意|dé yì|bangga, puas diri
+灯光|dēng guāng|cahaya lampu
+登|dēng|memanjat; mendaftar
+登记|dēng jì|mendaftar
+登录|dēng lù|login
+登山|dēng shān|mendaki gunung
+敌人|dí rén|musuh
+底|dǐ|dasar, bawah; akhir
+典型|diǎn xíng|tipikal
+点名|diǎn míng|mengabsen
+电灯|diàn dēng|lampu listrik
+电动车|diàn dòng chē|kendaraan listrik
+电梯|diàn tī|lift
+电源|diàn yuán|sumber listrik
+调皮|tiáo pí|nakal
+顶|dǐng|puncak; kata bantu topi
+定|dìng|menetapkan
+冬季|dōng jì|musim dingin
+动画片|dòng huà piàn|film animasi
+动摇|dòng yáo|goyah
+豆腐|dòu fu|tahu
+独立|dú lì|merdeka, mandiri
+独特|dú tè|unik
+独自|dú zì|sendirian
+堵|dǔ|menyumbat; macet
+堵车|dǔ chē|macet
+肚子|dù zi|perut
+度过|dù guò|melewati (waktu)
+锻炼|duàn liàn|berolahraga, melatih
+对比|duì bǐ|membandingkan
+对付|duì fu|menghadapi
+对于|duì yú|mengenai
+多次|duō cì|berkali-kali
+多年|duō nián|bertahun-tahun
+多样|duō yàng|beragam
+多种|duō zhǒng|berbagai macam
+恶心|ě xin|mual
+儿童|ér tóng|anak-anak
+而|ér|dan; tetapi
+而是|ér shì|melainkan
+耳机|ěr jī|earphone
+二手|èr shǒu|bekas (barang)
+发挥|fā huī|mengerahkan (kemampuan)
+发票|fā piào|faktur, kuitansi
+发烧|fā shāo|demam
+法|fǎ|hukum; metode
+法官|fǎ guān|hakim
+法律|fǎ lǜ|hukum
+法院|fǎ yuàn|pengadilan
+翻|fān|membalik; menerjemahkan
+翻译|fān yì|menerjemahkan
+烦|fán|kesal; merepotkan
+反|fǎn|terbalik; menentang
+反而|fǎn ér|malah
+反映|fǎn yìng|mencerminkan
+方|fāng|persegi; arah
+方案|fāng àn|rencana, skema
+方针|fāng zhēn|kebijakan
+放松|fàng sōng|bersantai
+非|fēi|bukan
+肥|féi|gemuk; subur
+分布|fēn bù|tersebar
+分散|fēn sàn|menyebar
+分手|fēn shǒu|putus (hubungan)
+分为|fēn wéi|dibagi menjadi
+分之|fēn zhī|per (pecahan)
+纷纷|fēn fēn|berbondong-bondong
+奋斗|fèn dòu|berjuang
+风格|fēng gé|gaya
+风景|fēng jǐng|pemandangan
+风俗|fēng sú|adat istiadat
+封闭|fēng bì|menutup rapat
+否则|fǒu zé|kalau tidak
+符号|fú hào|simbol
+符合|fú hé|sesuai
+付出|fù chū|mengorbankan, mencurahkan
+负担|fù dān|beban
+附近|fù jìn|sekitar
+复制|fù zhì|menyalin
+夫妇|fū fù|pasangan suami istri
+夫妻|fū qī|suami istri
+夫人|fū ren|nyonya
+改善|gǎi shàn|memperbaiki
+改正|gǎi zhèng|membetulkan
+盖|gài|tutup; membangun
+概括|gài kuò|merangkum
+感兴趣|gǎn xìng qù|tertarik
+高潮|gāo cháo|klimaks
+高价|gāo jià|harga tinggi
+高尚|gāo shàng|mulia
+高铁|gāo tiě|kereta cepat
+格外|gé wài|terutama, istimewa
+隔|gé|memisahkan; berselang
+隔开|gé kāi|memisahkan
+个别|gè bié|individual; sedikit
+个体|gè tǐ|individu
+各个|gè gè|setiap
+根|gēn|akar; kata bantu benda panjang
+根据|gēn jù|berdasarkan
+工程|gōng chéng|proyek teknik
+公元|gōng yuán|Masehi
+供应|gōng yìng|menyediakan
+共|gòng|bersama; total
+构成|gòu chéng|membentuk
+构造|gòu zào|struktur
+购买|gòu mǎi|membeli
+购物|gòu wù|berbelanja
+骨头|gǔ tou|tulang
+固定|gù dìng|tetap
+瓜|guā|melon, labu
+怪|guài|aneh; menyalahkan
+关闭|guān bì|menutup
+关于|guān yú|tentang
+官|guān|pejabat
+官方|guān fāng|resmi
+光临|guāng lín|kunjungan (sopan)
+光盘|guāng pán|CD, DVD
+逛|guàng|jalan-jalan
+归|guī|kembali; milik
+规律|guī lǜ|aturan, pola
+规模|guī mó|skala
+规则|guī zé|peraturan
+果实|guǒ shí|buah, hasil
+过分|guò fèn|keterlaluan
+海水|hǎi shuǐ|air laut
+海鲜|hǎi xiān|makanan laut
+含|hán|mengandung
+含量|hán liàng|kadar
+含义|hán yì|makna tersirat
+含有|hán yǒu|mengandung
+寒假|hán jià|libur musim dingin
+寒冷|hán lěng|dingin sekali
+航班|háng bān|penerbangan
+航空|háng kōng|penerbangan
+毫米|háo mǐ|milimeter
+毫升|háo shēng|mililiter
+好友|hǎo yǒu|sahabat
+号码|hào mǎ|nomor
+合同|hé tong|kontrak
+黑暗|hēi àn|gelap
+红包|hóng bāo|angpao
+后头|hòu tou|belakang
+厚|hòu|tebal
+呼吸|hū xī|bernapas
+忽视|hū shì|mengabaikan
+户|hù|rumah tangga
+护士|hù shi|perawat
+划|huá|mendayung; menggores
+怀念|huái niàn|merindukan (kenangan)
+怀疑|huái yí|meragukan
+缓解|huǎn jiě|meredakan
+黄瓜|huáng guā|mentimun
+黄金|huáng jīn|emas
+回复|huí fù|membalas
+汇|huì|mengirim uang; berkumpul
+汇报|huì bào|melaporkan
+汇率|huì lǜ|kurs
+会计|kuài jì|akuntan
+婚礼|hūn lǐ|pernikahan
+伙|huǒ|kelompok
+伙伴|huǒ bàn|rekan
+或许|huò xǔ|mungkin
+货|huò|barang
+获|huò|memperoleh
+获得|huò dé|memperoleh
+获奖|huò jiǎng|mendapat penghargaan
+获取|huò qǔ|memperoleh
+机构|jī gòu|lembaga
+机遇|jī yù|peluang
+积累|jī lěi|mengumpulkan
+激动|jī dòng|bersemangat, terharu
+激烈|jī liè|sengit
+及格|jí gé|lulus (ujian)
+即将|jí jiāng|akan segera
+极|jí|sangat; kutub
+极其|jí qí|sangat sekali
+急忙|jí máng|terburu-buru
+集合|jí hé|berkumpul
+几乎|jī hū|hampir
+记载|jì zǎi|mencatat
+纪律|jì lǜ|disiplin
+技巧|jì qiǎo|teknik, keterampilan
+季|jì|musim
+季度|jì dù|kuartal
+季节|jì jié|musim
+既|jì|sudah; baik... maupun
+既然|jì rán|karena sudah
+寄|jì|mengirim (pos)
+加班|jiā bān|lembur
+加入|jiā rù|bergabung
+加油站|jiā yóu zhàn|pom bensin
+家务|jiā wù|pekerjaan rumah tangga
+假如|jiǎ rú|seandainya
+坚固|jiān gù|kokoh
+减|jiǎn|mengurangi
+减肥|jiǎn féi|diet
+减少|jiǎn shǎo|mengurangi
+检测|jiǎn cè|menguji, mendeteksi
+简历|jiǎn lì|CV, riwayat hidup
+健身|jiàn shēn|olahraga kebugaran
+渐渐|jiàn jiàn|perlahan-lahan
+江|jiāng|sungai besar
+讲究|jiǎng jiu|memperhatikan detail
+讲座|jiǎng zuò|kuliah umum
+奖|jiǎng|hadiah
+奖金|jiǎng jīn|bonus
+奖学金|jiǎng xué jīn|beasiswa
+降|jiàng|turun
+降低|jiàng dī|menurunkan
+降价|jiàng jià|turun harga
+降落|jiàng luò|mendarat
+降温|jiàng wēn|suhu turun
+交换|jiāo huàn|bertukar
+交际|jiāo jì|bersosialisasi
+角色|jué sè|peran
+教授|jiào shòu|profesor
+教训|jiào xun|pelajaran; menasihati
+阶段|jiē duàn|tahap
+街道|jiē dào|jalan raya
+节省|jié shěng|menghemat
+结|jié|ikatan; menyimpul
+结构|jié gòu|struktur
+结论|jié lùn|kesimpulan
+解释|jiě shì|menjelaskan
+姐妹|jiě mèi|saudara perempuan
+尽快|jǐn kuài|secepatnya
+尽力|jìn lì|berusaha sekuat tenaga
+紧密|jǐn mì|erat
+近代|jìn dài|zaman modern
+进口|jìn kǒu|impor
+禁止|jìn zhǐ|dilarang
+经典|jīng diǎn|klasik
+精力|jīng lì|tenaga, energi
+竟然|jìng rán|ternyata (tak disangka)
+镜头|jìng tóu|lensa kamera; adegan
+镜子|jìng zi|cermin
+究竟|jiū jìng|sebenarnya
+酒吧|jiǔ bā|bar
+居民|jū mín|penduduk
+居住|jū zhù|bertempat tinggal
+局|jú|biro; babak
+巨大|jù dà|sangat besar
+具备|jù bèi|memiliki
+距离|jù lí|jarak
+聚|jù|berkumpul
+聚会|jù huì|pertemuan, pesta
+卷|juǎn|menggulung; gulungan
+开花|kāi huā|berbunga
+开水|kāi shuǐ|air mendidih
+看不起|kàn bu qǐ|meremehkan
+看来|kàn lai|tampaknya
+看望|kàn wàng|menjenguk
+考察|kǎo chá|meninjau
+考虑|kǎo lǜ|mempertimbangkan
+棵|kē|kata bantu pohon
+可见|kě jiàn|terlihat bahwa
+空间|kōng jiān|ruang
+口袋|kǒu dài|saku
+口语|kǒu yǔ|bahasa lisan
+苦|kǔ|pahit
+快递|kuài dì|kurir, paket kilat
+宽|kuān|lebar
+宽广|kuān guǎng|luas
+矿泉水|kuàng quán shuǐ|air mineral
+扩大|kuò dà|memperluas
+扩展|kuò zhǎn|memperluas
+括号|kuò hào|tanda kurung
+垃圾|lā jī|sampah
+拉开|lā kāi|menarik membuka
+辣|là|pedas
+来不及|lái bu jí|tidak sempat
+来得及|lái de jí|masih sempat
+来源|lái yuán|sumber
+老公|lǎo gōng|suami
+老家|lǎo jiā|kampung halaman
+老婆|lǎo pó|istri
+老实|lǎo shi|jujur
+乐趣|lè qù|kesenangan
+了不起|liǎo bu qǐ|luar biasa
+了解|liǎo jiě|memahami
+泪|lèi|air mata
+泪水|lèi shuǐ|air mata
+类型|lèi xíng|tipe
+冷静|lěng jìng|tenang
+厘米|lí mǐ|sentimeter
+离不开|lí bu kāi|tidak bisa lepas dari
+力气|lì qi|tenaga
+历史|lì shǐ|sejarah
+立即|lì jí|segera
+利息|lì xī|bunga (bank)
+利益|lì yì|kepentingan, keuntungan
+俩|liǎ|berdua
+良好|liáng hǎo|baik
+粮食|liáng shi|bahan pangan
+两边|liǎng bian|kedua sisi
+量|liáng|mengukur
+疗养|liáo yǎng|memulihkan kesehatan
+列|liè|baris; mendaftar
+列车|liè chē|kereta api
+列入|liè rù|dimasukkan ke daftar
+列为|liè wéi|digolongkan sebagai
+临时|lín shí|sementara; mendadak
+零食|líng shí|camilan
+流传|liú chuán|tersebar turun-temurun
+楼梯|lóu tī|tangga
+陆地|lù dì|daratan
+陆续|lù xù|satu per satu
+录取|lù qǔ|menerima (calon mahasiswa)
+律师|lǜ shī|pengacara
+率先|shuài xiān|memelopori
+轮|lún|roda; giliran
+轮船|lún chuán|kapal uap
+轮椅|lún yǐ|kursi roda
+轮子|lún zi|roda
+论文|lùn wén|skripsi, makalah
+落|luò|jatuh
+毛巾|máo jīn|handuk
+毛衣|máo yī|sweter
+帽子|mào zi|topi
+没错|méi cuò|betul
+没法儿|méi fǎ r|tidak ada cara
+没想到|méi xiǎng dào|tak disangka
+美金|Měi jīn|dolar AS
+美女|měi nǚ|wanita cantik
+梦|mèng|mimpi
+梦见|mèng jiàn|bermimpi tentang
+梦想|mèng xiǎng|impian
+秘密|mì mì|rahasia
+秘书|mì shū|sekretaris
+密|mì|rapat; rahasia
+密码|mì mǎ|kata sandi
+密切|mì qiè|erat
+免费|miǎn fèi|gratis
+面临|miàn lín|menghadapi
+面试|miàn shì|wawancara kerja
+描述|miáo shù|menggambarkan
+描写|miáo xiě|melukiskan (dalam tulisan)
+名牌儿|míng pái r|merek terkenal
+名片|míng piàn|kartu nama
+名人|míng rén|orang terkenal
+摸|mō|meraba, menyentuh
+模特儿|mó tè r|model (peragawan/ti)
+模型|mó xíng|model, miniatur
+末|mò|akhir, ujung
+默默|mò mò|diam-diam
+哪怕|nǎ pà|meskipun
+男女|nán nǚ|pria dan wanita
+男士|nán shì|pria (sopan)
+难免|nán miǎn|sulit dihindari
+脑袋|nǎo dai|kepala
+闹|nào|ribut; membuat onar
+闹钟|nào zhōng|jam weker
+内部|nèi bù|bagian dalam, internal
+内科|nèi kē|penyakit dalam
+能干|néng gàn|cakap, cekatan
+宁静|níng jìng|tenang, damai
+浓|nóng|kental, pekat
+女士|nǚ shì|nyonya, ibu (sopan)
+暖气|nuǎn qì|pemanas ruangan
+拍照|pāi zhào|memotret
+排列|pái liè|menyusun berurutan
+牌|pái|kartu; papan; merek
+盘|pán|piring; kata bantu piring
+盘子|pán zi|piring
+胖子|pàng zi|orang gemuk
+培训|péi xùn|pelatihan
+培训班|péi xùn bān|kelas pelatihan
+培养|péi yǎng|membina, memupuk
+培育|péi yù|membudidayakan, membina
+批|pī|menyetujui; kelompok (barang)
+片面|piàn miàn|sepihak
+品质|pǐn zhì|kualitas, watak
+平方|píng fāng|persegi; kuadrat
+平静|píng jìng|tenang
+平均|píng jūn|rata-rata
+平稳|píng wěn|stabil
+迫切|pò qiè|mendesak
+破产|pò chǎn|bangkrut
+妻子|qī zi|istri
+期待|qī dài|menantikan
+期间|qī jiān|selama (periode)
+期末|qī mò|akhir semester
+期限|qī xiàn|tenggat waktu
+期中|qī zhōng|tengah semester
+其余|qí yú|sisanya
+企业|qǐ yè|perusahaan
+气球|qì qiú|balon
+汽水|qì shuǐ|minuman bersoda
+汽油|qì yóu|bensin
+器官|qì guān|organ tubuh
+前头|qián tou|di depan
+前途|qián tú|masa depan, prospek
+浅|qiǎn|dangkal; muda (warna)
+巧克力|qiǎo kè lì|cokelat
+切|qiē|memotong
+亲爱|qīn ài|tercinta
+亲密|qīn mì|akrab
+青春|qīng chūn|masa muda
+轻松|qīng sōng|santai
+轻易|qīng yì|dengan mudah
+清醒|qīng xǐng|sadar, jernih pikiran
+情景|qíng jǐng|situasi, adegan
+穷|qióng|miskin
+穷人|qióng rén|orang miskin
+秋季|qiū jì|musim gugur
+趋势|qū shì|tren, kecenderungan
+圈|quān|lingkaran
+权利|quán lì|hak
+却|què|tetapi, malah
+确认|què rèn|mengonfirmasi
+然而|rán ér|namun
+燃料|rán liào|bahan bakar
+燃烧|rán shāo|membakar
+热闹|rè nao|ramai
+热心|rè xīn|antusias, suka menolong
+人家|rén jia|orang lain; rumah tangga
+日记|rì jì|buku harian
+日历|rì lì|kalender
+如今|rú jīn|sekarang ini
+弱|ruò|lemah
+伞|sǎn|payung
+散|sàn|bubar; menyebar
+扫|sǎo|menyapu
+色|sè|warna
+色彩|sè cǎi|warna, nuansa
+晒|shài|menjemur; berjemur
+闪|shǎn|berkilat; menghindar
+闪电|shǎn diàn|kilat
+善良|shàn liáng|baik hati
+善于|shàn yú|pandai dalam
+伤害|shāng hài|melukai
+商务|shāng wù|bisnis, niaga
+赏|shǎng|menikmati; memberi hadiah
+上个月|shàng gè yuè|bulan lalu
+上楼|shàng lóu|naik ke lantai atas
+上门|shàng mén|datang ke rumah
+烧|shāo|membakar; memasak
+设施|shè shī|fasilitas
+设置|shè zhì|mengatur, memasang
+申请|shēn qǐng|mengajukan, melamar
+身材|shēn cái|postur tubuh
+身份|shēn fèn|identitas
+身高|shēn gāo|tinggi badan
+深厚|shēn hòu|mendalam
+甚至|shèn zhì|bahkan
+神话|shén huà|mitos
+神秘|shén mì|misterius
+失败|shī bài|gagal
+失望|shī wàng|kecewa
+失业|shī yè|menganggur
+诗|shī|puisi
+诗人|shī rén|penyair
+湿|shī|basah
+实施|shí shī|melaksanakan
+实用|shí yòng|praktis
+食堂|shí táng|kantin
+使劲|shǐ jìn|mengerahkan tenaga
+士兵|shì bīng|prajurit
+市区|shì qū|pusat kota
+似的|shì de|seperti
+似乎|sì hū|tampaknya
+事物|shì wù|hal, benda
+事先|shì xiān|sebelumnya
+试卷|shì juàn|kertas ujian
+是否|shì fǒu|apakah
+收回|shōu huí|menarik kembali
+收获|shōu huò|hasil panen; manfaat
+收益|shōu yì|keuntungan
+手工|shǒu gōng|kerajinan tangan
+手里|shǒu lǐ|di tangan
+手术|shǒu shù|operasi (bedah)
+手套|shǒu tào|sarung tangan
+守|shǒu|menjaga
+首|shǒu|kepala; kata bantu lagu
+受不了|shòu bù liǎo|tidak tahan
+售货员|shòu huò yuán|pramuniaga
+叔叔|shū shu|paman
+舒适|shū shì|nyaman
+熟练|shú liàn|mahir
+暑假|shǔ jià|libur musim panas
+树林|shù lín|hutan kecil
+树叶|shù yè|daun pohon
+数据|shù jù|data
+数码|shù mǎ|digital
+刷|shuā|menyikat; memindai (kartu)
+刷牙|shuā yá|menyikat gigi
+刷子|shuā zi|sikat
+帅|shuài|tampan
+帅哥|shuài gē|cowok ganteng
+睡着|shuì zháo|tertidur
+顺序|shùn xù|urutan
+说不定|shuō bu dìng|mungkin saja
+说服|shuō fú|meyakinkan, membujuk
+思考|sī kǎo|berpikir
+松|sōng|longgar; pohon pinus
+松树|sōng shù|pohon pinus
+塑料|sù liào|plastik
+塑料袋|sù liào dài|kantong plastik
+酸|suān|asam
+酸奶|suān nǎi|yogurt
+随手|suí shǒu|sambil lalu
+孙女|sūn nǚ|cucu perempuan
+孙子|sūn zi|cucu laki-laki
+缩短|suō duǎn|memperpendek
+缩小|suō xiǎo|memperkecil
+台阶|tái jiē|anak tangga
+台上|tái shàng|di atas panggung
 躺|tǎng|berbaring
-讨论|tǎo lùn|berdiskusi
-讨厌|tǎo yàn|benci, menyebalkan
-特点|tè diǎn|ciri khas
+套餐|tào cān|paket (makanan/layanan)
+特价|tè jià|harga spesial
+特殊|tè shū|khusus
+特征|tè zhēng|ciri
 提供|tí gōng|menyediakan
 提醒|tí xǐng|mengingatkan
-条件|tiáo jiàn|syarat, kondisi
-停止|tíng zhǐ|berhenti
-通过|tōng guò|melalui, lulus
-通知|tōng zhī|pemberitahuan
+体操|tǐ cāo|senam
+体检|tǐ jiǎn|cek kesehatan
+体重|tǐ zhòng|berat badan
+替|tì|menggantikan; untuk
+替代|tì dài|menggantikan
+天真|tiān zhēn|polos, naif
+填|tián|mengisi
+填空|tián kòng|mengisi titik-titik
+挑|tiāo|memilih; memikul
+挑选|tiāo xuǎn|memilih
+挑战|tiǎo zhàn|tantangan
+贴|tiē|menempel
+停下|tíng xià|berhenti
+通知书|tōng zhī shū|surat pemberitahuan
 同情|tóng qíng|bersimpati
+童话|tóng huà|dongeng
+童年|tóng nián|masa kecil
+统计|tǒng jì|statistik
+统一|tǒng yī|menyatukan
+痛快|tòng kuài|puas, lega
+投|tóu|melempar; mengirim
+投入|tóu rù|terlibat penuh; menanam (modal)
+投诉|tóu sù|mengadu, komplain
+投资|tóu zī|investasi
+透|tòu|tembus
+透明|tòu míng|transparan
+图案|tú àn|pola, motif
+途中|tú zhōng|di tengah perjalanan
+土地|tǔ dì|tanah, lahan
 推迟|tuī chí|menunda
+推销|tuī xiāo|memasarkan
 脱|tuō|melepas (pakaian)
 袜子|wà zi|kaus kaki
-完全|wán quán|sepenuhnya
-网球|wǎng qiú|tenis
-往往|wǎng wǎng|sering kali
-危险|wēi xiǎn|berbahaya
-味道|wèi dào|rasa
-温度|wēn dù|suhu
-文章|wén zhāng|artikel
-污染|wū rǎn|polusi
+外汇|wài huì|valuta asing
+外交官|wài jiāo guān|diplomat
+外套|wài tào|jaket, mantel
+弯|wān|bengkok; membungkuk
+晚点|wǎn diǎn|terlambat (jadwal)
+万一|wàn yī|seandainya, jaga-jaga
+王|wáng|raja
+网络|wǎng luò|jaringan, internet
+网址|wǎng zhǐ|alamat situs
+微笑|wēi xiào|tersenyum
+微信|Wēi xìn|WeChat
+围巾|wéi jīn|syal
+维持|wéi chí|mempertahankan
+维护|wéi hù|menjaga, membela
+维修|wéi xiū|perawatan, reparasi
+尾巴|wěi ba|ekor
+未必|wèi bì|belum tentu
+未来|wèi lái|masa depan
+位于|wèi yú|terletak di
+位置|wèi zhi|posisi
+味儿|wèi r|rasa; bau
+稳|wěn|stabil, mantap
+稳定|wěn dìng|stabil
+问候|wèn hòu|menyampaikan salam
+无|wú|tidak ada
+无法|wú fǎ|tidak dapat
+无聊|wú liáo|membosankan
+无论|wú lùn|tidak peduli
+无数|wú shù|tak terhitung
+无所谓|wú suǒ wèi|tidak masalah
+无限|wú xiàn|tak terbatas
+五颜六色|wǔ yán liù sè|warna-warni
 误会|wù huì|salah paham
+吸|xī|menghirup, mengisap
+吸管|xī guǎn|sedotan
+吸收|xī shōu|menyerap
+吸烟|xī yān|merokok
 吸引|xī yǐn|menarik perhatian
+喜爱|xǐ ài|menyukai
+系列|xì liè|seri
+系统|xì tǒng|sistem
+细|xì|tipis, halus
+细节|xì jié|detail
+细致|xì zhì|teliti, cermat
+西瓜|xī guā|semangka
+下个月|xià gè yuè|bulan depan
+下降|xià jiàng|menurun
+下楼|xià lóu|turun ke bawah
+下载|xià zǎi|mengunduh
+夏季|xià jì|musim panas
+鲜|xiān|segar
+鲜花|xiān huā|bunga segar
+鲜明|xiān míng|jelas, mencolok
 咸|xián|asin
-现代|xiàn dài|modern
-羡慕|xiàn mù|iri, kagum
+显著|xiǎn zhù|signifikan
+县|xiàn|kabupaten
 限制|xiàn zhì|membatasi
-详细|xiáng xì|rinci
-响|xiǎng|berbunyi
-想法|xiǎng fǎ|ide, pendapat
-消息|xiāo xi|kabar
-小说|xiǎo shuō|novel
-笑话|xiào hua|lelucon
-效果|xiào guǒ|efek, hasil
-辛苦|xīn kǔ|capek, kerja keras
-心情|xīn qíng|suasana hati
-信心|xìn xīn|kepercayaan diri
+相处|xiāng chǔ|bergaul
+相反|xiāng fǎn|sebaliknya
+相片|xiàng piàn|foto
+箱|xiāng|kotak, peti
+箱子|xiāng zi|koper, peti
+想念|xiǎng niàn|merindukan
+想象|xiǎng xiàng|membayangkan
+项|xiàng|butir, item
+项目|xiàng mù|proyek
+消化|xiāo huà|mencerna
+销售|xiāo shòu|penjualan
+小吃|xiǎo chī|jajanan
+小伙子|xiǎo huǒ zi|pemuda
+小型|xiǎo xíng|ukuran kecil
+效率|xiào lǜ|efisiensi
+些|xiē|beberapa
+心理|xīn lǐ|psikologi
+新郎|xīn láng|pengantin pria
+新娘|xīn niáng|pengantin wanita
+新鲜|xīn xiān|segar
+新型|xīn xíng|tipe baru
+行业|háng yè|industri, bidang usaha
+形容|xíng róng|menggambarkan
+形势|xíng shì|situasi
+型|xíng|tipe
+型号|xíng hào|model, tipe
+醒|xǐng|bangun (tidur)
 兴奋|xīng fèn|gembira, bersemangat
-幸福|xìng fú|bahagia
-性格|xìng gé|kepribadian
+兴趣|xìng qù|minat
+性质|xìng zhì|sifat, karakter
+兄弟|xiōng dì|saudara laki-laki
+胸部|xiōng bù|dada
 修理|xiū lǐ|memperbaiki
-许多|xǔ duō|banyak
-学期|xué qī|semester
-压力|yā lì|tekanan
-牙膏|yá gāo|pasta gigi
+选择|xuǎn zé|memilih
+学分|xué fēn|SKS, kredit
+学年|xué nián|tahun ajaran
+学时|xué shí|jam pelajaran
+学术|xué shù|akademik
+学问|xué wèn|ilmu
+寻找|xún zhǎo|mencari
+迅速|xùn sù|cepat
+牙|yá|gigi
+牙刷|yá shuā|sikat gigi
+亚运会|Yà yùn huì|Asian Games
+呀|ya|partikel seru (ya)
+延期|yán qī|menunda
+延续|yán xù|berlanjut
+延长|yán cháng|memperpanjang
+严|yán|ketat
 严格|yán gé|ketat
 严重|yán zhòng|serius, parah
 研究|yán jiū|penelitian
-演出|yǎn chū|pertunjukan
+研究生|yán jiū shēng|mahasiswa pascasarjana
+研制|yán zhì|meneliti dan mengembangkan
+盐|yán|garam
+眼镜|yǎn jìng|kacamata
+眼泪|yǎn lèi|air mata
+眼里|yǎn li|di mata (pandangan)
+演讲|yǎn jiǎng|pidato
+阳台|yáng tái|balkon
 养成|yǎng chéng|membentuk (kebiasaan)
-邀请|yāo qǐng|mengundang
-钥匙|yào shi|kunci
-也许|yě xǔ|mungkin
-页|yè|halaman
-以为|yǐ wéi|mengira
-艺术|yì shù|seni
-意见|yì jiàn|pendapat, keberatan
-因此|yīn cǐ|oleh karena itu
+腰|yāo|pinggang
+摇|yáo|menggoyang
+药物|yào wù|obat-obatan
+业余|yè yú|amatir; waktu luang
+叶子|yè zi|daun
+一般来说|yī bān lái shuō|umumnya
+一律|yī lǜ|semuanya tanpa kecuali
+一再|yī zài|berulang kali
+一致|yī zhì|sepakat; sama
+医疗|yī liáo|perawatan medis
+医学|yī xué|ilmu kedokteran
+依靠|yī kào|bergantung pada
+依然|yī rán|masih
+移|yí|memindahkan
+移动|yí dòng|bergerak
+移民|yí mín|imigrasi
+遗产|yí chǎn|warisan
+遗传|yí chuán|keturunan, genetik
+疑问|yí wèn|pertanyaan, keraguan
+以及|yǐ jí|serta
+以内|yǐ nèi|dalam (batas)
+义务|yì wù|kewajiban
+议论|yì lùn|membicarakan
+引|yǐn|menarik; memancing
+引导|yǐn dǎo|membimbing
+引进|yǐn jìn|mendatangkan
 引起|yǐn qǐ|menyebabkan
-印象|yìn xiàng|kesan
-赢|yíng|menang
-应聘|yìng pìn|melamar kerja
-永远|yǒng yuǎn|selamanya
+应|yīng|seharusnya; menjawab
+英勇|yīng yǒng|gagah berani
+营业|yíng yè|beroperasi (usaha)
+赢得|yíng dé|memenangkan
+影子|yǐng zi|bayangan
 勇敢|yǒng gǎn|berani
-优点|yōu diǎn|kelebihan
-幽默|yōu mò|humoris
-尤其|yóu qí|terutama
-由于|yóu yú|karena
+勇气|yǒng qì|keberanian
+用途|yòng tú|kegunaan
+优良|yōu liáng|unggul
+优美|yōu měi|anggun
+优秀|yōu xiù|unggul, istimewa
 邮局|yóu jú|kantor pos
-友谊|yǒu yì|persahabatan
+有劲儿|yǒu jìn r|bertenaga; seru
 有趣|yǒu qù|menarik, lucu
+有限|yǒu xiàn|terbatas
+幼儿园|yòu ér yuán|TK
 于是|yú shì|maka, lalu
-愉快|yú kuài|gembira
-羽毛球|yǔ máo qiú|bulu tangkis
 语法|yǔ fǎ|tata bahasa
-预习|yù xí|mempersiapkan pelajaran
-原来|yuán lái|ternyata, semula
-原谅|yuán liàng|memaafkan
-原因|yuán yīn|alasan, sebab
+语音|yǔ yīn|suara; fonetik
+玉|yù|giok
+玉米|yù mǐ|jagung
+预测|yù cè|meramalkan
+预订|yù dìng|memesan (booking)
+遇|yù|bertemu
+遇到|yù dào|bertemu (tak sengaja)
+遇见|yù jiàn|berjumpa
+原料|yuán liào|bahan baku
+原则|yuán zé|prinsip
+圆|yuán|bulat
+圆满|yuán mǎn|sukses sempurna
 约会|yuē huì|kencan, janji
+月底|yuè dǐ|akhir bulan
 阅读|yuè dú|membaca
-允许|yǔn xǔ|mengizinkan
-杂志|zá zhì|majalah
-咱们|zán men|kita
-暂时|zàn shí|sementara
-脏|zāng|kotor
-责任|zé rèn|tanggung jawab
-增加|zēng jiā|menambah
-招聘|zhāo pìn|merekrut
-真正|zhēn zhèng|sejati
-整理|zhěng lǐ|merapikan
-正常|zhèng cháng|normal
-正好|zhèng hǎo|kebetulan pas
-正确|zhèng què|benar
-证明|zhèng míng|membuktikan
-支持|zhī chí|mendukung
-知识|zhī shi|pengetahuan
-值得|zhí de|layak
-职业|zhí yè|profesi
-植物|zhí wù|tumbuhan
-只好|zhǐ hǎo|terpaksa
-只要|zhǐ yào|asalkan
-质量|zhì liàng|kualitas
-至少|zhì shǎo|setidaknya
-重点|zhòng diǎn|poin utama
-重视|zhòng shì|mementingkan
-周围|zhōu wéi|sekeliling
-主意|zhǔ yi|ide
-祝贺|zhù hè|memberi selamat
+运动会|yùn dòng huì|pekan olahraga
+运动员|yùn dòng yuán|atlet
+运气|yùn qi|keberuntungan
+运用|yùn yòng|menggunakan
+再三|zài sān|berkali-kali
+在乎|zài hu|peduli
+在于|zài yú|terletak pada
+赞成|zàn chéng|menyetujui
+赞赏|zàn shǎng|mengagumi
+赞助|zàn zhù|mensponsori
+造型|zào xíng|bentuk, model
+战斗|zhàn dòu|pertempuran
+战胜|zhàn shèng|mengalahkan
+战士|zhàn shì|pejuang
+战争|zhàn zhēng|perang
+长途|cháng tú|jarak jauh
+丈夫|zhàng fu|suami
+招呼|zhāo hu|menyapa; memanggil
+召开|zhào kāi|menyelenggarakan (rapat)
+折|zhé|melipat; diskon
+着火|zháo huǒ|kebakaran
+着急|zháo jí|cemas, terburu-buru
 著名|zhù míng|terkenal
-专门|zhuān mén|khusus
-专业|zhuān yè|jurusan
-赚|zhuàn|menghasilkan (uang)
-准确|zhǔn què|akurat
+著作|zhù zuò|karya tulis
+针|zhēn|jarum
+针对|zhēn duì|ditujukan kepada
+阵|zhèn|kata bantu (angin, hujan)
+争论|zhēng lùn|berdebat
+征服|zhēng fú|menaklukkan
+征求|zhēng qiú|meminta (pendapat)
+政府|zhèng fǔ|pemerintah
+政治|zhèng zhì|politik
+之后|zhī hòu|setelah
+之间|zhī jiān|di antara
+之前|zhī qián|sebelum
+之一|zhī yī|salah satu
+植物|zhí wù|tumbuhan
+指挥|zhǐ huī|memimpin; dirigen
+制订|zhì dìng|menyusun (rencana)
+治|zhì|mengobati; memerintah
+治疗|zhì liáo|pengobatan
+质量|zhì liàng|kualitas
+智力|zhì lì|kecerdasan
+智能|zhì néng|pintar (teknologi)
+中奖|zhòng jiǎng|menang undian
+中介|zhōng jiè|perantara, agen
+种类|zhǒng lèi|jenis
+种植|zhòng zhí|menanam
+重量|zhòng liàng|berat
+逐步|zhú bù|selangkah demi selangkah
+逐渐|zhú jiàn|berangsur-angsur
+主题|zhǔ tí|tema
+主席|zhǔ xí|ketua
+祝福|zhù fú|berkat, doa baik
+抓紧|zhuā jǐn|bergegas
+专心|zhuān xīn|fokus
+转动|zhuǎn dòng|memutar
+转告|zhuǎn gào|menyampaikan pesan
+转身|zhuǎn shēn|berbalik badan
+转弯|zhuǎn wān|berbelok
+转移|zhuǎn yí|memindahkan
+装修|zhuāng xiū|merenovasi
+装置|zhuāng zhì|perangkat
+追求|zhuī qiú|mengejar (tujuan)
 准时|zhǔn shí|tepat waktu
-仔细|zǐ xì|teliti
-自然|zì rán|alam; wajar
-总结|zǒng jié|merangkum
-租|zū|menyewa
-组织|zǔ zhī|organisasi
-最好|zuì hǎo|sebaiknya
-尊重|zūn zhòng|menghormati
-左右|zuǒ yòu|sekitar
-座位|zuò wèi|tempat duduk`;
+资料|zī liào|bahan, data
+资源|zī yuán|sumber daya
+字母|zì mǔ|huruf alfabet
+自|zì|dari; sendiri
+自信|zì xìn|percaya diri
+综合|zōng hé|menyeluruh, gabungan
+总共|zǒng gòng|totalnya
+总理|zǒng lǐ|perdana menteri
+总统|zǒng tǒng|presiden
+总之|zǒng zhī|singkatnya
+阻止|zǔ zhǐ|mencegah
+嘴巴|zuǐ ba|mulut
+最初|zuì chū|awalnya
+作出|zuò chū|membuat (keputusan)
+作为|zuò wéi|sebagai
+做梦|zuò mèng|bermimpi`;
 const WORDS=[...parse(RAW1,1),...parse(RAW2,2),...parse(RAW3,3),...parse(RAW4,4)];
 
 // ---------- Pinyin tone helpers ----------
