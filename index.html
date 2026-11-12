@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hanzi Harian">
+<meta name="theme-color" content="#0f7a5c">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Hanzi Harian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: one narrow study column, tab bar on top, one big card per mode. Tone colours follow the common 1-red 2-orange 3-green 4-blue convention. */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --fg:#17201d; --muted:#5f6d68; --line:#d9e0dd;
+  --accent:#0f7a5c; --accent-soft:#dcefe8; --on-accent:#ffffff;
+  --t1:#d1343b; --t2:#d9831a; --t3:#2e9a45; --t4:#2563c9; --t5:#7d8783;
+  --good:#1f8a4c; --bad:#c2362f;
+  --f-han:"Noto Serif SC","Songti SC","SimSun",serif;
+  --f-head:"Space Grotesk","Inter",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --surface:#1a2320; --fg:#e7eeeb; --muted:#9aaaa4; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3a30; --on-accent:#0b1512;
+  --t1:#ff6b70; --t2:#f5a74a; --t3:#5fcf72; --t4:#6b9cff; --t5:#9aa5a1;
+  --good:#5fcf8a; --bad:#ff7a70; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --surface:#1a2320; --fg:#e7eeeb; --muted:#9aaaa4; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3a30; --on-accent:#0b1512;
+  --t1:#ff6b70; --t2:#f5a74a; --t3:#5fcf72; --t4:#6b9cff; --t5:#9aa5a1;
+  --good:#5fcf8a; --bad:#ff7a70; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:640px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--f-head);font-size:1.6rem;margin:0;letter-spacing:-.01em;display:flex;align-items:baseline;gap:10px}
+h1 .han{font-family:var(--f-han);color:var(--accent)}
+.sub{color:var(--muted);font-size:.85rem;margin:2px 0 0}
+select,button{font:inherit;color:inherit}
+select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+nav{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+nav button{border:0;background:transparent;padding:9px 4px;border-radius:9px;cursor:pointer;font-weight:500;color:var(--muted)}
+nav button[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.spread{justify-content:space-between}
+.meta{color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.btn{border:1px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.grow{flex:1;min-width:120px}
+.btn.icon{padding:8px 12px}
+.card{min-height:250px;border:1px dashed var(--line);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center;cursor:pointer;user-select:none}
+.hanzi{font-family:var(--f-han);font-size:clamp(3.5rem,16vw,5.5rem);line-height:1.1;font-weight:500}
+.pinyin{font-size:1.35rem;font-weight:500;letter-spacing:.02em}
+.arti{font-size:1.1rem}
+.t1{color:var(--t1)}.t2{color:var(--t2)}.t3{color:var(--t3)}.t4{color:var(--t4)}.t5{color:var(--t5)}
+.hint{color:var(--muted);font-size:.85rem}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:14px 12px;cursor:pointer;text-align:center;min-height:58px;min-width:0;overflow-wrap:anywhere}
+.choice:hover:not(:disabled){border-color:var(--accent)}
+.choice.han{font-family:var(--f-han);font-size:1.6rem}
+.choice.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.choice.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface))}
+.choice:disabled{cursor:default}
+.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent);border-radius:6px}
+.tones{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tone{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 4px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.tone svg{width:100%;max-width:64px;height:40px}
+.tone b{font-family:var(--f-head);font-size:1.05rem}
+.tone span{font-size:.72rem;color:var(--muted)}
+.tone.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.tone.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface))}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-family:var(--f-head);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.8rem}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:110px}
+.week div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.week i{display:block;width:100%;max-width:28px;background:var(--accent);border-radius:5px 5px 2px 2px;min-height:2px}
+.week i.zero{background:var(--line)}
+.week small{font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.feedback{font-weight:600;min-height:1.5em}
+.feedback.ok{color:var(--good)}.feedback.no{color:var(--bad)}
+.notice{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:.85rem}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend b{font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+td{padding:6px 4px;border-top:1px solid var(--line)}
+td.h{font-family:var(--f-han);font-size:1.15rem;width:72px}
+.tablebox{max-height:260px;overflow:auto}
+@media (max-width:420px){.panel{padding:16px}.choices{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:no-preference){.bar>i,.week i{transition:all .3s ease}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1><span class="han">汉字</span> Hanzi Harian</h1>
+      <p class="sub">Kosakata HSK 1–2 dengan pinyin dan arti bahasa Indonesia</p>
+    </div>
+    <label class="row" for="level"><span class="label">Level</span>
+      <select id="level">
+        <option value="0">HSK 1 + 2</option>
+        <option value="1">HSK 1</option>
+        <option value="2">HSK 2</option>
+      </select>
+    </label>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" data-tab="flash" aria-selected="true">Flashcard</button>
+    <button role="tab" data-tab="quiz" aria-selected="false">Kuis</button>
+    <button role="tab" data-tab="tone" aria-selected="false">Nada</button>
+    <button role="tab" data-tab="prog" aria-selected="false">Progres</button>
+  </nav>
+
+  <div id="voiceNote" class="notice" hidden>Suara Mandarin tidak ditemukan di perangkat ini, jadi tombol suara mungkin diam. Di Android/Chrome, pasang "Chinese" di pengaturan Text-to-Speech.</div>
+
+  <!-- FLASHCARD -->
+  <section class="panel" id="flash">
+    <div class="row spread">
+      <span class="meta" id="flashInfo"></span>
+      <button class="btn icon" id="flashSay" aria-label="Dengarkan">🔊 Dengar</button>
+    </div>
+    <div class="card" id="flashCard" tabindex="0" role="button" aria-label="Balik kartu">
+      <div class="hanzi" id="fHan"></div>
+      <div id="fBack" hidden>
+        <div class="pinyin" id="fPin"></div>
+        <div class="arti" id="fArti"></div>
+      </div>
+      <div class="hint" id="fHint">Ketuk untuk melihat pinyin dan arti</div>
+    </div>
+    <div class="row" id="flashBtns">
+      <button class="btn grow" id="fForgot">Lupa</button>
+      <button class="btn grow primary" id="fKnow">Ingat</button>
+    </div>
+    <div class="legend"><span><b class="t1">ā</b> nada 1</span><span><b class="t2">á</b> nada 2</span><span><b class="t3">ǎ</b> nada 3</span><span><b class="t4">à</b> nada 4</span><span><b class="t5">a</b> netral</span></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="panel" id="quiz" hidden>
+    <div class="row spread">
+      <select id="quizMode" aria-label="Jenis kuis">
+        <option value="h2a">Karakter → Arti</option>
+        <option value="a2h">Arti → Karakter</option>
+        <option value="h2p">Karakter → Pinyin</option>
+        <option value="audio">Dengar → Arti</option>
+      </select>
+      <span class="meta" id="quizInfo"></span>
+    </div>
+    <div class="bar"><i id="quizBar" style="width:0%"></i></div>
+    <div id="quizBody" style="display:flex;flex-direction:column;gap:14px"></div>
+  </section>
+
+  <!-- TONE -->
+  <section class="panel" id="tone" hidden>
+    <p style="margin:0">Dengarkan suku katanya, lalu pilih nadanya. Nada mengubah arti: <span class="t1">mā</span> ibu, <span class="t2">má</span> rami, <span class="t3">mǎ</span> kuda, <span class="t4">mà</span> memarahi.</p>
+    <div class="card" id="toneCard" style="cursor:default;min-height:180px">
+      <button class="btn primary" id="tonePlay">🔊 Putar suara</button>
+      <div id="toneReveal" hidden>
+        <div class="hanzi" id="tHan" style="font-size:3.5rem"></div>
+        <div class="pinyin" id="tPin"></div>
+        <div class="arti" id="tArti"></div>
+      </div>
+    </div>
+    <div class="tones" id="toneBtns"></div>
+    <div class="row spread">
+      <span class="feedback" id="toneFb"></span>
+      <button class="btn" id="toneNext">Berikutnya →</button>
+    </div>
+    <span class="meta" id="toneInfo"></span>
+  </section>
+
+  <!-- PROGRESS -->
+  <section class="panel" id="prog" hidden>
+    <div class="stats" id="statGrid"></div>
+    <div>
+      <div class="label" style="margin-bottom:8px">Kartu dilatih, 7 hari terakhir</div>
+      <div class="week" id="week"></div>
+    </div>
+    <div>
+      <div class="label" style="margin-bottom:6px">Kata paling sering terlupa</div>
+      <div class="tablebox"><table id="hardTable"></table></div>
+    </div>
+    <p class="hint" style="margin:0">Progres tersimpan di browser ini saja. Kalau pindah perangkat atau menghapus data situs, progres mulai dari awal.</p>
+    <div class="row"><button class="btn" id="resetBtn">Hapus progres</button><span class="meta" id="resetMsg"></span></div>
+  </section>
+</div>
+
+<script>
+// ---------- Data: hanzi|pinyin per suku kata|arti ----------
+const RAW1=`爱|ài|cinta, mencintai
+八|bā|delapan
+爸爸|bà ba|ayah
+杯子|bēi zi|gelas, cangkir
+北京|Běi jīng|Beijing
+不|bù|tidak
+菜|cài|sayur, masakan
+茶|chá|teh
+吃|chī|makan
+出租车|chū zū chē|taksi
+打电话|dǎ diàn huà|menelepon
+大|dà|besar
+点|diǎn|jam (pukul), titik
+电脑|diàn nǎo|komputer
+电视|diàn shì|televisi
+电影|diàn yǐng|film
+东西|dōng xi|barang
+都|dōu|semua, semuanya
+读|dú|membaca
+对不起|duì bu qǐ|maaf
+多|duō|banyak
+多少|duō shao|berapa (banyak)
+儿子|ér zi|anak laki-laki
+二|èr|dua
+饭店|fàn diàn|restoran, hotel
+飞机|fēi jī|pesawat
+分钟|fēn zhōng|menit
+高兴|gāo xìng|senang
+工作|gōng zuò|bekerja, pekerjaan
+狗|gǒu|anjing
+汉语|Hàn yǔ|bahasa Mandarin
+好|hǎo|baik, bagus
+喝|hē|minum
+和|hé|dan, dengan
+很|hěn|sangat
+后面|hòu miàn|belakang
+回|huí|kembali, pulang
+会|huì|bisa (keterampilan)
+火车站|huǒ chē zhàn|stasiun kereta
+几|jǐ|berapa (jumlah kecil)
+家|jiā|rumah, keluarga
+叫|jiào|dipanggil, bernama
+今天|jīn tiān|hari ini
+九|jiǔ|sembilan
+开|kāi|membuka, menyetir
+看|kàn|melihat, membaca
+块|kuài|yuan (satuan uang)
+来|lái|datang
+老师|lǎo shī|guru
+冷|lěng|dingin
+里|lǐ|di dalam
+六|liù|enam
+妈妈|mā ma|ibu
+吗|ma|partikel tanya (ya/tidak)
+买|mǎi|membeli
+猫|māo|kucing
+没有|méi yǒu|tidak punya, tidak ada
+米饭|mǐ fàn|nasi
+名字|míng zi|nama
+明天|míng tiān|besok
+哪|nǎ|yang mana
+那|nà|itu
+能|néng|dapat, mampu
+你|nǐ|kamu
+年|nián|tahun
+女儿|nǚ ér|anak perempuan
+朋友|péng you|teman
+漂亮|piào liang|cantik
+苹果|píng guǒ|apel
+七|qī|tujuh
+钱|qián|uang
+前面|qián miàn|depan
+请|qǐng|silakan, tolong
+去|qù|pergi
+热|rè|panas
+人|rén|orang
+认识|rèn shi|kenal
+三|sān|tiga
+商店|shāng diàn|toko
+上|shàng|atas, naik
+少|shǎo|sedikit
+谁|shéi|siapa
+什么|shén me|apa
+十|shí|sepuluh
+时候|shí hou|waktu, saat
+是|shì|adalah
+书|shū|buku
+水|shuǐ|air
+水果|shuǐ guǒ|buah-buahan
+睡觉|shuì jiào|tidur
+说|shuō|berbicara, berkata
+四|sì|empat
+岁|suì|tahun (umur)
+他|tā|dia (laki-laki)
+她|tā|dia (perempuan)
+太|tài|terlalu
+天气|tiān qì|cuaca
+听|tīng|mendengar
+同学|tóng xué|teman sekelas
+我|wǒ|saya, aku
+我们|wǒ men|kami, kita
+五|wǔ|lima
+喜欢|xǐ huan|suka
+下|xià|bawah, turun
+下雨|xià yǔ|hujan
+先生|xiān sheng|tuan, bapak
+现在|xiàn zài|sekarang
+想|xiǎng|ingin, berpikir
+小|xiǎo|kecil
+小姐|xiǎo jiě|nona
+写|xiě|menulis
+谢谢|xiè xie|terima kasih
+星期|xīng qī|minggu (hari)
+学生|xué sheng|murid
+学习|xué xí|belajar
+学校|xué xiào|sekolah
+一|yī|satu
+衣服|yī fu|pakaian
+医生|yī shēng|dokter
+医院|yī yuàn|rumah sakit
+椅子|yǐ zi|kursi
+有|yǒu|punya, ada
+月|yuè|bulan
+在|zài|di, sedang
+再见|zài jiàn|sampai jumpa
+怎么|zěn me|bagaimana
+这|zhè|ini
+中国|Zhōng guó|Tiongkok
+中午|zhōng wǔ|siang hari
+住|zhù|tinggal
+桌子|zhuō zi|meja
+字|zì|karakter, huruf
+昨天|zuó tiān|kemarin
+坐|zuò|duduk, naik (kendaraan)
+做|zuò|melakukan, membuat`;
+const RAW2=`吧|ba|partikel ajakan/saran
+白|bái|putih
+帮助|bāng zhù|membantu
+报纸|bào zhǐ|koran
+比|bǐ|dibanding
+别|bié|jangan
+长|cháng|panjang
+唱歌|chàng gē|bernyanyi
+穿|chuān|memakai (baju)
+错|cuò|salah
+大家|dà jiā|semua orang
+到|dào|tiba, sampai
+等|děng|menunggu
+弟弟|dì di|adik laki-laki
+懂|dǒng|mengerti
+房间|fáng jiān|kamar
+非常|fēi cháng|sangat, luar biasa
+服务员|fú wù yuán|pelayan
+高|gāo|tinggi
+告诉|gào su|memberi tahu
+哥哥|gē ge|kakak laki-laki
+给|gěi|memberi, untuk
+公司|gōng sī|perusahaan
+贵|guì|mahal
+还|hái|masih
+孩子|hái zi|anak
+好吃|hǎo chī|enak
+黑|hēi|hitam
+红|hóng|merah
+欢迎|huān yíng|selamat datang
+回答|huí dá|menjawab
+机场|jī chǎng|bandara
+鸡蛋|jī dàn|telur ayam
+教室|jiào shì|ruang kelas
+姐姐|jiě jie|kakak perempuan
+介绍|jiè shào|memperkenalkan
+进|jìn|masuk
+近|jìn|dekat
+觉得|jué de|merasa
+咖啡|kā fēi|kopi
+考试|kǎo shì|ujian
+可能|kě néng|mungkin
+可以|kě yǐ|boleh
+快|kuài|cepat
+快乐|kuài lè|bahagia
+累|lèi|lelah
+路|lù|jalan
+慢|màn|lambat
+忙|máng|sibuk
+每|měi|setiap
+妹妹|mèi mei|adik perempuan
+门|mén|pintu
+男人|nán rén|pria
+女人|nǚ rén|wanita
+旁边|páng biān|samping
+跑步|pǎo bù|lari
+便宜|pián yi|murah
+票|piào|tiket
+妻子|qī zi|istri
+起床|qǐ chuáng|bangun tidur
+千|qiān|seribu
+晴|qíng|cerah
+去年|qù nián|tahun lalu
+上班|shàng bān|berangkat kerja
+身体|shēn tǐ|tubuh, kesehatan
+生病|shēng bìng|sakit
+生日|shēng rì|ulang tahun
+时间|shí jiān|waktu
+手表|shǒu biǎo|jam tangan
+手机|shǒu jī|ponsel
+送|sòng|mengantar, memberi
+题|tí|soal
+跳舞|tiào wǔ|menari
+外|wài|luar
+完|wán|selesai
+玩|wán|bermain
+晚上|wǎn shang|malam
+为什么|wèi shén me|mengapa
+问|wèn|bertanya
+问题|wèn tí|pertanyaan, masalah
+西瓜|xī guā|semangka
+希望|xī wàng|berharap
+洗|xǐ|mencuci
+小时|xiǎo shí|jam (durasi)
+笑|xiào|tertawa, tersenyum
+新|xīn|baru
+姓|xìng|bermarga
+休息|xiū xi|istirahat
+雪|xuě|salju
+颜色|yán sè|warna
+眼睛|yǎn jing|mata
+药|yào|obat
+要|yào|mau, perlu
+也|yě|juga
+已经|yǐ jīng|sudah
+一起|yì qǐ|bersama
+意思|yì si|arti, maksud
+因为|yīn wèi|karena
+游泳|yóu yǒng|berenang
+右边|yòu bian|sebelah kanan
+鱼|yú|ikan
+远|yuǎn|jauh
+运动|yùn dòng|olahraga
+再|zài|lagi
+早上|zǎo shang|pagi
+丈夫|zhàng fu|suami
+找|zhǎo|mencari
+真|zhēn|sungguh, benar-benar
+正在|zhèng zài|sedang
+知道|zhī dào|tahu
+准备|zhǔn bèi|menyiapkan
+走|zǒu|berjalan
+最|zuì|paling
+左边|zuǒ bian|sebelah kiri`;
+const parse=(raw,hsk)=>raw.trim().split("\n").map(l=>{const[h,p,a]=l.split("|");return{id:h+"|"+p,h,p,a,hsk}});
+const WORDS=[...parse(RAW1,1),...parse(RAW2,2)];
+
+// ---------- Pinyin tone helpers ----------
+const MARKS={1:"āēīōūǖĀĒĪŌŪǕ",2:"áéíóúǘÁÉÍÓÚǗ",3:"ǎěǐǒǔǚǍĚǏǑǓǙ",4:"àèìòùǜÀÈÌÒÙǛ"};
+function toneOf(s){for(const t of[1,2,3,4])for(const c of s)if(MARKS[t].includes(c))return t;return 5}
+const joinPin=p=>p.split(" ").join("");
+function pinHTML(p){return p.split(" ").map(s=>`<span class="t${toneOf(s)}">${s}</span>`).join("")}
+function hanHTML(w){const syl=w.p.split(" ");const ch=[...w.h];if(syl.length!==ch.length)return w.h;return ch.map((c,i)=>`<span class="t${toneOf(syl[i])}">${c}</span>`).join("")}
+
+// ---------- Storage (per-browser) ----------
+const KEY="hanzi-harian-v1";
+let S={cards:{},days:{},quiz:{right:0,total:0},tone:{right:0,total:0},level:"0"};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+function logDay(n=1){const t=today();S.days[t]=(S.days[t]||0)+n}
+const DAY=864e5, INTERVALS=[0,1,2,4,8,16,32];
+
+const $=id=>document.getElementById(id);
+const pool=()=>S.level==="0"?WORDS:WORDS.filter(w=>String(w.hsk)===S.level);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(arr,n,not)=>shuffle(arr.filter(x=>!not.includes(x))).slice(0,n);
+
+// ---------- Speech ----------
+let zhVoice=null;
+function loadVoices(){if(!("speechSynthesis"in window))return;const v=speechSynthesis.getVoices();zhVoice=v.find(x=>/zh[-_]CN/i.test(x.lang))||v.find(x=>/^zh/i.test(x.lang))||null}
+if("speechSynthesis"in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;setTimeout(()=>{if(!zhVoice)$("voiceNote").hidden=false},1500)}else $("voiceNote").hidden=false;
+function say(text,rate=.8){if(!("speechSynthesis"in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="zh-CN";u.rate=rate;if(zhVoice)u.voice=zhVoice;speechSynthesis.speak(u)}
+
+// ---------- Tabs ----------
+const tabs=[...document.querySelectorAll("nav button")];
+function showTab(name){tabs.forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));["flash","quiz","tone","prog"].forEach(id=>$(id).hidden=id!==name);if(name==="prog")renderProg();if(name==="quiz"&&!Q)newQuiz();if(name==="tone"&&!T)nextTone()}
+tabs.forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+$("level").value=S.level;
+$("level").onchange=e=>{S.level=e.target.value;save();nextCard();newQuiz();nextTone();renderProg()};
+
+// ---------- Flashcards (Leitner) ----------
+const NEW_PER_DAY=15;
+let cur=null;
+function newToday(){const t=today();return Object.values(S.cards).filter(c=>c.first===t).length}
+function nextCard(){
+  const now=Date.now(),p=pool();
+  const due=p.filter(w=>S.cards[w.id]&&S.cards[w.id].due<=now).sort((a,b)=>S.cards[a.id].due-S.cards[b.id].due);
+  const fresh=p.filter(w=>!S.cards[w.id]);
+  let w=due[0];
+  if(!w&&fresh.length&&newToday()<NEW_PER_DAY)w=fresh[0];
+  cur=w||null;
+  const left=due.length, newLeft=Math.max(0,Math.min(fresh.length,NEW_PER_DAY-newToday()));
+  $("flashInfo").textContent=`${left} untuk diulang · ${newLeft} kata baru tersisa hari ini`;
+  $("fBack").hidden=true;
+  if(!cur){$("fHan").innerHTML="完成";$("fHint").textContent="Selesai untuk hari ini! Coba Kuis atau Nada, atau kembali besok.";$("flashBtns").hidden=true;$("flashSay").hidden=true;return}
+  $("flashBtns").hidden=false;$("flashSay").hidden=false;
+  $("fHan").textContent=cur.h;$("fPin").innerHTML=pinHTML(cur.p);$("fArti").textContent=cur.a;
+  $("fHint").textContent=S.cards[cur.id]?"Ketuk untuk melihat pinyin dan arti":"Kata baru · ketuk untuk melihat pinyin dan arti";
+}
+function flip(){if(!cur)return;const show=$("fBack").hidden;$("fBack").hidden=!show;$("fHint").hidden=show;if(show){$("fHan").innerHTML=hanHTML(cur);say(cur.h)}else $("fHan").textContent=cur.h}
+$("flashCard").onclick=flip;
+$("flashCard").onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}};
+$("flashSay").onclick=()=>cur&&say(cur.h);
+function grade(ok){
+  if(!cur)return;const c=S.cards[cur.id]||{box:0,due:0,first:today(),miss:0,seen:0};
+  c.seen++;
+  if(ok){c.box=Math.min(c.box+1,6);c.due=Date.now()+INTERVALS[c.box]*DAY-3600e3}
+  else{c.box=1;c.miss++;c.due=Date.now()+60e3*3}
+  S.cards[cur.id]=c;logDay();save();nextCard();
+}
+$("fKnow").onclick=()=>grade(true);$("fForgot").onclick=()=>grade(false);
+document.addEventListener("keydown",e=>{if($("flash").hidden||e.target.tagName==="SELECT")return;if(e.key==="1")grade(false);if(e.key==="2")grade(true)});
+
+// ---------- Quiz ----------
+let Q=null;
+function newQuiz(){const p=pool();Q={items:shuffle(p).slice(0,10),i:0,right:0,done:false};renderQ()}
+function renderQ(){
+  const body=$("quizBody"),mode=$("quizMode").value;
+  $("quizBar").style.width=(Q.i/Q.items.length*100)+"%";
+  if(Q.i>=Q.items.length){
+    $("quizInfo").textContent="";
+    body.innerHTML=`<div class="card" style="cursor:default;min-height:180px"><div class="label">Hasil</div><div class="hanzi" style="font-family:var(--f-head);font-size:3.5rem">${Q.right}/${Q.items.length}</div><div class="hint">${Q.right>=8?"太好了! Hebat sekali.":Q.right>=5?"不错! Lumayan, terus latihan.":"加油! Ulangi flashcard dulu, lalu coba lagi."}</div></div><button class="btn primary" id="qAgain">Kuis baru</button>`;
+    $("qAgain").onclick=newQuiz;return;
+  }
+  const w=Q.items[Q.i],p=pool();
+  $("quizInfo").textContent=`Soal ${Q.i+1} dari ${Q.items.length} · benar ${Q.right}`;
+  const opts=shuffle([w,...pick(p,3,[w])]);
+  let prompt,label,cls="";
+  if(mode==="h2a"){prompt=`<div class="hanzi">${w.h}</div>`;label=o=>o.a}
+  else if(mode==="a2h"){prompt=`<div class="arti" style="font-size:1.5rem;font-weight:600">${w.a}</div>`;label=o=>o.h;cls="han"}
+  else if(mode==="h2p"){prompt=`<div class="hanzi">${w.h}</div>`;label=o=>joinPin(o.p)}
+  else{prompt=`<button class="btn primary" id="qPlay">🔊 Putar lagi</button>`;label=o=>o.a;setTimeout(()=>say(w.h),150)}
+  body.innerHTML=`<div class="card" style="cursor:default;min-height:170px">${prompt}<div id="qReveal" hidden></div></div>
+  <div class="choices">${opts.map((o,k)=>`<button class="choice ${cls}" data-k="${k}">${label(o)}</button>`).join("")}</div>
+  <div class="row spread"><span class="feedback" id="qFb"></span><button class="btn" id="qNext" hidden>Berikutnya →</button></div>`;
+  if($("qPlay"))$("qPlay").onclick=()=>say(w.h);
+  body.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
+    const o=opts[+b.dataset.k],ok=o===w;
+    body.querySelectorAll(".choice").forEach(x=>{x.disabled=true;if(opts[+x.dataset.k]===w)x.classList.add("ok")});
+    if(!ok)b.classList.add("no");
+    if(ok)Q.right++;S.quiz.total++;if(ok)S.quiz.right++;logDay();
+    if(!ok){const c=S.cards[w.id];if(c){c.miss++;c.box=1;c.due=Date.now()}}
+    save();
+    $("qFb").textContent=ok?"对! Benar":"Belum tepat";$("qFb").className="feedback "+(ok?"ok":"no");
+    const r=$("qReveal");r.hidden=false;r.innerHTML=`<div class="hanzi" style="font-size:2.4rem">${hanHTML(w)}</div><div class="pinyin">${pinHTML(w.p)}</div><div class="hint">${w.a}</div>`;
+    say(w.h);
+    $("qNext").hidden=false;$("qNext").focus();$("qNext").onclick=()=>{Q.i++;renderQ()};
+  });
+}
+$("quizMode").onchange=newQuiz;
+
+// ---------- Tones ----------
+const TONE_INFO=[[1,"datar tinggi","M4 10 L60 10"],[2,"naik","M4 30 L60 6"],[3,"turun-naik","M4 18 Q24 40 60 8"],[4,"turun tajam","M4 6 L60 34"]];
+$("toneBtns").innerHTML=TONE_INFO.map(([t,name,d])=>`<button class="tone" data-t="${t}"><svg viewBox="0 0 64 40" aria-hidden="true"><path d="${d}" fill="none" stroke="var(--t${t})" stroke-width="4" stroke-linecap="round"/></svg><b class="t${t}">${t}</b><span>${name}</span></button>`).join("");
+let T=null;
+function tonePool(){return pool().filter(w=>w.p.indexOf(" ")<0&&toneOf(w.p)<5)}
+function nextTone(){
+  const tp=tonePool();T=tp[Math.floor(Math.random()*tp.length)];T.answered=false;
+  $("toneReveal").hidden=true;$("toneFb").textContent="";$("toneFb").className="feedback";
+  document.querySelectorAll(".tone").forEach(b=>{b.classList.remove("ok","no");b.disabled=false});
+  $("toneInfo").textContent=S.tone.total?`Akurasi nada: ${Math.round(S.tone.right/S.tone.total*100)}% dari ${S.tone.total} percobaan`:"Tips: putar suara beberapa kali sebelum menjawab.";
+}
+$("tonePlay").onclick=()=>T&&say(T.h,.6);
+$("toneNext").onclick=()=>{nextTone();say(T.h,.6)};
+document.querySelectorAll(".tone").forEach(b=>b.onclick=()=>{
+  if(!T||T.answered)return;T.answered=true;
+  const t=+b.dataset.t,right=toneOf(T.p),ok=t===right;
+  document.querySelectorAll(".tone").forEach(x=>{x.disabled=true;if(+x.dataset.t===right)x.classList.add("ok")});
+  if(!ok)b.classList.add("no");
+  S.tone.total++;if(ok)S.tone.right++;logDay();save();
+  $("toneFb").textContent=ok?"对! Nada "+right:"Itu nada "+right;$("toneFb").className="feedback "+(ok?"ok":"no");
+  $("tHan").innerHTML=hanHTML(T);$("tPin").innerHTML=pinHTML(T.p);$("tArti").textContent=T.a;$("toneReveal").hidden=false;
+  $("toneInfo").textContent=`Akurasi nada: ${Math.round(S.tone.right/S.tone.total*100)}% dari ${S.tone.total} percobaan`;
+});
+
+// ---------- Progress ----------
+function streak(){let n=0;const d=new Date();if(!S.days[today()])d.setDate(d.getDate()-1);for(;;){const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");if(S.days[k]){n++;d.setDate(d.getDate()-1)}else break}return n}
+function renderProg(){
+  const p=pool(),learned=p.filter(w=>S.cards[w.id]).length,mastered=p.filter(w=>S.cards[w.id]&&S.cards[w.id].box>=4).length;
+  const acc=S.quiz.total?Math.round(S.quiz.right/S.quiz.total*100)+"%":"–";
+  $("statGrid").innerHTML=[
+    [streak()+" hari","Streak belajar"],
+    [`${learned}/${p.length}`,"Kata sudah dipelajari"],
+    [mastered,"Kata dikuasai (≥8 hari)"],
+    [acc,`Akurasi kuis (${S.quiz.total} soal)`]
+  ].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+  const days=[],names=["Min","Sen","Sel","Rab","Kam","Jum","Sab"];
+  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");days.push([names[d.getDay()],S.days[k]||0])}
+  const max=Math.max(10,...days.map(d=>d[1]));
+  $("week").innerHTML=days.map(([n,v])=>`<div><small>${v}</small><i class="${v?"":"zero"}" style="height:${Math.max(2,v/max*70)}px"></i><small>${n}</small></div>`).join("");
+  const hard=WORDS.filter(w=>S.cards[w.id]&&S.cards[w.id].miss>0).sort((a,b)=>S.cards[b.id].miss-S.cards[a.id].miss).slice(0,12);
+  $("hardTable").innerHTML=hard.length?hard.map(w=>`<tr><td class="h">${hanHTML(w)}</td><td>${pinHTML(w.p)}</td><td>${w.a}</td><td class="meta">${S.cards[w.id].miss}×</td></tr>`).join(""):`<tr><td class="hint" style="border:0">Belum ada. Kata yang kamu tandai "Lupa" atau salah di kuis akan muncul di sini.</td></tr>`;
+}
+let resetArmed=false;
+$("resetBtn").onclick=()=>{if(!resetArmed){resetArmed=true;$("resetBtn").textContent="Ketuk lagi untuk menghapus";$("resetMsg").textContent="";setTimeout(()=>{resetArmed=false;$("resetBtn").textContent="Hapus progres"},4000);return}
+  S={cards:{},days:{},quiz:{right:0,total:0},tone:{right:0,total:0},level:S.level};save();resetArmed=false;$("resetBtn").textContent="Hapus progres";$("resetMsg").textContent="Progres dihapus.";nextCard();renderProg()};
+
+nextCard();
+</script>
+</body>
+</html>
