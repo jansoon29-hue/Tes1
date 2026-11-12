@@ -5,13 +5,14 @@
 - Status: mahasiswa, tinggal di China; biaya hidup ditanggung orang tua
 - Mata uang utama laporan: RMB (¥) — investasi dalam USD ($)
 - Kurs asumsi: 1 USD = 6,9 RMB (perkiraan, Nov 2026 — perbarui dengan kurs di aplikasi)
+- Kurs USD/IDR dari aplikasi broker (12 Nov 2026): ± Rp18.280
 - Pajak dividen saham AS: 15% dipotong tiap pembayaran (dikonfirmasi)
 
 ## Uang dari orang tua (hitungan terbaru — hitungan pertama diabaikan)
 - Dana sewa: ¥128.900 (¥50.000 + ¥25.000 + ¥25.000 + ¥28.900), dihitung orang tua ¥7.500/bulan (± 17 bulan)
 - Sewa sudah dibayar 3 bulan (s/d November 2026)
 - Uang sekolah diterima sejauh ini: ¥12.000 (3 × ¥4.000)
-- Sisa tunai dari semua dana itu: ¥47.532 (¥8.400 + ¥39.132) + cash di broker $1.191
+- Sisa tunai dari semua dana itu: ¥47.532 (¥8.400 + ¥39.132); cash broker $1.191 sudah dipindah ke SGOV ($1.237, 12 Nov 2026)
 - Sisanya (± ¥73.000) ada di investasi JEPQ & SCHD
 - Kiriman bulanan: ¥9.000 = ¥5.000 uang jajan pribadi + ¥4.000 uang sekolah (untuk bayar kuliah)
 - Ditagih terpisah ke orang tua: gym ¥500/bulan, DiDi ¥30–50/hari (≈ ¥900–1.500/bulan)
