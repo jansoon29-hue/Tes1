@@ -1,6 +1,7 @@
 # Profil Keuangan
 
 - Usia: 21 tahun (per November 2026) — target pelacakan sampai usia 30 (± 2035)
+- Lulus kuliah: 2029
 - Status: mahasiswa, tinggal di China; biaya hidup ditanggung orang tua
 - Mata uang utama laporan: RMB (¥) — investasi dalam USD ($)
 - Kurs asumsi: 1 USD = 6,9 RMB (perkiraan, Nov 2026 — perbarui dengan kurs di aplikasi)
@@ -22,18 +23,18 @@
 - Selisih sewa (± ¥700–800/bulan) jadi milik pengguna
 
 ## Pembayaran besar
-- Uang kuliah: ± ¥54.000, sekitar Juni 2027 — dibayar dari kumpulan ¥4.000/bulan (s/d Juni baru terkumpul ± ¥40.000)
+- Uang kuliah: ± ¥54.000, sekitar Juni 2027 — dibayar dari kumpulan ¥4.000/bulan (mulai September 2026); kekurangannya ditagih ke orang tua → AMAN, terpisah dari dana sewa
 
 ## Rencana dividen
 - Reinvestasi atau ditaruh di SGOV (ETF T-bill AS, yield ± 3,6–3,8%). Sampai Juni 2027 disarankan ke SGOV (aman & likuid).
 
 ## Tujuan
+- Dana sewa: kalau ¥128.900 habis, orang tua akan kirim lagi. Yang perlu ditutup sendiri = bagian dana sewa yang dipindah ke saham.
 1. Bayar uang kuliah Juni 2027 tanpa harus menjual saham saat rugi
 2. Kembalikan dana uang sekolah & sewa yang terpakai untuk investasi
 3. Lacak dan bangun kekayaan sampai usia 30
 
 ## Belum diketahui
 - Apakah uang gym & DiDi benar-benar habis terpakai (atau ada sisa)
-- Setelah Juni 2027: apakah orang tua mengirim dana sekolah & sewa tahun berikutnya
 - Lokasi uang tunai ¥47.532 (bank / Alipay / dll.) dan broker yang dipakai
 - Kurs USD/RMB pasti
