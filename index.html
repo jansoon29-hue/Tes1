@@ -5837,8 +5837,9 @@ function sadTrombone(t){
 const SFX={
   ok:big=>play(t=>fanfare(t,big)),
   no:()=>play(sadTrombone),
-  know:()=>play(t=>fanfare(t,false)),
-  forgot:()=>play(sadTrombone),
+  // Flashcard: versi kalem
+  know:()=>play(t=>{voice(t,783.99,.14,{type:"sine",vol:.12});voice(t+.09,1174.66,.28,{type:"sine",vol:.1});voice(t+.09,2349.32,.18,{type:"sine",vol:.025})}),
+  forgot:()=>play(t=>{voice(t,392,.18,{type:"triangle",vol:.11,f2:349.23});voice(t+.14,329.63,.32,{type:"triangle",vol:.09,f2:293.66})}),
   done:()=>play(t=>{fanfare(t,true);fanfare(t+.75,true)})
 };
 // Konfeti kecil dari tombol yang dijawab benar
