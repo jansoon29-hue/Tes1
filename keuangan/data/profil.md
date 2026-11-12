@@ -26,8 +26,11 @@
 ## Pembayaran besar
 - Uang kuliah: ± ¥54.000, sekitar Juni 2027 — dibayar dari kumpulan ¥4.000/bulan (mulai September 2026); kekurangannya ditagih ke orang tua → AMAN, terpisah dari dana sewa
 
-## Rencana dividen
-- Reinvestasi atau ditaruh di SGOV (ETF T-bill AS, yield ± 3,6–3,8%). Sampai Juni 2027 disarankan ke SGOV (aman & likuid).
+## Rencana dividen (12 Nov 2026)
+- Broker: Ajaib (dividen saham AS dipotong 15%; SGOV belum dipastikan)
+- DRIP: dividen JEPQ → beli JEPQ lagi, dividen SCHD → beli SCHD lagi
+- Dividen SGOV → dibelikan SCHD
+- Pantau porsi JEPQ (± 54% sekarang); pertimbangkan rebalance jika > 60%
 
 ## Tujuan
 - Dana sewa: kalau ¥128.900 habis, orang tua akan kirim lagi. Yang perlu ditutup sendiri = bagian dana sewa yang dipindah ke saham.
