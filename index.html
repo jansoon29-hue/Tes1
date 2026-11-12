@@ -6,6 +6,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Hanzi Harian">
 <meta name="theme-color" content="#0f7a5c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;-webkit-text-size-adjust:100%}
@@ -3544,6 +3547,7 @@ $("resetBtn").onclick=()=>{if(!resetArmed){resetArmed=true;$("resetBtn").textCon
   S={cards:{},days:{},quiz:{right:0,total:0},tone:{right:0,total:0},level:S.level};save();resetArmed=false;$("resetBtn").textContent="Hapus progres";$("resetMsg").textContent="Progres dihapus.";nextCard();renderProg()};
 
 nextCard();
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{})})}
 </script>
 </body>
 </html>
