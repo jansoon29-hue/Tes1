@@ -51,7 +51,7 @@ img{max-width:100%}
   --good:#5fd08f; --bad:#ff7d72;
   --hero1:#0b3b30; --hero2:#0f4f4a; --hero-fg:#ffffff;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
-[data-c="flash"]{--c:var(--jade)} [data-c="quiz"]{--c:var(--persimmon)} [data-c="sent"]{--c:var(--porcelain)} [data-c="ai"]{--c:var(--plum)} [data-c="prog"]{--c:var(--gold)}
+[data-c="flash"]{--c:var(--jade)} [data-c="quiz"]{--c:var(--persimmon)} [data-c="sent"]{--c:var(--porcelain)} [data-c="prog"]{--c:var(--gold)}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
 .wrap{max-width:660px;margin:0 auto;padding-block:16px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
@@ -78,7 +78,7 @@ h1{font-family:var(--f-head);font-size:1.55rem;margin:0;letter-spacing:-.01em;li
 .tone-strip i{height:4px;flex:1;border-radius:4px;max-width:46px}
 
 /* Tab bar */
-nav{display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:5px;gap:4px;box-shadow:var(--shadow)}
+nav{display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:5px;gap:4px;box-shadow:var(--shadow)}
 nav button{border:0;background:transparent;padding:7px 2px 8px;border-radius:13px;cursor:pointer;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.74rem;min-width:0}
 nav .ic{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-han);font-size:1rem;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent)}
 nav button[aria-selected="true"]{background:var(--c);color:var(--on-c)}
@@ -166,38 +166,6 @@ td.h{font-family:var(--f-han);font-size:1.15rem;width:72px;font-weight:700}
 .settings{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--surface2)}
 .settings input[type=checkbox]{width:22px;height:22px;accent-color:var(--c)}
 
-/* AI tutor */
-.ai-head{display:flex;gap:12px;align-items:center}
-.ai-avatar{width:50px;height:50px;border-radius:16px;flex:none;display:grid;place-items:center;font-family:var(--f-han);font-weight:900;font-size:1.5rem;color:#fff;background:linear-gradient(135deg,var(--plum),var(--porcelain));box-shadow:0 4px 12px color-mix(in srgb,var(--plum) 35%,transparent)}
-.ai-head b{font-family:var(--f-head);font-size:1.1rem}
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--c) 10%,var(--surface2))}
-.seg button{border:0;background:transparent;border-radius:10px;padding:8px 4px;font-weight:600;font-size:.86rem;cursor:pointer;color:var(--muted)}
-.seg button[aria-pressed="true"]{background:var(--surface);color:var(--c);box-shadow:var(--shadow)}
-.field{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;background:var(--surface);min-width:0}
-textarea.field{min-height:84px;resize:vertical;font-family:var(--f-han),var(--f-body);font-size:1.1rem}
-.askrow{display:flex;gap:8px}
-.askrow .field{flex:1}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:1px solid color-mix(in srgb,var(--c) 30%,var(--line));background:color-mix(in srgb,var(--c) 7%,var(--surface));border-radius:999px;padding:4px 12px;cursor:pointer;font-family:var(--f-han);font-size:1rem;font-weight:700}
-.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.ai-out{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:.95rem;line-height:1.6;overflow-wrap:anywhere}
-.ai-out p{margin:0 0 8px}.ai-out ul{margin:0 0 8px;padding-left:20px}.ai-out h4{margin:6px 0;font-family:var(--f-head)}
-.ai-out b{color:var(--c)}
-.thinking{color:var(--muted);font-style:italic}
-.ai-err{color:var(--bad);font-weight:600}
-.task{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:14px;border-radius:16px;border:1.5px dashed color-mix(in srgb,var(--c) 40%,var(--line))}
-.task-word{font-family:var(--f-han);font-size:2.6rem;font-weight:700;line-height:1.2}
-.msgs{display:flex;flex-direction:column;gap:10px;max-height:52vh;overflow:auto;padding:2px}
-.msg{max-width:88%;padding:10px 13px;border-radius:16px;line-height:1.5;overflow-wrap:anywhere}
-.msg.user{align-self:flex-end;background:var(--c);color:var(--on-c);border-bottom-right-radius:5px;font-family:var(--f-han),var(--f-body)}
-.msg.tutor{align-self:flex-start;background:var(--surface2);border:1px solid var(--line);border-bottom-left-radius:5px}
-.msg .zh{font-family:var(--f-han);font-size:1.15rem;font-weight:600}
-.msg .py{color:var(--muted);font-size:.85rem}
-.msg .tr{font-size:.9rem}
-.msg .fix{margin-top:6px;font-size:.85rem;padding:6px 9px;border-radius:9px;background:color-mix(in srgb,var(--persimmon) 12%,var(--surface));border-left:3px solid var(--persimmon)}
-.msg .say{margin-top:6px}
-body.no-ai .ai-btn{display:none}
-
 /* Motion */
 .confetti{position:fixed;width:8px;height:12px;border-radius:2px;pointer-events:none;z-index:50;transform:translate(-50%,-50%);animation:confetti .85s cubic-bezier(.2,.7,.4,1) forwards}
 @keyframes confetti{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy) + 60px)) rotate(var(--rot));opacity:0}}
@@ -242,7 +210,6 @@ body.no-ai .ai-btn{display:none}
     <button role="tab" data-tab="flash" data-c="flash" aria-selected="true"><span class="ic">卡</span>Flashcard</button>
     <button role="tab" data-tab="quiz" data-c="quiz" aria-selected="false"><span class="ic">考</span>Kuis</button>
     <button role="tab" data-tab="sent" data-c="sent" aria-selected="false"><span class="ic">句</span>Kalimat</button>
-    <button role="tab" data-tab="ai" data-c="ai" aria-selected="false"><span class="ic">师</span>Tutor AI</button>
     <button role="tab" data-tab="prog" data-c="prog" aria-selected="false"><span class="ic">绩</span>Progres</button>
   </nav>
 
@@ -263,7 +230,6 @@ body.no-ai .ai-btn{display:none}
       <div id="fBack" hidden>
         <div class="pinyin" id="fPin"></div>
         <div class="arti" id="fArti"></div>
-        <button class="btn icon ai-btn" id="fAsk" style="margin-top:10px">Tanya Tutor AI</button>
       </div>
       <div class="hint" id="fHint">Ketuk untuk melihat pinyin dan arti</div>
       <div id="fDone" class="done" hidden>
@@ -300,50 +266,6 @@ body.no-ai .ai-btn{display:none}
     <div class="row spread"><span class="label">Isi kalimat</span><span class="meta" id="sentInfo"></span></div>
     <p class="hint" style="margin:0">Pilih kata yang tepat untuk bagian yang kosong. Soal memakai kata yang sudah kamu latih, dan kata yang sering salah atau lupa muncul lebih sering.</p>
     <div id="sentBody" style="display:flex;flex-direction:column;gap:14px"></div>
-  </section>
-
-  <!-- AI TUTOR -->
-  <section class="panel" id="ai" data-c="ai" hidden>
-    <div class="ai-head">
-      <div class="ai-avatar">师</div>
-      <div><b>Lǎoshī AI</b><div class="hint">Tutor pribadi yang tahu kata-kata yang sedang kamu pelajari dan yang sering kamu lupa.</div></div>
-    </div>
-    <div class="notice" id="aiOff"><span id="aiOffText">Memeriksa Tutor AI…</span></div>
-    <div id="aiMain" hidden style="display:flex;flex-direction:column;gap:14px">
-      <div class="seg" role="group" aria-label="Mode tutor">
-        <button data-mode="word" aria-pressed="true">Tanya kata</button>
-        <button data-mode="write" aria-pressed="false">Latihan menulis</button>
-        <button data-mode="chat" aria-pressed="false">Ngobrol</button>
-      </div>
-
-      <div id="aiWord" style="display:flex;flex-direction:column;gap:12px">
-        <div class="askrow"><input class="field" id="aiWordIn" placeholder="Kata atau pertanyaan, mis. 认识 vs 知道" autocomplete="off"><button class="btn primary" id="aiAsk">Tanya</button></div>
-        <div id="aiChipsBox"><div class="label" style="margin-bottom:6px" id="aiChipsLabel">Kata yang sering kamu lupa</div><div class="chips" id="aiChips"></div></div>
-        <div class="acts">
-          <button class="btn" data-act="explain">Jelaskan kata ini</button>
-          <button class="btn" data-act="examples">Contoh kalimat baru</button>
-          <button class="btn" data-act="mnemonic">Tips mengingat</button>
-          <button class="btn" data-act="compare">Bedakan kata mirip</button>
-        </div>
-        <div class="ai-out" id="aiOut" hidden></div>
-      </div>
-
-      <div id="aiWrite" hidden style="display:flex;flex-direction:column;gap:12px">
-        <div class="task" id="aiTask"></div>
-        <label class="hint" for="aiWriteIn">Tulis satu kalimat bahasa Mandarin memakai kata di atas. Keyboard pinyin di iPad/iPhone bisa dipakai.</label>
-        <textarea class="field" id="aiWriteIn" placeholder="我认识他。"></textarea>
-        <div class="row"><button class="btn primary grow" id="aiCheck">Periksa kalimatku</button><button class="btn" id="aiNewTask">Kata lain</button></div>
-        <div class="ai-out" id="aiWriteOut" hidden></div>
-      </div>
-
-      <div id="aiChat" hidden style="display:flex;flex-direction:column;gap:12px">
-        <div class="msgs" id="aiMsgs" aria-live="polite"></div>
-        <div class="askrow"><input class="field" id="aiChatIn" placeholder="Balas dalam bahasa Mandarin…" autocomplete="off"><button class="btn primary" id="aiSend">Kirim</button></div>
-        <div class="row"><button class="btn icon" id="aiReset">Mulai obrolan baru</button><span class="hint">Boleh campur bahasa Indonesia kalau kesulitan.</span></div>
-      </div>
-
-      <button class="btn icon" id="aiStop" hidden>Berhenti</button>
-    </div>
   </section>
 
   <!-- PROGRESS -->
@@ -5938,7 +5860,7 @@ function say(text,rate=.8){if(!("speechSynthesis"in window))return;speechSynthes
 
 // ---------- Tabs ----------
 const tabs=[...document.querySelectorAll("nav button")];
-function showTab(name){tabs.forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));["flash","quiz","sent","ai","prog"].forEach(id=>$(id).hidden=id!==name);if(name==="ai")aiEnter();if(name==="prog")renderProg();if(name==="quiz"&&!Q)newQuiz();if(name==="sent"&&(!Z||Z.done))nextSent()}
+function showTab(name){tabs.forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));["flash","quiz","sent","prog"].forEach(id=>$(id).hidden=id!==name);if(name==="prog")renderProg();if(name==="quiz"&&!Q)newQuiz();if(name==="sent"&&(!Z||Z.done))nextSent()}
 tabs.forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 $("level").value=S.level;
 $("level").onchange=e=>{S.level=e.target.value;save();nextCard();newQuiz();Z=null;if(!$("sent").hidden)nextSent();renderProg()};
@@ -6119,8 +6041,7 @@ function renderQ(){
     if(ok)Q.right++;S.quiz.total++;if(ok)S.quiz.right++;ok?markRight(w):markWrong(w);logDay();
     save();
     $("qFb").textContent=feedback(ok);if(ok)burst(b);$("qFb").className="feedback "+(ok?"ok":"no");
-    const r=$("qReveal");r.hidden=false;r.innerHTML=`<div class="hanzi" style="font-size:2.4rem">${hanHTML(w)}</div><div class="pinyin">${pinHTML(w.p)}</div><div class="hint">${w.a}</div><button class="btn icon ai-btn" id="qAsk" style="margin-top:8px">Tanya Tutor AI</button>`;
-    $("qAsk").onclick=()=>openTutor(w);
+    const r=$("qReveal");r.hidden=false;r.innerHTML=`<div class="hanzi" style="font-size:2.4rem">${hanHTML(w)}</div><div class="pinyin">${pinHTML(w.p)}</div><div class="hint">${w.a}</div>`;
     setTimeout(()=>say(w.h),ok?900:1900);
     $("qNext").hidden=false;$("qNext").focus();$("qNext").onclick=()=>{Q.i++;renderQ()};
   });
@@ -6171,7 +6092,7 @@ function nextSent(){
     r.innerHTML=`<div class="pinyin" style="font-size:1rem">${s.p}</div><div class="hint">${s.a}</div>
       <button class="btn icon" id="zSay" style="margin-top:8px">${SPK} Dengar kalimat</button>
       <div class="optinfo">${opts.map(x=>`<div${x===w?' class="ans"':""}><b class="h">${hanHTML(x)}</b> ${pinHTML(x.p)} · ${x.a}</div>`).join("")}</div>`;
-    $("zSay").onclick=()=>say(s.segs.join(""));$("zReveal").insertAdjacentHTML("beforeend",`<button class="btn icon ai-btn" id="zAsk" style="margin-top:8px">Tanya Tutor AI tentang kalimat ini</button>`);$("zAsk").onclick=()=>openTutor(w,s.segs.join(""));
+    $("zSay").onclick=()=>say(s.segs.join(""));
     setTimeout(()=>say(s.segs.join("")),ok?900:1900);
     $("zNext").hidden=false;$("zNext").focus();$("zNext").onclick=nextSent;
   });
@@ -6225,143 +6146,11 @@ function renderBadges(){
     ["三十","Streak 30 hari",bs,30,"#c8352b"],
     ["满分","Kuis 10/10",S.perfect||0,1,"var(--gold)"],
     ["句","50 kalimat benar",S.sent.right,50,"var(--porcelain)"],
-    ["一级","HSK 1 tuntas",h1done,h1.length,"var(--jade)"],
-    ["师","Tanya Tutor AI",S.ai||0,1,"var(--plum)"]
+    ["一级","HSK 1 tuntas",h1done,h1.length,"var(--jade)"]
   ];
   $("badges").innerHTML=list.map(([m,t,v,goal,c])=>{const ok=v>=goal;return `<div class="badge${ok?"":" locked"}" style="--bc:${c}"><div class="medal">${m}</div><b>${t}</b><small>${ok?"Tercapai":Math.min(v,goal).toLocaleString("id-ID")+"/"+goal.toLocaleString("id-ID")}</small></div>`}).join("");
 }
 
-// ---------- Tutor AI (memakai Claude lewat akun pengguna; hanya di versi Claude) ----------
-const ARTIFACT_URL="https://claude.ai/artifact/8rTZQhWhsC1wsYL1GWQFd1";
-const AI_OFF_MSG=`Tutor AI memakai Claude, jadi hanya bisa dipakai di versi Claude dari aplikasi ini (perlu internet dan login ke akun Claude): <a href="${ARTIFACT_URL}" target="_blank" rel="noopener">buka Hanzi Harian di Claude</a>. Flashcard, Kuis, dan Kalimat tetap bisa dipakai di sini, termasuk offline.`;
-let SAMPLE=null,aiReady=false,aiCtl=null,aiMode="word",chatTurns=[],writeWord=null;
-document.body.classList.add("no-ai");
-function aiSetAvail(ok,msg){aiReady=ok;document.body.classList.toggle("no-ai",!ok);$("aiOff").hidden=ok;$("aiMain").hidden=!ok;if(!ok)$("aiOffText").innerHTML=msg}
-(async()=>{
-  if(!(window.claude&&typeof claude.use==="function")){aiSetAvail(false,AI_OFF_MSG);return}
-  $("aiOffText").textContent="Menghubungkan ke Claude…";
-  try{SAMPLE=await claude.use("sample")}catch(e){SAMPLE=null}
-  if(SAMPLE)aiSetAvail(true);else aiSetAvail(false,"Tutor AI belum tersedia di tampilan ini. Buka aplikasi lewat claude.ai dan pastikan sudah login.");
-})();
-function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function md(t){
-  let html="",list=false;
-  for(let l of esc(t).split("\n")){
-    l=l.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
-    const li=l.match(/^\s*[-*•]\s+(.*)/);
-    if(li){if(!list){html+="<ul>";list=true}html+=`<li>${li[1]}</li>`;continue}
-    if(list){html+="</ul>";list=false}
-    const h=l.match(/^#{1,4}\s+(.*)/);
-    if(h)html+=`<h4>${h[1]}</h4>`;else if(l.trim())html+=`<p>${l}</p>`;
-  }
-  return html+(list?"</ul>":"");
-}
-function learnerCtx(){
-  const lv=$("level").selectedOptions[0].textContent;
-  const weak=WORDS.filter(w=>S.cards[w.id]&&S.cards[w.id].miss>0).sort((a,b)=>S.cards[b.id].miss-S.cards[a.id].miss).slice(0,15);
-  return `Profil pelajar: orang Indonesia, target lulus HSK 3.0 level 4 sebelum 2029, sedang belajar ${lv}, sudah mempelajari ${Object.keys(S.cards).length} kata.`+(weak.length?` Kata yang sering ia lupa: ${weak.map(w=>`${w.h} (${joinPin(w.p)}, ${w.a})`).join("; ")}.`:"");
-}
-const AI_STYLE="Jawab dalam bahasa Indonesia yang santai tapi jelas. Setiap kata atau kalimat Mandarin tulis dengan karakter sederhana, diikuti pinyin bertanda nada dalam kurung dan artinya. Pakai kosakata HSK 1–4 untuk contoh. Gunakan poin-poin pendek berawalan '- ' dan **teks tebal** untuk judul kecil. Jangan pakai tabel atau emoji.";
-const AI_ERR={not_granted:"Kamu belum mengizinkan aplikasi ini memakai Claude. Izinkan saat diminta untuk memakai Tutor AI.",sampling_disabled:"Claude tidak tersedia untuk akun ini.",rate_limited:"Terlalu banyak permintaan, atau batas pemakaian akun Claude-mu tercapai. Coba lagi beberapa saat lagi.",session_expired:"Sesi Claude berakhir. Login ulang lalu coba lagi.",refused:"Tutor tidak bisa menjawab permintaan ini. Coba ubah pertanyaannya.",cancelled:""};
-async function aiRun(input,out,opts={}){
-  if(!SAMPLE)return null;
-  const{render=md,...so}=opts;
-  aiCtl?.abort();const ctl=aiCtl=new AbortController();
-  out.hidden=false;out.innerHTML='<p class="thinking">Lǎoshī sedang berpikir…</p>';$("aiStop").hidden=false;
-  try{
-    const r=await SAMPLE(input,{...so,signal:ctl.signal,onText:({text})=>{out.innerHTML=render(text)}});
-    S.ai=(S.ai||0)+1;save();
-    if(r.truncated)out.insertAdjacentHTML("beforeend",'<p class="hint">Jawaban terpotong. Coba minta yang lebih singkat.</p>');
-    return r.text;
-  }catch(e){
-    const msg=e.code in AI_ERR?AI_ERR[e.code]:"Koneksi ke Claude terputus. Coba lagi.";
-    out.innerHTML=(e.code!=="refused"&&e.text?render(e.text):"")+(msg?`<p class="ai-err">${msg}</p>`:"");
-    if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(e.code))aiSetAvail(false,msg||AI_OFF_MSG);
-    return null;
-  }finally{if(aiCtl===ctl){aiCtl=null;$("aiStop").hidden=true}}
-}
-$("aiStop").onclick=()=>aiCtl?.abort();
-
-function setMode(m){
-  aiMode=m;document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===m));
-  $("aiWord").hidden=m!=="word";$("aiWrite").hidden=m!=="write";$("aiChat").hidden=m!=="chat";
-  if(m==="word")renderChips();if(m==="write"&&!writeWord)newWriteTask();if(m==="chat"&&!$("aiMsgs").children.length)chatGreet();
-}
-document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
-function aiEnter(){setMode(aiMode)}
-
-// Tanya kata
-const ACTIONS={explain:"Jelaskan arti, cara memakai, dan pola kalimat yang umum, lalu beri 2 contoh kalimat",examples:"Buat 3 contoh kalimat baru yang sederhana dan beragam situasinya",mnemonic:"Beri tips mengingat: uraikan komponen karakternya dan buat jembatan keledai yang mudah diingat orang Indonesia",compare:"Bandingkan dengan kata lain yang artinya mirip, jelaskan kapan memakai masing-masing, dengan contoh"};
-function renderChips(){
-  let list=WORDS.filter(w=>S.cards[w.id]&&S.cards[w.id].miss>0).sort((a,b)=>S.cards[b.id].miss-S.cards[a.id].miss).slice(0,10),lbl="Kata yang sering kamu lupa";
-  if(!list.length){list=learned().slice(-10).reverse();lbl="Kata yang baru kamu pelajari"}
-  $("aiChipsBox").hidden=!list.length;$("aiChipsLabel").textContent=lbl;
-  $("aiChips").innerHTML=list.map(w=>`<button class="chip" data-h="${w.h}">${w.h}</button>`).join("");
-  $("aiChips").querySelectorAll(".chip").forEach(c=>c.onclick=()=>{$("aiWordIn").value=c.dataset.h;$("aiWordIn").focus()});
-}
-function askWord(action){
-  const q=$("aiWordIn").value.trim();if(!q){$("aiWordIn").focus();return}
-  const w=WORDS.find(x=>x.h===q),info=w?`${w.h} (${joinPin(w.p)}, arti: ${w.a}, kosakata HSK ${w.hsk})`:q;
-  const ask=action?`${ACTIONS[action]} untuk kata ${info}.`:`Pertanyaan pelajar: ${q}${w?`\n(Info kata: ${info})`:""}`;
-  aiRun(`Kamu adalah Lǎoshī, tutor bahasa Mandarin yang sabar.\n${learnerCtx()}\n${AI_STYLE} Maksimal sekitar 180 kata.\n\n${ask}`,$("aiOut"),{effort:"low"});
-}
-$("aiAsk").onclick=()=>askWord(null);
-$("aiWordIn").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();askWord(null)}};
-document.querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>askWord(b.dataset.act));
-function openTutor(w,sent){
-  showTab("ai");setMode("word");
-  $("aiWordIn").value=sent?`Jelaskan kalimat ${sent} dan pemakaian ${w.h} di dalamnya`:w.h;
-  if(aiReady)sent?askWord(null):askWord("explain");
-}
-$("fAsk").onclick=e=>{e.stopPropagation();if(cur)openTutor(cur)};
-
-// Latihan menulis
-function newWriteTask(){
-  const L=learned();writeWord=smartPick(L.length?L:pool());
-  $("aiTask").innerHTML=`<span class="label">Buat satu kalimat memakai</span><div class="task-word">${hanHTML(writeWord)}</div><div>${pinHTML(writeWord.p)} · ${esc(writeWord.a)}</div>`;
-  $("aiWriteIn").value="";$("aiWriteOut").hidden=true;
-}
-$("aiNewTask").onclick=newWriteTask;
-$("aiCheck").onclick=async()=>{
-  const t=$("aiWriteIn").value.trim();if(!t){$("aiWriteIn").focus();return}
-  const w=writeWord;
-  const text=await aiRun(`Kamu adalah Lǎoshī, guru bahasa Mandarin.\n${learnerCtx()}\nPelajar diminta membuat satu kalimat bahasa Mandarin yang memakai kata ${w.h} (${joinPin(w.p)}, arti: ${w.a}).\nKalimat pelajar: «${t}»\n\nBaris pertama WAJIB persis berformat "Nilai: N/5" (N angka 1–5; 5 = benar dan alami, 3 = bisa dimengerti tapi ada kesalahan, 1 = salah atau tidak memakai kata itu). Setelah itu:\n- **Koreksi**: kalimat yang benar (karakter, pinyin bertanda nada, arti). Kalau sudah benar, tulis ulang kalimatnya.\n- **Penjelasan**: kesalahan yang ada dan alasannya, singkat.\n- **Tips**: satu saran supaya lebih alami.\n${AI_STYLE} Maksimal sekitar 150 kata.`,$("aiWriteOut"),{effort:"low",cache:false});
-  if(!text)return;
-  const m=text.match(/Nilai:\s*([1-5])/);if(!m)return;
-  const n=+m[1];if(n>=4){SFX.ok(n===5);markRight(w);burst($("aiCheck"))}else if(n<=2){SFX.no();markWrong(w)}
-  logDay();save();
-};
-
-// Ngobrol
-const GREET="你好！我是老师。你今天怎么样？\nPinyin: Nǐ hǎo! Wǒ shì lǎoshī. Nǐ jīntiān zěnmeyàng?\nArti: Halo! Saya Lǎoshī. Bagaimana kabarmu hari ini?";
-function chatRules(){return `Kamu adalah Lǎoshī, teman ngobrol bahasa Mandarin.\n${learnerCtx()}\nAturan setiap balasan:\n1. Baris pertama: balasan dalam bahasa Mandarin sederhana (kosakata HSK 1–4, 1–3 kalimat pendek) yang diakhiri satu pertanyaan balik supaya obrolan berlanjut.\n2. Baris kedua diawali "Pinyin:".\n3. Baris ketiga diawali "Arti:" berisi terjemahan bahasa Indonesia.\n4. Kalau pesan pelajar ada kesalahan bahasa Mandarin, tambahkan baris "Koreksi:" berisi perbaikan singkat dalam bahasa Indonesia. Kalau tidak ada kesalahan, jangan tulis baris ini.\nSesekali pakai kata yang sering ia lupa. Pelajar boleh menulis dalam bahasa Indonesia atau campuran kalau kesulitan. Jangan pakai format lain, markdown, atau emoji.`}
-function tutorHTML(text){
-  let zh=[],out="";
-  for(const l of text.split("\n")){
-    const m=l.match(/^\s*(Pinyin|Arti|Koreksi)\s*[:：]\s*(.*)/i);
-    if(!m){if(l.trim())zh.push(l.trim());continue}
-    const k=m[1].toLowerCase();out+=`<div class="${k==="pinyin"?"py":k==="arti"?"tr":"fix"}">${k==="koreksi"?"<b>Koreksi:</b> ":""}${esc(m[2])}</div>`;
-  }
-  return (zh.length?`<div class="zh">${esc(zh.join(" "))}</div>`:"")+out;
-}
-function addMsg(role,text){
-  const d=document.createElement("div");d.className="msg "+role;
-  if(role==="user")d.textContent=text;else d.innerHTML=text?tutorHTML(text):'<span class="thinking">Lǎoshī sedang mengetik…</span>';
-  $("aiMsgs").appendChild(d);$("aiMsgs").scrollTop=$("aiMsgs").scrollHeight;return d;
-}
-function addSay(el){const zh=el.querySelector(".zh");if(!zh)return;const b=document.createElement("button");b.className="btn icon say";b.innerHTML=SPK+"Dengar";b.onclick=()=>say(zh.textContent);el.appendChild(b)}
-function chatGreet(){const g=addMsg("tutor",GREET);addSay(g)}
-async function sendChat(){
-  const t=$("aiChatIn").value.trim();if(!t||!SAMPLE)return;
-  $("aiChatIn").value="";chatTurns.push({role:"user",content:t});addMsg("user",t);
-  const el=addMsg("tutor","");
-  const text=await aiRun([{role:"user",content:chatRules()},...chatTurns.slice(-12)],el,{modelTier:"quick",cache:false,render:tutorHTML});
-  if(text){chatTurns.push({role:"assistant",content:text});addSay(el);say(el.querySelector(".zh")?.textContent||"")}
-  $("aiMsgs").scrollTop=$("aiMsgs").scrollHeight;
-}
-$("aiSend").onclick=sendChat;
-$("aiChatIn").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();sendChat()}};
-$("aiReset").onclick=()=>{aiCtl?.abort();chatTurns=[];$("aiMsgs").innerHTML="";chatGreet()};
 
 nextCard();
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{})})}
