@@ -6082,6 +6082,23 @@ const SENT_OF={};SENT.forEach((s,i)=>s.segs.forEach((g,j)=>{if(BYH[g])(SENT_OF[g
 let Z=null;
 function learnedWithSent(){return pool().filter(w=>S.cards[w.id]&&SENT_OF[w.h])}
 function sentInfo(){$("sentInfo").textContent=S.sent.total?`Akurasi ${Math.round(S.sent.right/S.sent.total*100)}% dari ${S.sent.total} soal`:""}
+// ---- Pilihan jawaban yang tidak ambigu ----
+const normTr=t=>" "+t.toLowerCase().replace(/[^a-z0-9\s-]/g," ").replace(/\s+/g," ")+" ";
+const meanings=w=>w.a.toLowerCase().replace(/\([^)]*\)/g,"").split(/[,;/]/).map(x=>x.trim()).filter(x=>x.length>=2);
+const inTr=(w,tr)=>meanings(w).some(m=>tr.includes(" "+m+" "));
+function pickDistractors(w,s,L){
+  const tr=normTr(s.a),ansIn=inTr(w,tr),wm=new Set(meanings(w)),used=new Set(s.segs);
+  // Pilihan salah tidak boleh: ada di kalimat, artinya muncul di terjemahan, bersinonim dengan jawaban,
+  // atau berbagi karakter dengan jawaban (mis. 爸 vs 爸爸).
+  const ok=x=>x.h!==w.h&&!used.has(x.h)&&!inTr(x,tr)&&!meanings(x).some(m=>wm.has(m))&&![...x.h].some(c=>w.h.includes(c));
+  // Kalau arti jawaban tertulis di terjemahan, kelas kata yang sama tetap aman (dan lebih menantang).
+  // Kalau tidak, ambil kelas kata yang berbeda supaya secara tata bahasa hanya satu yang masuk.
+  const posOk=ansIn?(x=>x.pos===w.pos):(x=>x.pos!==w.pos&&x.pos!=="x"),len=x=>[...x.h].length===[...w.h].length;
+  const ds=[];
+  for(const P of[shuffle(L.filter(x=>ok(x)&&posOk(x))),shuffle(pool().filter(x=>ok(x)&&posOk(x)&&len(x))),shuffle(WORDS.filter(x=>ok(x)&&posOk(x))),shuffle(pool().filter(ok))])
+    for(const x of P){if(ds.length>=3)break;if(!ds.some(d=>d.h===x.h))ds.push(x)}
+  return ds;
+}
 function nextSent(){
   const L=learnedWithSent(),body=$("sentBody");sentInfo();
   if(!L.length){
@@ -6089,23 +6106,21 @@ function nextSent(){
     body.innerHTML=`<div class="card" style="cursor:default;min-height:180px"><div class="hanzi" style="font-size:3rem">句子</div><div class="hint">Soal kalimat memakai kata yang sudah kamu latih. Latih beberapa kata dulu di Flashcard atau Kuis, lalu kembali ke sini.</div></div><button class="btn primary" id="zGo">Buka Flashcard</button>`;
     $("zGo").onclick=()=>showTab("flash");return;
   }
-  const w=smartPick(L),occ=SENT_OF[w.h],[si,sj]=occ[Math.floor(Math.random()*occ.length)],s=SENT[si];
-  const used=new Set(s.segs),notIn=x=>!used.has(x.h)&&x.h!==w.h,same=x=>x.pos===w.pos,len=x=>[...x.h].length===[...w.h].length;
-  const ds=[];
-  for(const P of[shuffle(L.filter(x=>notIn(x)&&same(x))),shuffle(pool().filter(x=>notIn(x)&&same(x)&&len(x))),shuffle(WORDS.filter(x=>notIn(x)&&same(x))),shuffle(pool().filter(notIn))])
-    for(const x of P){if(ds.length>=3)break;if(!ds.some(d=>d.h===x.h))ds.push(x)}
+  const w=smartPick(L),occ=SENT_OF[w.h];
+  // Utamakan kalimat yang terjemahannya memuat arti kata jawaban, supaya jawabannya pasti satu.
+  const good=occ.filter(([i])=>inTr(w,normTr(SENT[i].a))),[si,sj]=(good.length?good:occ)[Math.floor(Math.random()*(good.length||occ.length))],s=SENT[si];
+  const ds=pickDistractors(w,s,L);
   const opts=shuffle([w,...ds]);
   Z={w,s,sj,opts,done:false};
   const sentHTML=s.segs.map((g,j)=>j===sj?`<span class="blank" id="zBlank">？</span>`:g).join("");
   body.innerHTML=`<div class="card" style="cursor:default;min-height:170px;gap:12px">
     <div class="sentence">${sentHTML}</div>
-    <button class="btn icon" id="zHint">Tampilkan arti kalimat</button>
-    <div class="hint" id="zTr" hidden>${s.a}</div>
+    <div class="hint" id="zTr">${s.a}</div>
     <div id="zReveal" hidden></div>
   </div>
   <div class="choices">${opts.map((o,k)=>`<button class="choice han" data-k="${k}">${o.h}</button>`).join("")}</div>
   <div class="row spread"><span class="feedback" id="zFb"></span><button class="btn" id="zNext" hidden>Berikutnya →</button></div>`;
-  $("zHint").onclick=()=>{$("zTr").hidden=false;$("zHint").hidden=true};
+  
   body.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
     if(Z.done)return;Z.done=true;
     const o=opts[+b.dataset.k],ok=o===w;
@@ -6114,7 +6129,7 @@ function nextSent(){
     S.sent.total++;if(ok)S.sent.right++;ok?markRight(w):markWrong(w);logDay();save();sentInfo();
     $("zBlank").innerHTML=hanHTML(w);$("zBlank").classList.add("filled");
     $("zFb").textContent=feedback(ok);if(ok)burst(b);$("zFb").className="feedback "+(ok?"ok":"no");
-    $("zHint").hidden=true;$("zTr").hidden=true;
+    $("zTr").hidden=true;
     const r=$("zReveal");r.hidden=false;
     r.innerHTML=`<div class="pinyin" style="font-size:1rem">${s.p}</div><div class="hint">${s.a}</div>
       <button class="btn icon" id="zSay" style="margin-top:8px">${SPK} Dengar kalimat</button>

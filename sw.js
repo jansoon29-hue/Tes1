@@ -1,7 +1,7 @@
 // Hanzi Harian: simpan aplikasi supaya bisa dibuka tanpa internet.
 // Halaman diambil dari jaringan dulu (agar selalu dapat versi terbaru),
 // dan memakai salinan tersimpan bila sedang offline.
-const CACHE = "hanzi-harian-v8";
+const CACHE = "hanzi-harian-v9";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", e => {
